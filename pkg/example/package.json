@@ -1,0 +1,28 @@
+{
+  "name": "example",
+  "description": "Example pkg features for Rancher Manager UI",
+  "version": "0.1.0",
+  "private": false,
+  "rancher": true,
+  "license": "Apache-2.0",
+  "author": "SUSE",
+  "scripts": {
+    "lint": "vue-cli-service lint"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "dependencies": {
+    "@rancher/shell": "0.1.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-typescript": "^4.5.15",
+    "@vue/cli-service": "~4.5.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
