@@ -1,0 +1,22 @@
+{
+  "name": "ui-plugin-examples-2",
+  "version": "0.1.0",
+  "private": false,
+  "engines": {
+    "node": ">=12"
+  },
+  "dependencies": {
+    "@rancher/shell": "^0.1.1",
+    "@rancher/components": "0.1.0-alpha.4",
+    "lodash": "^4.17.21",
+    "core-js": "^3.20.3",
+    "css-loader": "4.3.0"
+  },
+  "scripts": {
+    "dev": "./node_modules/.bin/nuxt dev",
+    "nuxt": "./node_modules/.bin/nuxt",
+    "build": "./node_modules/.bin/nuxt build",
+    "build-pkg": "./node_modules/@rancher/shell/scripts/build-pkg.sh",
+    "serve-pkgs": "./node_modules/@rancher/shell/scripts/serve-pkgs"
+  }
+}
