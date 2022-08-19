@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "@rancher/shell": "^0.1.1",
+    "@rancher/components": "0.1.0-alpha.4",
+    "lodash": "^4.17.21",
     "core-js": "^3.20.3",
     "css-loader": "4.3.0"
   },

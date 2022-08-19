@@ -2381,6 +2381,12 @@
   version "2.11.6"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
 
+"@rancher/components@0.1.0-alpha.4":
+  version "0.1.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@rancher/components/-/components-0.1.0-alpha.1.tgz#89ba3fa54116e20aab5aa367b82a20bb2dea8a92"
+  dependencies:
+    lodash.debounce "^4.0.8"
+
 "@rancher/shell@^0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@rancher/shell/-/shell-0.1.1.tgz#4a936b87b810ac0d9c55e2c1d0fea1af59be88c9"
