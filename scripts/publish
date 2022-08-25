@@ -37,6 +37,9 @@ if [ $? -eq 0 ]; then
   exit 1
 fi
 
+rm -rf .tmp
+mkdir -p ./tmp/_charts
+
 for d in pkg/*/ ; do
   pkg=$(basename $d)
   echo "Building plugin: $pkg"
@@ -56,10 +59,19 @@ for d in pkg/*/ ; do
   tar --exclude=report.html -czvf ${PKG_NAME}.tgz ./${PKG_NAME}/
   popd > /dev/null
 
+  ${SCRIPT_DIR}/helmgen ./pkg/${pkg} ./tmp
+
+  echo ./tmp/${pkg}
+  ls -al ./tmp/${pkg}
+
+  helm package ./tmp/${pkg} -d ./tmp/_charts
+  mv ./tmp/_charts/${PKG_NAME}.tgz ./tmp/_charts/${pkg}-chart-${PKG_VERSION}.tgz 
 done
+
+# Copy all of the helm charts to the folder for upload
 
 echo "Creating GitHub Release"
 
-gh release create -R ${REPO} ${VERSION} --generate-notes -t "Release ${VERSION}" ./dist-pkg/*.tgz
+#gh release create -R ${REPO} ${VERSION} --generate-notes -t "Release ${VERSION}" ./dist-pkg/*.tgz
 
 popd > /dev/null

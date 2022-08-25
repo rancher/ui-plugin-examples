@@ -24,6 +24,14 @@ const pkgFile = JSON.parse(fs.readFileSync(path.join(pkgFolder, 'package.json'),
 
 console.log(pkgFile);
 
+const chartFolder = path.join(destFolder, pkgFile.name);
+
+if (fs.existsSync(chartFolder)) {
+  fs.rmdirSync(chartFolder, { recursive: true });
+}
+
+fs.mkdirSync(chartFolder, 0777);
+
 const chart = {
   apiVersion: 'v2',
   name: pkgFile.name,
@@ -49,4 +57,11 @@ if (pkgFile.homepage) {
 
 const str = yaml.dump(chart);
 
-fs.writeFileSync(path.join(destFolder, 'Chart.yanl'), str, 'utf8');
+fs.writeFileSync(path.join(chartFolder, 'Chart.yaml'), str, 'utf8');
+
+const valuesYaml = '# No values required\n';
+
+fs.writeFileSync(path.join(chartFolder, 'values.yanl'), valuesYaml, 'utf8');
+
+// Create templates folder
+fs.mkdirSync(path.join(chartFolder, 'templates'), 0777);
