@@ -10,8 +10,6 @@ const UI_PLUGIN_ANNOTATION = 'uipluign.cattle.io';
 
 console.log('Helm file generation');
 
-console.log(process.argv);
-
 if (process.argv.length !== 4) {
   console.log('Incorrect number of arguments');
   process.exit(1);
@@ -22,7 +20,13 @@ const destFolder = process.argv[3];
 
 const pkgFile = JSON.parse(fs.readFileSync(path.join(pkgFolder, 'package.json'), 'utf8'));
 
-console.log(pkgFile);
+const chartFolder = path.join(destFolder, pkgFile.name);
+
+if (fs.existsSync(chartFolder)) {
+  fs.rmdirSync(chartFolder, { recursive: true });
+}
+
+fs.mkdirSync(chartFolder, 0777);
 
 const chart = {
   apiVersion: 'v2',
@@ -48,5 +52,14 @@ if (pkgFile.homepage) {
 }
 
 const str = yaml.dump(chart);
+fs.writeFileSync(path.join(chartFolder, 'Chart.yaml'), str, 'utf8');
 
-fs.writeFileSync(path.join(destFolder, 'Chart.yanl'), str, 'utf8');
+const values = {
+  plugin: pkgFile.name,
+};
+
+const valuesYaml = yaml.dump(values);
+fs.writeFileSync(path.join(chartFolder, 'values.yanl'), valuesYaml, 'utf8');
+
+// Create templates folder
+fs.mkdirSync(path.join(chartFolder, 'templates'), 0777);

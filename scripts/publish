@@ -37,6 +37,9 @@ if [ $? -eq 0 ]; then
   exit 1
 fi
 
+rm -rf ./tmp
+mkdir -p ./tmp/_charts
+
 for d in pkg/*/ ; do
   pkg=$(basename $d)
   echo "Building plugin: $pkg"
@@ -56,10 +59,74 @@ for d in pkg/*/ ; do
   tar --exclude=report.html -czvf ${PKG_NAME}.tgz ./${PKG_NAME}/
   popd > /dev/null
 
+  ${SCRIPT_DIR}/helmgen ./pkg/${pkg} ./tmp
+
+  if [ -f "./pkg/${pkg}/README.md" ]; then
+    cp ./pkg/${pkg}/README.md ./tmp/${pkg}/README.md
+  fi
+
+  echo ./tmp/${pkg}
+  ls -al ./tmp/${pkg}
+
+  helm package ./tmp/${pkg} -d ./tmp/_charts
+  mv ./tmp/_charts/${PKG_NAME}.tgz ./tmp/_charts/${pkg}-chart-${PKG_VERSION}.tgz 
 done
+
+# Copy all of the helm charts to the folder for upload
 
 echo "Creating GitHub Release"
 
+# Create release and uplaod Helm charts to the GitHub release
 gh release create -R ${REPO} ${VERSION} --generate-notes -t "Release ${VERSION}" ./dist-pkg/*.tgz
+gh release upload -R ${REPO} ${VERSION} ./tmp/_charts/*.tgz
+
+CHARTS_DIR=$(cd ./tmp/_charts && pwd)
+
+echo "Charts Dir: ${CHARTS_DIR}"
 
 popd > /dev/null
+
+# Update Helm repository index
+
+BASE_URL="https://github.com/${REPO}/releases/download/${PKG_VERSION}/"
+
+# Clone the same Git repo into a temporary folder
+
+GIT_URL=$(git config --get remote.origin.url)
+GIT_REPO=${PWD##*/}
+HELM_DIR=$(mktemp -d)
+echo ${HELM_DIR}
+
+pushd ${HELM_DIR} > /dev/null
+
+git clone ${GIT_URL}
+cd ${GIT_REPO}
+
+git switch -c gh-pages
+
+UPDATE=""
+
+if [ -d "helm" ]; then
+  git rm -rf helm
+fi
+
+mkdir -p docs
+cd docs
+
+if [ -f "./index.yaml" ]; then
+  UPDATE="--merge index.yaml"
+fi
+
+cp ${CHARTS_DIR}/*.tgz .
+
+helm repo index . --url ${BASE_URL} ${UPDATE}
+
+#cat index.yaml
+git add index.yaml
+git commit -m "Update Helm repository index for version ${VERSION}"
+git push origin gh-pages -f
+
+popd > /dev/null
+
+rm -rf ${HELM_DIR}
+
