@@ -1,5 +1,6 @@
 import { importTypes } from '@rancher/auto-import';
 import { IPlugin } from '@shell/core/types';
+import NewHomeComponent from './NewHomeComponent.vue';
 
 // Init the package
 export default function(plugin: IPlugin) {
@@ -11,4 +12,10 @@ export default function(plugin: IPlugin) {
 
   // Load a product
   // plugin.addProduct(require('./product'));
+
+  plugin.addRoute({
+    name:      'home',
+    path:      '/home',
+    component: NewHomeComponent
+  });  
 }
