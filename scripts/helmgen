@@ -8,6 +8,9 @@ const yaml = require('js-yaml');
 
 const UI_PLUGIN_ANNOTATION = 'uipluign.cattle.io';
 
+const TEMPLATES = ['uiplugin.yaml'];
+const REPLACE = ['name', 'description', 'version'];
+
 console.log('Helm file generation');
 
 if (process.argv.length !== 4) {
@@ -17,13 +20,14 @@ if (process.argv.length !== 4) {
 
 const pkgFolder = process.argv[2];
 const destFolder = process.argv[3];
+const scriptFolder = path.dirname(process.argv[1]);
 
 const pkgFile = JSON.parse(fs.readFileSync(path.join(pkgFolder, 'package.json'), 'utf8'));
 
 const chartFolder = path.join(destFolder, pkgFile.name);
 
 if (fs.existsSync(chartFolder)) {
-  fs.rmdirSync(chartFolder, { recursive: true });
+  fs.rmSync(chartFolder, { recursive: true });
 }
 
 fs.mkdirSync(chartFolder, 0777);
@@ -63,3 +67,28 @@ fs.writeFileSync(path.join(chartFolder, 'values.yanl'), valuesYaml, 'utf8');
 
 // Create templates folder
 fs.mkdirSync(path.join(chartFolder, 'templates'), 0777);
+
+function repl(obj) {
+  Object.keys(obj).forEach(k => {
+    const v = obj[k];
+    if (typeof v === 'string') {
+      const r = REPLACE.find(n => n === v.toLocaleLowerCase());
+      if (r) {
+        obj[k] = pkgFile[r];
+      }
+    } else {
+      repl(v);
+    }
+  });
+}
+
+TEMPLATES.forEach(tName => {
+  const src = path.join(scriptFolder, 'templates', tName);
+  
+  const data = yaml.load(fs.readFileSync(src));
+
+  repl(data);
+
+  const tYaml = yaml.dump(data);
+  fs.writeFileSync(path.join(chartFolder, 'templates', tName), tYaml, 'utf8');
+});
