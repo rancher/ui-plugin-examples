@@ -1,0 +1,94 @@
+#!/usr/bin/env node
+
+// Generate Chart.yaml and values.yaml files
+
+const fs = require('fs');
+const path = require('path');
+const yaml = require('js-yaml');
+
+const UI_PLUGIN_ANNOTATION = 'uipluign.cattle.io';
+
+const TEMPLATES = ['uiplugin.yaml'];
+const REPLACE = ['name', 'description', 'version'];
+
+console.log('Helm file generation');
+
+if (process.argv.length !== 4) {
+  console.log('Incorrect number of arguments');
+  process.exit(1);
+}
+
+const pkgFolder = process.argv[2];
+const destFolder = process.argv[3];
+const scriptFolder = path.dirname(process.argv[1]);
+
+const pkgFile = JSON.parse(fs.readFileSync(path.join(pkgFolder, 'package.json'), 'utf8'));
+
+const chartFolder = path.join(destFolder, pkgFile.name);
+
+if (fs.existsSync(chartFolder)) {
+  fs.rmSync(chartFolder, { recursive: true });
+}
+
+fs.mkdirSync(chartFolder, 0777);
+
+const chart = {
+  apiVersion: 'v2',
+  name: pkgFile.name,
+  version: pkgFile.version,
+  appVersion: pkgFile.version,
+  description: pkgFile.description || `${pkgFile.name} ui plugin `,
+  annotations: {
+    [UI_PLUGIN_ANNOTATION]: 'true'
+  }
+};
+
+if (pkgFile.icon) {
+  chart.icon = pkgFile.icon;
+}
+
+if (pkgFile.keywords) {
+  chart.keywords = pkgFile.keywords;
+}
+
+if (pkgFile.homepage) {
+  chart.home = pkgFile.homepage;
+}
+
+const str = yaml.dump(chart);
+fs.writeFileSync(path.join(chartFolder, 'Chart.yaml'), str, 'utf8');
+
+const values = {
+  plugin: pkgFile.name,
+};
+
+const valuesYaml = yaml.dump(values);
+fs.writeFileSync(path.join(chartFolder, 'values.yanl'), valuesYaml, 'utf8');
+
+// Create templates folder
+fs.mkdirSync(path.join(chartFolder, 'templates'), 0777);
+
+function repl(obj) {
+  Object.keys(obj).forEach(k => {
+    const v = obj[k];
+    if (typeof v === 'string') {
+      const r = REPLACE.find(n => n === v.toLocaleLowerCase());
+      if (r) {
+        obj[k] = pkgFile[r];
+      }
+    } else {
+      repl(v);
+    }
+  });
+}
+
+TEMPLATES.forEach(tName => {
+  const src = path.join(scriptFolder, 'templates', tName);
+  
+  const data = yaml.load(fs.readFileSync(src));
+
+  repl(data);
+
+  const tYaml = yaml.dump(data);
+  fs.writeFileSync(path.join(chartFolder, 'templates', tName), tYaml, 'utf8');
+});
