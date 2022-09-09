@@ -4,6 +4,17 @@ entries:
   - annotations:
       uipluign.cattle.io: "true"
     apiVersion: v2
+    appVersion: 0.1.2
+    created: "2022-09-09T09:06:41.372664+01:00"
+    description: Example plugin that changes the landing home page
+    digest: 48552692985656124645670a986af459912f95a5dc48220a2c8a03e7dfd2e728
+    name: homepage
+    urls:
+    - https://github.com/rancher/ui-plugin-examples/releases/download/0.1.0/homepage-chart-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      uipluign.cattle.io: "true"
+    apiVersion: v2
     appVersion: 0.1.1
     created: "2022-09-09T08:43:53.650938+01:00"
     description: homepage plugin
@@ -17,11 +28,11 @@ entries:
       uipluign.cattle.io: "true"
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-09-09T08:43:53.651462+01:00"
+    created: "2022-09-09T09:06:41.37283+01:00"
     description: new-feature plugin
-    digest: 4fc2d43172ff34757116e9ab85586471819625095f9dca9a32f970ea62077db5
+    digest: 2fc33a7ce418c210d5511807f96ed266674a63b24c1e0dc0a6df48ac321cb6b2
     name: new-feature
     urls:
     - https://github.com/rancher/ui-plugin-examples/releases/download/0.1.0/new-feature-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2022-09-09T08:43:53.646192+01:00"
+generated: "2022-09-09T09:06:41.372331+01:00"
