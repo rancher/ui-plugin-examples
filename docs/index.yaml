@@ -10,7 +10,7 @@ entries:
     digest: 48552692985656124645670a986af459912f95a5dc48220a2c8a03e7dfd2e728
     name: homepage
     urls:
-    - https://github.com/rancher/ui-plugin-examples/releases/download/0.1.0/homepage-chart-0.1.2.tgz
+    - https://github.com/rancher/ui-plugin-examples/releases/download/0.1.2/homepage-chart-0.1.2.tgz
     version: 0.1.2
   - annotations:
       uipluign.cattle.io: "true"
