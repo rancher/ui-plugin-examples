@@ -1,0 +1,27 @@
+apiVersion: v1
+entries:
+  homepage:
+  - annotations:
+      uipluign.cattle.io: "true"
+    apiVersion: v2
+    appVersion: 0.1.1
+    created: "2022-09-09T08:43:53.650938+01:00"
+    description: homepage plugin
+    digest: 97d4d5b2e4ada8f1f3ab6b437ff80311c6f7b567a7ae4f29bca35da3c1b173b7
+    name: homepage
+    urls:
+    - https://github.com/rancher/ui-plugin-examples/releases/download/0.1.0/homepage-chart-0.1.1.tgz
+    version: 0.1.1
+  new-feature:
+  - annotations:
+      uipluign.cattle.io: "true"
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-09-09T08:43:53.651462+01:00"
+    description: new-feature plugin
+    digest: 4fc2d43172ff34757116e9ab85586471819625095f9dca9a32f970ea62077db5
+    name: new-feature
+    urls:
+    - https://github.com/rancher/ui-plugin-examples/releases/download/0.1.0/new-feature-chart-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-09-09T08:43:53.646192+01:00"
