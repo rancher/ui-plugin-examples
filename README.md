@@ -8,7 +8,7 @@ This repository contains 2 example plugins in the `pkg` folder.
 |homepage|Plugin that changes the landing home page|
 |new-feature|Plugin that adds a new feature to the top-level slide-in menu|
 
-You can find the built packages for these plugins in the [releases](https://github.com/rancher/ui-plugin-examples/releases) sectin of this GitHub repository. These are assets named in the form `[plugin-name]-[version].tgz`.
+You can find the built packages for these plugins in the [releases](https://github.com/rancher/ui-plugin-examples/releases) section of this GitHub repository. These are assets named in the form `[plugin-name]-[version].tgz`.
 
 Additionally, fake Helm charts for the plugins are published to the releases as well - these currently only contain enough metadata to test the UI Plugin catalog. These are assets named in the form `[plugin-name]-chart-[version].tgz`.
 
