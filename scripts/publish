@@ -7,10 +7,12 @@ CYAN="\033[96m"
 YELLOW="\033[93m"
 RESET="\033[0m"
 BOLD="\033[1m"
+NORMAL="\033[22m"
 
 SINGLE_VERSION="false" # Should we publish all plugins using the version from-the top-level package file?
 PUSH=""
 REGISTRY=""
+REG=""
 
 usage() {
   echo "Usage: $0 [-v] [plugins]"
@@ -34,7 +36,8 @@ while getopts "hvr:p" opt; do
       PUSH="--push"
       ;;
     r)
-      REGISTRY="$OPTARG/"
+      REG="${OPTARG}"
+      REGISTRY="${REGISTRY}/"
       ;;
     *)
       usage
@@ -53,6 +56,26 @@ pushd ${BASE_DIR} > /dev/null
 
 # VERSION=$(jq -r .version package.json)
 # echo "Version: $VERSION"
+
+# --------------------------------------------------------------------------------
+# Check that we have the required commands avaialble for this script
+# --------------------------------------------------------------------------------
+
+COMMANDS=("node" "jq" "yq" "git" "docker" "helm")
+HAVE_COMMANDS="true"
+for CMD in "${COMMANDS[@]}"
+do
+  if ! command -v ${CMD} >/dev/null; then
+    echo -e "${YELLOW}This script requires ${BOLD}${CMD}${NORMAL} to be installed and on your PATH${RESET}"
+    HAVE_COMMANDS="false"
+  fi
+done
+
+if [ "${HAVE_COMMANDS}" == "false" ]; then
+  exit 1
+fi
+
+# --------------------------------------------------------------------------------
 
 REPO=$(git config --get remote.origin.url | sed -e 's/^git@.*:\([[:graph:]]*\).git/\1/')
 
@@ -124,7 +147,7 @@ for d in pkg/*/ ; do
     # Build the docker image
     pushd ${TMP}/container > /dev/null
     echo -e "${CYAN}Building container imaeg ...${RESET}"
-    docker build --platform=linux/amd64 -f ./package/Dockerfile -t ${REGISTRY}${PKG_NAME}:${PKG_VERSION} .
+    docker buildx build --platform=linux/amd64 -f ./package/Dockerfile -t ${REGISTRY}${PKG_NAME}:${PKG_VERSION} .
 
     if [ "${PUSH}" == "--push" ]; then
       echo -e "${CYAN}Pusing container image ...${RESET}"
@@ -147,8 +170,15 @@ for d in pkg/*/ ; do
 
     cp -R ${CHART_TEMPLATE}/charts/ ${CHART_FOLDER}
 
-    # Update Chart.yaml from the package file metadata
-    ${SCRIPT_DIR}/helmgen ./pkg/${pkg} ${CHART_FOLDER}
+    # Update Chart.yaml and values.yaml from the package file metadata
+    # Use the script from the template repository, if it is there
+    if [ -f ${CHART_TEMPLATE}/scripts/patch ]; then
+      echo "Patching Helm chart template"
+      ${CHART_TEMPLATE}/scripts/patch ${CHART_FOLDER} ${BASE_DIR}/pkg/${pkg}/package.json "${REG}"
+    else
+      # Remove this fallback once the patch script is working
+      ${SCRIPT_DIR}/helmgen ./pkg/${pkg} ${CHART_FOLDER}
+    fi
 
     # Copy README file from the plugin to the Helm chart, if there is one
     if [ -f "./pkg/${pkg}/README.md" ]; then
