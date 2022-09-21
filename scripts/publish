@@ -3,130 +3,221 @@
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 BASE_DIR="$( cd $SCRIPT_DIR && cd .. & pwd)"
 
-echo "Publishing UI Plugins"
+CYAN="\033[96m"
+YELLOW="\033[93m"
+RESET="\033[0m"
+BOLD="\033[1m"
+NORMAL="\033[22m"
 
-# Check GitHub release - use the package.json file for the version
+SINGLE_VERSION="false" # Should we publish all plugins using the version from-the top-level package file?
+PUSH=""
+REGISTRY=""
+REG=""
+
+usage() {
+  echo "Usage: $0 [-v] [plugins]"
+  #echo "  -v        Publish plugins using the version from-the top-level package file"
+  echo "  -p        Push container images on build"
+  echo "  -r <name> Specify destination container registry for built images"
+  echo ""
+  echo ""
+  exit 1
+}
+
+while getopts "hvr:p" opt; do
+  case $opt in
+    h)
+      usage
+      ;;
+    v)
+      SINGLE_VERSION="true"
+      ;;
+    p)
+      PUSH="--push"
+      ;;
+    r)
+      REG="${OPTARG}"
+      REGISTRY="${REGISTRY}/"
+      ;;
+    *)
+      usage
+      ;;
+  esac
+done
+
+shift $((OPTIND-1))
+
+PLUGINS=( "$@" )
+BUILT="false"
+
+echo -e "${CYAN}${BOLD}Publishing UI Plugins${RESET}"
 
 pushd ${BASE_DIR} > /dev/null
 
-VERSION=$(jq -r .version package.json)
+# VERSION=$(jq -r .version package.json)
+# echo "Version: $VERSION"
 
-echo "Version: $VERSION"
+# --------------------------------------------------------------------------------
+# Check that we have the required commands avaialble for this script
+# --------------------------------------------------------------------------------
 
-which gh
-if [ $? -ne 0 ]; then
-  echo "You need to install the GitHub CLI tool (gh) and ensure it is on the path"
+COMMANDS=("node" "jq" "yq" "git" "docker" "helm")
+HAVE_COMMANDS="true"
+for CMD in "${COMMANDS[@]}"
+do
+  if ! command -v ${CMD} >/dev/null; then
+    echo -e "${YELLOW}This script requires ${BOLD}${CMD}${NORMAL} to be installed and on your PATH${RESET}"
+    HAVE_COMMANDS="false"
+  fi
+done
+
+if [ "${HAVE_COMMANDS}" == "false" ]; then
   exit 1
 fi
 
-# Need GH_TOKEN to be set as well
-if [ -z "$GH_TOKEN" ]; then
-  echo "You need to set the GH_TOKEN environment varibale for the GitHub CLI tool (gh)"
-  exit 1
-fi
+# --------------------------------------------------------------------------------
 
 REPO=$(git config --get remote.origin.url | sed -e 's/^git@.*:\([[:graph:]]*\).git/\1/')
 
 echo "GitHub Repository: ${REPO}"
 
-# Check that release does not already exist
-
-gh release view -R ${REPO} ${VERSION} > /dev/null
-if [ $? -eq 0 ]; then
-  echo "Release already exists on GitHub; update package.json to change the version number"
+docker images > /dev/null
+if [ $? -ne 0 ]; then
+  echo "docker is not running - this is required to build container images for the UI Plugins"
   exit 1
 fi
 
-rm -rf ./tmp
-mkdir -p ./tmp/_charts
+ASSETS=${BASE_DIR}/assets
+CHARTS=${BASE_DIR}/charts
+mkdir -p ${ASSETS}
+mkdir -p ${CHARTS}
 
+TMP=${BASE_DIR}/tmp
+CHART_TMP=${BASE_DIR}/tmp/_charts
+rm -rf ${TMP}
+
+CHART_TEMPLATE=${BASE_DIR}/tmp/ui-plugin-server
+
+# --------------------------------------------------------------------------------
+# Clone the plugin server template into the temporary folder
+# --------------------------------------------------------------------------------
+git clone -q https://github.com/rancher/ui-plugin-server.git ${CHART_TEMPLATE}
+
+# --------------------------------------------------------------------------------
+# Iterate through all packages - built them all or build only those specified on the command line
+# --------------------------------------------------------------------------------
 for d in pkg/*/ ; do
   pkg=$(basename $d)
-  echo "Building plugin: $pkg"
-  yarn build-pkg $pkg
 
-  # Tar gzip each of the plugins
-  PKG_VERSION=$(jq -r .version ./pkg/${pkg}/package.json)
-  echo "Package version: ${PKG_VERSION}"
+  if [ -z "$1" ] || [[ " ${PLUGINS[*]} " =~ " ${pkg} " ]]; then
+    # Check we don't already have a published version by looking in the assets folder
+    PKG_VERSION=$(jq -r .version ./pkg/${pkg}/package.json)
+    PKG_NAME="${pkg}-${PKG_VERSION}"
+    PKG_ASSET=${ASSETS}/${pkg}/${PKG_NAME}.tgz
 
-  PKG_NAME="${pkg}-${PKG_VERSION}"
+    echo -e "${CYAN}${BOLD}Building plugin: ${pkg} (${PKG_VERSION}) ${RESET}"
 
-  echo "Package version: ${PKG_VERSION}"
-  echo "Package folder:  ${PKG_NAME}"
+    if [ -f ${PKG_ASSET} ]; then
+      echo -e "${YELLOW}Plugin has already been published - skipping${RESET}"
+      continue;
+    fi
 
-  pushd ./dist-pkg > /dev/null
-  rm -f ${PKG_NAME}.tgz
-  tar --exclude=report.html -czvf ${PKG_NAME}.tgz ./${PKG_NAME}/
-  popd > /dev/null
+    echo "Package version: ${PKG_VERSION}"
+    echo "Package folder:  ${PKG_NAME}"
 
-  ${SCRIPT_DIR}/helmgen ./pkg/${pkg} ./tmp
+    # --------------------------------------------------------------------------------
+    # Build the plugin from source
+    # --------------------------------------------------------------------------------
+    echo -e "${CYAN}Building plugin from source code${RESET}"
+    FORCE_COLOR=1 yarn build-pkg $pkg | cat
 
-  if [ -f "./pkg/${pkg}/README.md" ]; then
-    cp ./pkg/${pkg}/README.md ./tmp/${pkg}/README.md
+    # --------------------------------------------------------------------------------
+    # Create the container image
+    # --------------------------------------------------------------------------------
+    mkdir -p ${TMP}/container
+    cp -R ${CHART_TEMPLATE}/ ${TMP}/container
+
+    # Copy the plugin assets
+    rm -rf ${TMP}/container/plugin
+    mkdir ${TMP}/container/plugin
+
+    cp -R ${BASE_DIR}/dist-pkg/${PKG_NAME}/ ${TMP}/container/plugin
+    rm -f ${TMP}/container/plugin/report.html
+
+    # Build the docker image
+    pushd ${TMP}/container > /dev/null
+    echo -e "${CYAN}Building container imaeg ...${RESET}"
+    docker buildx build --platform=linux/amd64 -f ./package/Dockerfile -t ${REGISTRY}${PKG_NAME}:${PKG_VERSION} .
+
+    if [ "${PUSH}" == "--push" ]; then
+      echo -e "${CYAN}Pusing container image ...${RESET}"
+      docker push ${REGISTRY}${PKG_NAME}:${PKG_VERSION}
+    fi
+
+    popd > /dev/null
+
+    rm -rf ${TMP}/container
+
+    # --------------------------------------------------------------------------------
+    # Create the Helm chart
+    # --------------------------------------------------------------------------------
+
+    CHART_FOLDER=${CHARTS}/${pkg}/${PKG_VERSION}
+
+    mkdir -p ${ASSETS}/${pkg}
+    rm -rf ${CHART_FOLDER}
+    mkdir -p ${CHART_FOLDER}
+
+    cp -R ${CHART_TEMPLATE}/charts/ ${CHART_FOLDER}
+
+    # Update Chart.yaml and values.yaml from the package file metadata
+    # Use the script from the template repository, if it is there
+    if [ -f ${CHART_TEMPLATE}/scripts/patch ]; then
+      echo "Patching Helm chart template"
+      ${CHART_TEMPLATE}/scripts/patch ${CHART_FOLDER} ${BASE_DIR}/pkg/${pkg}/package.json "${REG}"
+    else
+      # Remove this fallback once the patch script is working
+      ${SCRIPT_DIR}/helmgen ./pkg/${pkg} ${CHART_FOLDER}
+    fi
+
+    # Copy README file from the plugin to the Helm chart, if there is one
+    if [ -f "./pkg/${pkg}/README.md" ]; then
+      cp ./pkg/${pkg}/README.md ${CHART_FOLDER}/README.md
+    fi
+
+    # Package into a .tgz helm chart
+    helm package ${CHART_FOLDER} -d ${ASSETS}/${pkg}
+
+    # --------------------------------------------------------------------------------
+    # Update the helm index just for this chart 
+    # --------------------------------------------------------------------------------
+    HELM_INDEX=${BASE_DIR}/index.yaml
+
+    if [ -f "${HELM_INDEX}" ]; then
+      UPDATE="--merge ${HELM_INDEX}"
+    fi
+
+    # Base URL referencing assets directly from GitHub
+    BASE_URL="https://raw.githubusercontent.com/${REPO}/main/assets/${pkg}"
+
+    rm -rf ${CHART_TMP}
+    mkdir -p ${CHART_TMP}
+    cp ${ASSETS}/${pkg}/*.tgz ${CHART_TMP}
+
+    helm repo index ${CHART_TMP} --url ${BASE_URL} ${UPDATE}
+
+    cp ${CHART_TMP}/index.yaml ${HELM_INDEX}
+
+    BUILT="true"
   fi
-
-  echo ./tmp/${pkg}
-  ls -al ./tmp/${pkg}
-
-  helm package ./tmp/${pkg} -d ./tmp/_charts
-  mv ./tmp/_charts/${PKG_NAME}.tgz ./tmp/_charts/${pkg}-chart-${PKG_VERSION}.tgz 
 done
 
-# Copy all of the helm charts to the folder for upload
-
-echo "Creating GitHub Release"
-
-# Create release and uplaod Helm charts to the GitHub release
-gh release create -R ${REPO} ${VERSION} --generate-notes -t "Release ${VERSION}" ./dist-pkg/*.tgz
-gh release upload -R ${REPO} ${VERSION} ./tmp/_charts/*.tgz
-
-CHARTS_DIR=$(cd ./tmp/_charts && pwd)
-
-echo "Charts Dir: ${CHARTS_DIR}"
+if [ "${BUILT}" == "true" ]; then
+  echo "One or more packages built"
+fi
 
 popd > /dev/null
 
-# Update Helm repository index
-
-BASE_URL="https://github.com/${REPO}/releases/download/${PKG_VERSION}/"
-
-# Clone the same Git repo into a temporary folder
-
-GIT_URL=$(git config --get remote.origin.url)
-GIT_REPO=${PWD##*/}
-HELM_DIR=$(mktemp -d)
-echo ${HELM_DIR}
-
-pushd ${HELM_DIR} > /dev/null
-
-git clone ${GIT_URL}
-cd ${GIT_REPO}
-
-git switch -c gh-pages
-
-UPDATE=""
-
-if [ -d "helm" ]; then
-  git rm -rf helm
-fi
-
-mkdir -p docs
-cd docs
-
-if [ -f "./index.yaml" ]; then
-  UPDATE="--merge index.yaml"
-fi
-
-cp ${CHARTS_DIR}/*.tgz .
-
-helm repo index . --url ${BASE_URL} ${UPDATE}
-
-#cat index.yaml
-git add index.yaml
-git commit -m "Update Helm repository index for version ${VERSION}"
-git push origin gh-pages -f
-
-popd > /dev/null
-
-rm -rf ${HELM_DIR}
-
+# Clean ip
+rm -rf ${CHART_TMP}
+rm -rf ${TMP}

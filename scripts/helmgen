@@ -1,17 +1,15 @@
 #!/usr/bin/env node
 
-// Generate Chart.yaml and values.yaml files
+// Update Chart.yaml and values.yaml files
 
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 
-const UI_PLUGIN_ANNOTATION = 'uipluign.cattle.io';
+// TODO: Should already be in the template
+const UI_PLUGIN_ANNOTATION = 'uiplugin.cattle.io';
 
-const TEMPLATES = ['uiplugin.yaml'];
-const REPLACE = ['name', 'description', 'version'];
-
-console.log('Helm file generation');
+console.log('Helm file update');
 
 if (process.argv.length !== 4) {
   console.log('Incorrect number of arguments');
@@ -20,28 +18,27 @@ if (process.argv.length !== 4) {
 
 const pkgFolder = process.argv[2];
 const destFolder = process.argv[3];
-const scriptFolder = path.dirname(process.argv[1]);
 
 const pkgFile = JSON.parse(fs.readFileSync(path.join(pkgFolder, 'package.json'), 'utf8'));
 
-const chartFolder = path.join(destFolder, pkgFile.name);
+const chartFolder = destFolder;
+const chartFile = path.join(chartFolder, 'Chart.yaml');
 
-if (fs.existsSync(chartFolder)) {
-  fs.rmSync(chartFolder, { recursive: true });
+if (!fs.existsSync(chartFolder)) {
+  console.log('Charts folder does not exist');
+  process.exit(1);
 }
 
-fs.mkdirSync(chartFolder, 0777);
+// --------------------------------------------------------------------------------
+// Chart.yaml
+// --------------------------------------------------------------------------------
+const chart = yaml.load(fs.readFileSync(chartFile, 'utf8'));
 
-const chart = {
-  apiVersion: 'v2',
-  name: pkgFile.name,
-  version: pkgFile.version,
-  appVersion: pkgFile.version,
-  description: pkgFile.description || `${pkgFile.name} ui plugin `,
-  annotations: {
-    [UI_PLUGIN_ANNOTATION]: 'true'
-  }
-};
+chart.name = pkgFile.name;
+chart.appVersion = pkgFile.version;
+chart.version = pkgFile.version;
+chart.description = pkgFile.description || `${pkgFile.name} ui plugin `;
+chart.annotations[UI_PLUGIN_ANNOTATION] = 'true';
 
 if (pkgFile.icon) {
   chart.icon = pkgFile.icon;
@@ -56,39 +53,19 @@ if (pkgFile.homepage) {
 }
 
 const str = yaml.dump(chart);
-fs.writeFileSync(path.join(chartFolder, 'Chart.yaml'), str, 'utf8');
+fs.writeFileSync(chartFile, str, 'utf8');
 
+// --------------------------------------------------------------------------------
+// values.yaml
+// --------------------------------------------------------------------------------
+
+// TODO: Change image repository in the values file
 const values = {
   plugin: pkgFile.name,
 };
 
-const valuesYaml = yaml.dump(values);
-fs.writeFileSync(path.join(chartFolder, 'values.yanl'), valuesYaml, 'utf8');
+// const valuesYaml = yaml.dump(values);
+// fs.writeFileSync(path.join(chartFolder, 'values.yaml'), valuesYaml, 'utf8');
 
-// Create templates folder
-fs.mkdirSync(path.join(chartFolder, 'templates'), 0777);
-
-function repl(obj) {
-  Object.keys(obj).forEach(k => {
-    const v = obj[k];
-    if (typeof v === 'string') {
-      const r = REPLACE.find(n => n === v.toLocaleLowerCase());
-      if (r) {
-        obj[k] = pkgFile[r];
-      }
-    } else {
-      repl(v);
-    }
-  });
-}
-
-TEMPLATES.forEach(tName => {
-  const src = path.join(scriptFolder, 'templates', tName);
-  
-  const data = yaml.load(fs.readFileSync(src));
-
-  repl(data);
-
-  const tYaml = yaml.dump(data);
-  fs.writeFileSync(path.join(chartFolder, 'templates', tName), tYaml, 'utf8');
-});
+// // Create templates folder
+// fs.mkdirSync(path.join(chartFolder, 'templates'), 0777);
