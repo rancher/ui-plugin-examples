@@ -16,6 +16,6 @@ entries:
     name: homepage
     type: application
     urls:
-    - https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/assets/homepage/homepage-0.1.0.tgz
+    - assets/homepage/homepage-0.1.0.tgz
     version: 0.1.0
 generated: "2022-09-26T08:45:20.88546+01:00"
