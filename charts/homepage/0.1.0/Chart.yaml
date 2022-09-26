@@ -1,0 +1,14 @@
+annotations:
+  catalog.cattle.io/certified: rancher
+  catalog.cattle.io/namespace: cattle-ui-plugin-system
+  catalog.cattle.io/ui-component: plugins
+  catalog.cattle.io/os: linux
+  catalog.cattle.io/permits-os: 'linux, windows'
+  catalog.cattle.io/scope: management
+apiVersion: v1
+appVersion: 0.1.0
+description: Example plugin that changes the landingh home page
+name: homepage
+type: application
+keywords: []
+version: 0.1.0

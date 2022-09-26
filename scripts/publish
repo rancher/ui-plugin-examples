@@ -37,7 +37,7 @@ while getopts "hvr:p" opt; do
       ;;
     r)
       REG="${OPTARG}"
-      REGISTRY="${REGISTRY}/"
+      REGISTRY="${REG}/"
       ;;
     *)
       usage
@@ -61,7 +61,7 @@ pushd ${BASE_DIR} > /dev/null
 # Check that we have the required commands avaialble for this script
 # --------------------------------------------------------------------------------
 
-COMMANDS=("node" "jq" "yq" "git" "docker" "helm")
+COMMANDS=("node" "jq" "yq" "git" "docker" "helm" "yarn")
 HAVE_COMMANDS="true"
 for CMD in "${COMMANDS[@]}"
 do
@@ -147,11 +147,11 @@ for d in pkg/*/ ; do
     # Build the docker image
     pushd ${TMP}/container > /dev/null
     echo -e "${CYAN}Building container imaeg ...${RESET}"
-    docker buildx build --platform=linux/amd64 -f ./package/Dockerfile -t ${REGISTRY}${PKG_NAME}:${PKG_VERSION} .
+    docker build -f ./package/Dockerfile -t ${REGISTRY}${pkg}:${PKG_VERSION} .
 
     if [ "${PUSH}" == "--push" ]; then
       echo -e "${CYAN}Pusing container image ...${RESET}"
-      docker push ${REGISTRY}${PKG_NAME}:${PKG_VERSION}
+      docker push ${REGISTRY}${pkg}:${PKG_VERSION}
     fi
 
     popd > /dev/null
@@ -172,13 +172,23 @@ for d in pkg/*/ ; do
 
     # Update Chart.yaml and values.yaml from the package file metadata
     # Use the script from the template repository, if it is there
-    if [ -f ${CHART_TEMPLATE}/scripts/patch ]; then
-      echo "Patching Helm chart template"
-      ${CHART_TEMPLATE}/scripts/patch ${CHART_FOLDER} ${BASE_DIR}/pkg/${pkg}/package.json "${REG}"
-    else
-      # Remove this fallback once the patch script is working
-      ${SCRIPT_DIR}/helmgen ./pkg/${pkg} ${CHART_FOLDER}
-    fi
+
+    # ${SCRIPT_DIR}/patch ${CHART_FOLDER} ${BASE_DIR}/pkg/${pkg}/package.json "${REG}"    
+
+    # if [ -f ${SCRIPT_DIR}/patch ]; then
+    #   echo "Patching Helm chart template using local script"
+    #   cat ${BASE_DIR}/pkg/${pkg}/package.json
+    #   ${SCRIPT_DIR}/patch ${CHART_FOLDER} ${BASE_DIR}/pkg/${pkg}/package.json "${REG}"
+    # else if [ -f ${CHART_TEMPLATE}/scripts/patch ]; then
+    #   echo "Patching Helm chart template"
+    #   cat ${BASE_DIR}/pkg/${pkg}/package.json
+    #   ${CHART_TEMPLATE}/scripts/patch ${CHART_FOLDER} ${BASE_DIR}/pkg/${pkg}/package.json "${REG}"
+    # else
+    #   # Remove this fallback once the patch script is working
+    #   ${SCRIPT_DIR}/helmgen ./pkg/${pkg} ${CHART_FOLDER}
+    # fi
+
+    ${SCRIPT_DIR}/helmgen ${CHART_FOLDER} ./pkg/${pkg}/package.json "${REG}"
 
     # Copy README file from the plugin to the Helm chart, if there is one
     if [ -f "./pkg/${pkg}/README.md" ]; then
@@ -221,3 +231,9 @@ popd > /dev/null
 # Clean ip
 rm -rf ${CHART_TMP}
 rm -rf ${TMP}
+
+# If the user asked to create a commit, commit the changes
+# if [ "${COMMIT}" == "true" ]; then
+#   echo -e "${CYAN}${BOLD}Creating git commit${RESET}"
+#   git add --all
+# fi

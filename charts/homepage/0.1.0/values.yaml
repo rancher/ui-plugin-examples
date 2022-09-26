@@ -1,0 +1,36 @@
+replicaCount: 1
+image:
+  repository: nwmac/homepage
+  pullPolicy: Always
+  tag: 0.1.0
+imagePullSecrets: []
+nameOverride: ''
+fullnameOverride: ''
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+pluginServer:
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+  replicas: 1
+  resources: {}
+  securityContext: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+plugin:
+  version: 0.1.0
+  noCache: false
+global:
+  cattle:
+    systemDefaultRegistry: ''
+  kubectl:
+    repository: rancher/kubectl
+    tag: v1.20.2
+    pullPolicy: IfNotPresent
+  rbac:
+    enabled: false
