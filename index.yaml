@@ -10,12 +10,12 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v1
     appVersion: 0.1.0
-    created: "2022-09-26T08:45:20.88606+01:00"
+    created: "2022-09-26T11:20:13.148534+01:00"
     description: Example plugin that changes the landingh home page
-    digest: 8d842cfc12928f0b355ff7f00cf12132a61eb418957506df41ebc1a66b6d3090
+    digest: 229b11aa86fc611d84cddbb24546f7cb6b5d5956bf4dc31a13ddfa6e6123dd86
     name: homepage
     type: application
     urls:
     - assets/homepage/homepage-0.1.0.tgz
     version: 0.1.0
-generated: "2022-09-26T08:45:20.88546+01:00"
+generated: "2022-09-26T11:20:13.147595+01:00"
