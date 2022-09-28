@@ -9,3 +9,5 @@ spec:
     version: {{ .Values.plugin.version }}
     endpoint: http://{{ .Chart.Name }}.cattle-ui-plugin-system.svc
     noCache: {{ .Values.plugin.noCache }}
+    data:
+      apiVersion: "1"
