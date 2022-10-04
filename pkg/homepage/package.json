@@ -1,6 +1,6 @@
 {
   "name": "homepage",
-  "description": "homepage plugin",
+  "description": "Example plugin that changes the landingh home page",
   "version": "0.1.0",
   "private": false,
   "rancher": true,
