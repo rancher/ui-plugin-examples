@@ -61,6 +61,11 @@ pushd ${BASE_DIR} > /dev/null
 # Check that we have the required commands avaialble for this script
 # --------------------------------------------------------------------------------
 
+if ! [[ -d ${BASE_DIR}/node_modules ]]; then
+  echo -e "${YELLOW}You must run ${BOLD}yarn install${NORMAL} before running this script${RESET}"
+  exit 1
+fi
+
 COMMANDS=("node" "jq" "yq" "git" "docker" "helm" "yarn")
 HAVE_COMMANDS="true"
 for CMD in "${COMMANDS[@]}"
