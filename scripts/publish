@@ -218,7 +218,7 @@ for d in pkg/*/ ; do
     fi
 
     # Base URL referencing assets directly from GitHub
-    BASE_URL="https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/assets/${pkg}"
+    BASE_URL="assets/${pkg}"
 
     rm -rf ${CHART_TMP}
     mkdir -p ${CHART_TMP}
