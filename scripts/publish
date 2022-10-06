@@ -12,19 +12,18 @@ NORMAL="\033[22m"
 SINGLE_VERSION="false" # Should we publish all plugins using the version from-the top-level package file?
 PUSH=""
 REGISTRY=""
-REG=""
+REGISTRY_ORG=""
 
 usage() {
   echo "Usage: $0 [-v] [plugins]"
   #echo "  -v        Publish plugins using the version from-the top-level package file"
   echo "  -p        Push container images on build"
   echo "  -r <name> Specify destination container registry for built images"
-  echo ""
-  echo ""
+  echo "  -o <name> Specify destination container registry organization for built images"
   exit 1
 }
 
-while getopts "hvr:p" opt; do
+while getopts "hvr:o:p" opt; do
   case $opt in
     h)
       usage
@@ -36,8 +35,10 @@ while getopts "hvr:p" opt; do
       PUSH="--push"
       ;;
     r)
-      REG="${OPTARG}"
-      REGISTRY="${REG}/"
+      REGISTRY="${OPTARG%/}/"
+      ;;
+    o)
+      REGISTRY_ORG="${OPTARG}"
       ;;
     *)
       usage
@@ -61,6 +62,11 @@ pushd ${BASE_DIR} > /dev/null
 # Check that we have the required commands avaialble for this script
 # --------------------------------------------------------------------------------
 
+if ! [[ -d ${BASE_DIR}/node_modules ]]; then
+  echo -e "${YELLOW}You must run ${BOLD}yarn install${NORMAL} before running this script${RESET}"
+  exit 1
+fi
+
 COMMANDS=("node" "jq" "yq" "git" "docker" "helm" "yarn")
 HAVE_COMMANDS="true"
 for CMD in "${COMMANDS[@]}"
@@ -77,9 +83,18 @@ fi
 
 # --------------------------------------------------------------------------------
 
-REPO=$(git config --get remote.origin.url | sed -e 's/^git@.*:\([[:graph:]]*\).git/\1/')
 
-echo "GitHub Repository: ${REPO}"
+if [[ -z ${REGISTRY_ORG} ]]; then
+  # Infer that the user has the same Docker registry org as their GitHub org
+  GITHUB_REPO=$(git config --get remote.origin.url | sed -e 's/^git@.*:\([[:graph:]]*\).git/\1/')
+  REGISTRY_ORG=$(dirname ${GITHUB_REPO})
+  echo -e "Inferring built images will reside in registry organization ${CYAN}${BOLD}${REGISTRY}${REGISTRY_ORG}${RESET} based on configured origin remote pointing to ${CYAN}${BOLD}${GITHUB_REPO}${RESET}"
+fi
+if [[ -z ${REGISTRY_ORG} ]]; then
+  # Inferring from the git config still failed
+  echo "Cannot build images without valid organization for Docker images. Unable to infer REGISTRY_ORG="
+  exit 1
+fi
 
 docker images > /dev/null
 if [ $? -ne 0 ]; then
@@ -117,11 +132,6 @@ for d in pkg/*/ ; do
 
     echo -e "${CYAN}${BOLD}Building plugin: ${pkg} (${PKG_VERSION}) ${RESET}"
 
-    if [ -f ${PKG_ASSET} ]; then
-      echo -e "${YELLOW}Plugin has already been published - skipping${RESET}"
-      continue;
-    fi
-
     echo "Package version: ${PKG_VERSION}"
     echo "Package folder:  ${PKG_NAME}"
 
@@ -146,12 +156,22 @@ for d in pkg/*/ ; do
 
     # Build the docker image
     pushd ${TMP}/container > /dev/null
-    echo -e "${CYAN}Building container imaeg ...${RESET}"
-    docker build -f ./package/Dockerfile -t ${REGISTRY}${pkg}:${PKG_VERSION} .
+    echo -e "${CYAN}Building container image ...${RESET}"
+    REGISTRY=${REGISTRY} ORG=${REGISTRY_ORG} REPO=${pkg} TAG=${PKG_VERSION} ./scripts/package
 
     if [ "${PUSH}" == "--push" ]; then
-      echo -e "${CYAN}Pusing container image ...${RESET}"
-      docker push ${REGISTRY}${pkg}:${PKG_VERSION}
+      echo -e "${CYAN}Pushing container image ...${RESET}"
+
+      # Ensure that you do not overwrite production images
+      if [[ "${REGISTRY_ORG}" == "rancher" ]]; then
+        IMAGE=${REGISTRY}${REGISTRY_ORG}/${pkg}:${PKG_VERSION}
+        if docker manifest inspect 2>&1 1>/dev/null; then
+          echo -e "${RED}Cannot overwrite production image ${IMAGE} since it already exists${RESET}"
+          exit 1
+        fi
+      fi
+
+      docker push ${REGISTRY}${REGISTRY_ORG}/${pkg}:${PKG_VERSION}
     fi
 
     popd > /dev/null
@@ -162,33 +182,23 @@ for d in pkg/*/ ; do
     # Create the Helm chart
     # --------------------------------------------------------------------------------
 
+    if [ -f ${PKG_ASSET} ]; then
+      echo -e "${YELLOW}Helm chart has already been created - skipping${RESET}"
+      continue;
+    fi
+
     CHART_FOLDER=${CHARTS}/${pkg}/${PKG_VERSION}
 
     mkdir -p ${ASSETS}/${pkg}
     rm -rf ${CHART_FOLDER}
     mkdir -p ${CHART_FOLDER}
 
-    cp -R ${CHART_TEMPLATE}/charts/ ${CHART_FOLDER}
+    cp -R ${CHART_TEMPLATE}/charts/ui-plugin-server/* ${CHART_FOLDER}
 
     # Update Chart.yaml and values.yaml from the package file metadata
-    # Use the script from the template repository, if it is there
-
-    # ${SCRIPT_DIR}/patch ${CHART_FOLDER} ${BASE_DIR}/pkg/${pkg}/package.json "${REG}"    
-
-    # if [ -f ${SCRIPT_DIR}/patch ]; then
-    #   echo "Patching Helm chart template using local script"
-    #   cat ${BASE_DIR}/pkg/${pkg}/package.json
-    #   ${SCRIPT_DIR}/patch ${CHART_FOLDER} ${BASE_DIR}/pkg/${pkg}/package.json "${REG}"
-    # else if [ -f ${CHART_TEMPLATE}/scripts/patch ]; then
-    #   echo "Patching Helm chart template"
-    #   cat ${BASE_DIR}/pkg/${pkg}/package.json
-    #   ${CHART_TEMPLATE}/scripts/patch ${CHART_FOLDER} ${BASE_DIR}/pkg/${pkg}/package.json "${REG}"
-    # else
-    #   # Remove this fallback once the patch script is working
-    #   ${SCRIPT_DIR}/helmgen ./pkg/${pkg} ${CHART_FOLDER}
-    # fi
-
-    ${SCRIPT_DIR}/helmgen ${CHART_FOLDER} ./pkg/${pkg}/package.json "${REG}"
+    # Use the script from the template repository
+    echo "Patching Helm chart template"
+    CHART=${CHART_FOLDER} REGISTRY="${REGISTRY}" ORG=rancher PACKAGE_JSON=${BASE_DIR}/pkg/${pkg}/package.json ${CHART_TEMPLATE}/scripts/patch
 
     # Copy README file from the plugin to the Helm chart, if there is one
     if [ -f "./pkg/${pkg}/README.md" ]; then
@@ -208,7 +218,7 @@ for d in pkg/*/ ; do
     fi
 
     # Base URL referencing assets directly from GitHub
-    BASE_URL="https://raw.githubusercontent.com/${REPO}/main/assets/${pkg}"
+    BASE_URL="assets/${pkg}"
 
     rm -rf ${CHART_TMP}
     mkdir -p ${CHART_TMP}
@@ -228,7 +238,7 @@ fi
 
 popd > /dev/null
 
-# Clean ip
+# Clean up
 rm -rf ${CHART_TMP}
 rm -rf ${TMP}
 
