@@ -12,12 +12,13 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-10T13:23:42.700501383+01:00"
-    description: Example plugin that changes the landing home page
-    digest: ab64c8bff5c985c52380d8f1c8ba512fbd681e489d11689e0519404957408645
+    created: "2022-10-10T16:20:39.296801272+01:00"
+    description: Example plugin that changes the landingh home page
+    digest: 5da3924bfb568f48e4e82a46905b2d336f4e9a70a668c63bbe89249c7c10d47b
+    icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/homepage/homepage.svg
     name: homepage
     type: application
     urls:
     - assets/homepage/homepage-0.1.0.tgz
     version: 0.1.0
-generated: "2022-10-10T13:23:42.699575025+01:00"
+generated: "2022-10-10T16:20:39.296165528+01:00"

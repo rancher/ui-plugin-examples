@@ -142,7 +142,7 @@ for d in pkg/*/ ; do
   if [ -z "$1" ] || [[ " ${PLUGINS[*]} " =~ " ${pkg} " ]]; then
     # Check we don't already have a published version by looking in the assets folder
     PKG_VERSION=$(jq -r .version ./pkg/${pkg}/package.json)
-    PKG_NAME="${pkg}-${PKG_VERSION}"
+    PKG_NAME="${pkg}-${PKG_VERSION}"./pkg/${pkg}/package.jsoncontainer/
     PKG_ASSET=${ASSETS}/${pkg}/${PKG_NAME}.tgz
 
     echo -e "${CYAN}${BOLD}Building plugin: ${pkg} (${PKG_VERSION}) ${RESET}"
@@ -160,7 +160,7 @@ for d in pkg/*/ ; do
     # Create the container image
     # --------------------------------------------------------------------------------
     mkdir -p ${TMP}/container
-    cp -R ${CHART_TEMPLATE}/* ${TMP}/container/
+    cp -R ${CHART_TEMPLATE}/* ${TMP}/container/    
 
     # Copy the plugin assets
     rm -rf ${TMP}/container/plugin
@@ -214,12 +214,16 @@ for d in pkg/*/ ; do
     # Update Chart.yaml and values.yaml from the package file metadata
     # Use the script from the template repository
     echo -e "${CYAN}Patching Helm chart template${RESET}"
-    CHART=${CHART_FOLDER} REGISTRY="${REGISTRY}" ORG=rancher PACKAGE_JSON=${BASE_DIR}/pkg/${pkg}/package.json ${CHART_TEMPLATE}/scripts/patch
+
+    CHART=${CHART_FOLDER} REGISTRY="${REGISTRY}" ORG="${REGISTRY_ORG}" PACKAGE_JSON=${BASE_DIR}/pkg/${pkg}/package.json ${CHART_TEMPLATE}/scripts/patch
 
     # Copy README file from the plugin to the Helm chart, if there is one
     if [ -f "./pkg/${pkg}/README.md" ]; then
       cp ./pkg/${pkg}/README.md ${CHART_FOLDER}/README.md
     fi
+
+    # Additional patches
+    ${SCRIPT_DIR}/helmpatch ${CHART_FOLDER} "${BASE_DIR}/pkg/${pkg}/package.json" "${REGISTRY}${REGISTRY_ORG}/${IMAGE_PREFIX}${pkg}"
 
     # Package into a .tgz helm chart
     helm package ${CHART_FOLDER} -d ${ASSETS}/${pkg}

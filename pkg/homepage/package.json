@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": false,
   "rancher": true,
+  "icon": "https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/homepage/homepage.svg",
   "scripts": {
     "dev": "./node_modules/.bin/nuxt dev",
     "nuxt": "./node_modules/.bin/nuxt"

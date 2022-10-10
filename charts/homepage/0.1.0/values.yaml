@@ -1,6 +1,3 @@
-# Default values for sample.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 global:
   cattle:
     systemDefaultRegistry: ""
@@ -13,10 +10,9 @@ nameOverride: ""
 fullnameOverride: ""
 pluginServer:
   image:
-    repository: rancher/homepage
+    repository: nwmac/ui-extension-homepage
     pullPolicy: Always
-    # Overrides the image tag whose default is the chart appVersion.
-    tag: "0.1.0"
+    tag: 0.1.0
   service:
     type: ClusterIP
     port: 80
