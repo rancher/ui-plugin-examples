@@ -17,5 +17,5 @@ export default function(plugin: IPlugin) {
     name:      'new-feature',
     path:      '/new-feature',
     component: NewFeature
-  });   
+  });
 }
