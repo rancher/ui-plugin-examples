@@ -17,5 +17,5 @@ export default function(plugin: IPlugin) {
     name:      'home',
     path:      '/home',
     component: NewHomeComponent
-  });  
+  });
 }
