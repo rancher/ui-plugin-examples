@@ -133,7 +133,7 @@ CHART_TEMPLATE=${BASE_DIR}/tmp/ui-plugin-server
 # Clone the plugin server template into the temporary folder
 # --------------------------------------------------------------------------------
 pushd ${TMP} > /dev/null
-git clone -q https://github.com/rancher/ui-plugin-server.git
+git clone -q https://github.com/nwmac/ui-plugin-server.git
 popd > /dev/null
 
 # --------------------------------------------------------------------------------
