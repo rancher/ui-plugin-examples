@@ -210,7 +210,7 @@ for d in pkg/*/ ; do
 
       pushd ${BASE_DIR}/extensions/${pkg}/${PKG_VERSION} > /dev/null
       rm -f plugin/report.html
-      find -f * | sort > files.txt
+      find plugin -type f | sort > files.txt
       popd > /dev/null
     fi
 
