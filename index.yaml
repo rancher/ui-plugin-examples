@@ -13,13 +13,14 @@ entries:
     apiVersion: v2
     appVersion: 0.1.0
     created: "2022-10-11T11:27:05.612535+01:00"
-    description: Adds a new feature to the top-level menu that shows a full-page clokc
+    description: Adds a new feature to the top-level menu that shows a full-page clock
     digest: 4e6a4afa51630149e5692eb0b9b955f00859b6f682dc03912d688b1428369972
+    icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/clock/clock.svg
     name: clock
     type: application
     urls:
     - assets/clock/clock-0.1.0.tgz
-    version: 0.1.0
+    version: 0.1.1
   homepage:
   - annotations:
       catalog.cattle.io/certified: rancher
