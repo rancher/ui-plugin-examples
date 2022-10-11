@@ -1,0 +1,19 @@
+
+clusterBadge:
+  modal:
+    badgeBgColor: Badge background colour
+    badgeTextColor: Badge text colour
+
+banner:
+  textColor: Text Colour
+  background: Background Colour
+
+branding:  
+  color:
+    label: Primary Colour
+    tip: You can override the primary colour used throughout the UI with a custom colour of your choice.
+    useCustom: Use a Custom Colour
+  linkColor:
+    label: Link Colour
+    tip: You can override the link colour used throughout the UI with a custom colour of your choice.
+    useCustom: Use a Custom Link Colour
