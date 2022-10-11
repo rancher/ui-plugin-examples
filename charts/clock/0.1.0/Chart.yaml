@@ -9,7 +9,8 @@ annotations:
   catalog.cattle.io/ui-component: plugins
 apiVersion: v2
 appVersion: "0.1.0"
-description: Adds a new feature to the top-level menu that shows a full-page clokc
+description: Adds a new feature to the top-level menu that shows a full-page clock
 name: clock
 type: application
 version: 0.1.0
+icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/clock/clock.svg

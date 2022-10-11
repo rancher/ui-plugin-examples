@@ -40,7 +40,7 @@ spec:
             name: {{ include "plugin-server.fullname" . }}-nginx-conf
           readinessProbe:
             httpGet:
-              scheme: http
+              scheme: HTTP
               path: /
               port: http
             initialDelaySeconds: 10
