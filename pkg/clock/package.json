@@ -1,6 +1,6 @@
 {
   "name": "clock",
-  "description": "Adds a new feature to the top-level menu that shows a full-page clokc",
+  "description": "Adds a new feature to the top-level menu that shows a full-page clock",
   "version": "0.1.0",
   "private": false,
   "icon": "https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/clock/clock.svg",

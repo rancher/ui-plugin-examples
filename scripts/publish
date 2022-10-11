@@ -201,14 +201,16 @@ for d in pkg/*/ ; do
       EXT_FOLDER=${BASE_DIR}/extensions/${pkg}/${PKG_VERSION}
       PKG_DIST="${BASE_DIR}/dist-pkg/${PKG_NAME}"
 
-      mkdir -p ${EXT_FOLDER}
+      rm -rf ${EXT_FOLDER}
+
+      mkdir -p ${EXT_FOLDER}/plugin
 
       # Copy the code into the folder
-      cp -R ${PKG_DIST}/* ${EXT_FOLDER}
+      cp -R ${PKG_DIST}/* ${EXT_FOLDER}/plugin
 
       pushd ${BASE_DIR}/extensions/${pkg}/${PKG_VERSION} > /dev/null
-      rm -f report.html
-      find . -type f | sort > files.txt
+      rm -f plugin/report.html
+      find -f * | sort > files.txt
       popd > /dev/null
     fi
 
