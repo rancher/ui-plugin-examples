@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": false,
   "icon": "https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg",
+  "rancher": true,
   "engines": {
     "node": ">=12"
   },
@@ -15,6 +16,5 @@
   "files": [
     "**/*"
   ],
-  "rancher": true,
   "main": "uk-locale-0.1.0.umd.min.js"
 }

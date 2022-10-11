@@ -12,9 +12,9 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-11T13:47:44.850704+01:00"
+    created: "2022-10-11T20:22:12.247099+01:00"
     description: Adds a new feature to the top-level menu that shows a full-page clock
-    digest: dab448e5aabd3cc091b52cf70b4ffdc8fddfd95deb8f219f73c55ce662f460dd
+    digest: 15d074a4fa3fb4423ffa0d699665ebffe34d754a00e1736d6dd74fc0ee3c6240
     icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/clock/clock.svg
     name: clock
     type: application
@@ -33,9 +33,9 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-11T18:40:35.847271+01:00"
+    created: "2022-10-11T20:22:19.356862+01:00"
     description: Adds support for the Rancher Extensions CRD to Rancher Manager
-    digest: 8969b906bd6d17ecf9ebba21d55d60dbdcadac40d12008583550ddcc71c84d52
+    digest: 9ef13b77f227b57a927c29e0d06243345cdbb34d3bf534929ed3f5e59b18f5aa
     icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/extension-crd/icon.svg
     name: extension-crd
     type: application
@@ -54,9 +54,9 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-10-11T13:58:38.113537+01:00"
+    created: "2022-10-11T20:22:24.225511+01:00"
     description: Example plugin that changes the landing home page
-    digest: 62b2aeb92471507f7870c327cab1690af2e96a082be128b4a287d3f5d2a50ba7
+    digest: 8721d0b1ab9152dbb08895e78d56f6313ec1bee8ad840b0b60578f060ba3e502
     icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/homepage/homepage.svg
     name: homepage
     type: application
@@ -74,7 +74,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-11T13:58:38.112716+01:00"
+    created: "2022-10-11T20:22:24.225194+01:00"
     description: Example plugin that changes the landingh home page
     digest: 833afd193ad655cb9a98c6a6e8ee7e0e492874336c6dacc4eb31074f08146b57
     icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/homepage/homepage.svg
@@ -95,13 +95,13 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-11T14:47:55.83178+01:00"
+    created: "2022-10-11T20:22:28.95583+01:00"
     description: Adds a new UK localisation
-    digest: 895088a2e2233d292922c8bd96a00c0ea9ab7a90f76b5f4278c3d0763196d205
+    digest: 19027de980820c3d9e4f8c6729f3f51c72b3eef1cea02bf37bf11c7363794d28
     icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg
     name: uk-locale
     type: application
     urls:
     - assets/uk-locale/uk-locale-0.1.0.tgz
     version: 0.1.0
-generated: "2022-10-11T18:40:35.84679+01:00"
+generated: "2022-10-11T20:22:28.955257+01:00"

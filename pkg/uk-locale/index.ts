@@ -3,8 +3,6 @@ import { IPlugin } from '@shell/core/types';
 
 // Init the package
 export default function(plugin: IPlugin) {
-  console.error('ADD LOCALE !!!!!!!!!!!!!!1');
-
   // Auto-import model, detail, edit from the folders
   importTypes(plugin);
 
