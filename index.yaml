@@ -12,13 +12,13 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-11T12:39:49.769724+01:00"
+    created: "2022-10-11T12:59:27.904148+01:00"
     description: Adds a new feature to the top-level menu that shows a full-page clokc
-    digest: 3c48ff04912048bfdaf97c26b13945f4e6c72f0baa09a13b601831381ac2547d
+    digest: d4e0391964c76376e1f9ea758cf883acfccb000d8290af6a53acbf5538fb26ab
     icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/clock/clock.svg
     name: clock
     type: application
     urls:
     - assets/clock/clock-0.1.0.tgz
     version: 0.1.0
-generated: "2022-10-11T12:39:49.768821+01:00"
+generated: "2022-10-11T12:59:27.903468+01:00"

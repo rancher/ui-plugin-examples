@@ -38,13 +38,6 @@ spec:
           - mountPath: /etc/nginx # mount nginx-conf volumn to /etc/nginx
             readOnly: true
             name: {{ include "plugin-server.fullname" . }}-nginx-conf
-          readinessProbe:
-            httpGet:
-              scheme: HTTP
-              path: /
-              port: http
-            initialDelaySeconds: 10
-            periodSeconds: 5
           resources:
       {{- with .Values.pluginServer.affinity }}
       affinity: {{ toYaml . | nindent 8 }}
