@@ -62,4 +62,25 @@ entries:
     urls:
     - assets/homepage/homepage-0.1.0.tgz
     version: 0.1.0
-generated: "2022-10-11T13:58:38.111515+01:00"
+  uk-locale:
+  - annotations:
+      catalog.cattle.io/certified: rancher
+      catalog.cattle.io/kube-version: '>= 1.16.0-0 < 1.25.0-0'
+      catalog.cattle.io/namespace: cattle-ui-plugin-system
+      catalog.cattle.io/os: linux
+      catalog.cattle.io/permits-os: linux, windows
+      catalog.cattle.io/rancher-version: '>= 2.7.0-0 < 2.8.0-0'
+      catalog.cattle.io/scope: management
+      catalog.cattle.io/ui-component: plugins
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-10-11T14:47:55.83178+01:00"
+    description: Adds a new UK localisation
+    digest: 895088a2e2233d292922c8bd96a00c0ea9ab7a90f76b5f4278c3d0763196d205
+    icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg
+    name: uk-locale
+    type: application
+    urls:
+    - assets/uk-locale/uk-locale-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-10-11T14:47:55.830272+01:00"

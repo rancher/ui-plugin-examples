@@ -1,0 +1,20 @@
+{
+  "name": "uk-locale",
+  "description": "Adds a new UK localisation",
+  "version": "0.1.0",
+  "private": false,
+  "icon": "https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg",
+  "engines": {
+    "node": ">=12"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/cli-plugin-typescript": "^4.5.15"
+  },
+  "files": [
+    "**/*"
+  ],
+  "rancher": true,
+  "main": "uk-locale-0.1.0.umd.min.js"
+}
