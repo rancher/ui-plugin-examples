@@ -15,6 +15,7 @@ REGISTRY=""
 REGISTRY_ORG=""
 IMAGE_PREFIX="ui-extension-"
 FORCE="false"
+GITHUB_BUILD="false"
 
 usage() {
   echo "Usage: $0 [-v] [plugins]"
@@ -27,7 +28,7 @@ usage() {
   exit 1
 }
 
-while getopts "hvr:o:pi:f" opt; do
+while getopts "hvr:o:pi:fg" opt; do
   case $opt in
     h)
       usage
@@ -50,8 +51,10 @@ while getopts "hvr:o:pi:f" opt; do
     f)
       FORCE="true"
       ;;      
-    *)
-      usage
+    g)
+      GITHUB_BUILD="true"
+    ;;      *)
+    usage
       ;;
   esac
 done
@@ -142,7 +145,7 @@ for d in pkg/*/ ; do
   if [ -z "$1" ] || [[ " ${PLUGINS[*]} " =~ " ${pkg} " ]]; then
     # Check we don't already have a published version by looking in the assets folder
     PKG_VERSION=$(jq -r .version ./pkg/${pkg}/package.json)
-    PKG_NAME="${pkg}-${PKG_VERSION}"./pkg/${pkg}/package.jsoncontainer/
+    PKG_NAME="${pkg}-${PKG_VERSION}"
     PKG_ASSET=${ASSETS}/${pkg}/${PKG_NAME}.tgz
 
     echo -e "${CYAN}${BOLD}Building plugin: ${pkg} (${PKG_VERSION}) ${RESET}"
@@ -169,28 +172,45 @@ for d in pkg/*/ ; do
     cp -R ${BASE_DIR}/dist-pkg/${PKG_NAME}/* ${TMP}/container/plugin
     rm -f ${TMP}/container/plugin/report.html
 
-    # Build the docker image
-    pushd ${TMP}/container > /dev/null
-    echo -e "${CYAN}Building container image ...${RESET}"
+    if [ "${GITHUB_BUILD}" == "false" ]; then
+      # Build the docker image
+      pushd ${TMP}/container > /dev/null
+      echo -e "${CYAN}Building container image ...${RESET}"
 
-    REGISTRY=${REGISTRY} ORG=${REGISTRY_ORG} REPO=${IMAGE_PREFIX}${pkg} TAG=${PKG_VERSION} ./scripts/package
+      REGISTRY=${REGISTRY} ORG=${REGISTRY_ORG} REPO=${IMAGE_PREFIX}${pkg} TAG=${PKG_VERSION} ./scripts/package
 
-    if [ "${PUSH}" == "--push" ]; then
-      echo -e "${CYAN}Pushing container image ...${RESET}"
+      if [ "${PUSH}" == "--push" ]; then
+        echo -e "${CYAN}Pushing container image ...${RESET}"
 
-      # Ensure that you do not overwrite production images
-      if [[ "${REGISTRY_ORG}" == "rancher" ]]; then
-        IMAGE=${REGISTRY}${REGISTRY_ORG}/${IMAGE_PREFIX}${pkg}:${PKG_VERSION}
-        if docker manifest inspect 2>&1 1>/dev/null; then
-          echo -e "${RED}Cannot overwrite production image ${IMAGE} since it already exists${RESET}"
-          exit 1
+        # Ensure that you do not overwrite production images
+        if [[ "${REGISTRY_ORG}" == "rancher" ]]; then
+          IMAGE=${REGISTRY}${REGISTRY_ORG}/${IMAGE_PREFIX}${pkg}:${PKG_VERSION}
+          if docker manifest inspect 2>&1 1>/dev/null; then
+            echo -e "${RED}Cannot overwrite production image ${IMAGE} since it already exists${RESET}"
+            exit 1
+          fi
         fi
+
+        docker push ${REGISTRY}${REGISTRY_ORG}/${IMAGE_PREFIX}${pkg}:${PKG_VERSION}
       fi
 
-      docker push ${REGISTRY}${REGISTRY_ORG}/${IMAGE_PREFIX}${pkg}:${PKG_VERSION}
-    fi
+      popd > /dev/null
+    else
+      echo -e "${CYAN}Adding plugin code ...${RESET}"
 
-    popd > /dev/null
+      EXT_FOLDER=${BASE_DIR}/extensions/${pkg}/${PKG_VERSION}
+      PKG_DIST="${BASE_DIR}/dist-pkg/${PKG_NAME}"
+
+      mkdir -p ${EXT_FOLDER}
+
+      # Copy the code into the folder
+      cp -R ${PKG_DIST}/* ${EXT_FOLDER}
+
+      pushd ${BASE_DIR}/extensions/${pkg}/${PKG_VERSION} > /dev/null
+      rm -f report.html
+      find . -type f | sort > files.txt
+      popd > /dev/null
+    fi
 
     rm -rf ${TMP}/container
 
@@ -220,6 +240,20 @@ for d in pkg/*/ ; do
     # Copy README file from the plugin to the Helm chart, if there is one
     if [ -f "./pkg/${pkg}/README.md" ]; then
       cp ./pkg/${pkg}/README.md ${CHART_FOLDER}/README.md
+    fi
+
+    if [ "${GITHUB_BUILD}" == "true" ]; then
+      echo "Patching for GitHub build"
+      pushd ${CHART_FOLDER} > /dev/null
+      ls -al
+      cd templates
+      mv cr.yaml temp.cr
+      rm *.yaml
+      mv temp.cr cr.yaml
+      ENDPOINT=https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/extensions/${pkg}/${PKG_VERSION}
+      sed -i.bak -e 's@endpoint: .*@endpoint: '"${ENDPOINT}"'@g' cr.yaml       
+      rm *.bak
+      popd > /dev/null
     fi
 
     # Additional patches

@@ -1,0 +1,4 @@
+./clock-0.1.0.umd.min.js
+./clock-0.1.0.umd.min.js.map
+./files.txt
+./package.json
