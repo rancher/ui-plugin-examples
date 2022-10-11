@@ -21,4 +21,25 @@ entries:
     urls:
     - assets/clock/clock-0.1.0.tgz
     version: 0.1.0
-generated: "2022-10-11T13:47:44.849872+01:00"
+  homepage:
+  - annotations:
+      catalog.cattle.io/certified: rancher
+      catalog.cattle.io/kube-version: '>= 1.16.0-0 < 1.25.0-0'
+      catalog.cattle.io/namespace: cattle-ui-plugin-system
+      catalog.cattle.io/os: linux
+      catalog.cattle.io/permits-os: linux, windows
+      catalog.cattle.io/rancher-version: '>= 2.7.0-0 < 2.8.0-0'
+      catalog.cattle.io/scope: management
+      catalog.cattle.io/ui-component: plugins
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-10-11T13:50:35.978675+01:00"
+    description: Example plugin that changes the landingh home page
+    digest: 833afd193ad655cb9a98c6a6e8ee7e0e492874336c6dacc4eb31074f08146b57
+    icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/homepage/homepage.svg
+    name: homepage
+    type: application
+    urls:
+    - assets/homepage/homepage-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-10-11T13:50:35.978096+01:00"
