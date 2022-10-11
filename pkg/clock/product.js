@@ -1,4 +1,4 @@
-export const NAME = 'new-feature';
+export const NAME = 'clock';
 
 export function init(plugin, store) {
   const {
@@ -13,11 +13,11 @@ export function init(plugin, store) {
   product({
     inStore:             'management',
     icon:                'globe',
-    label:               'New Feature',
+    label:               'Clock',
     removable:           false,
     showClusterSwitcher: false,
     category:            'global',
-    to:                  'new-feature'
+    to:                  { name: 'clock', params: { cluster: 'local'} }
   });
 
 }

@@ -10,7 +10,7 @@ nameOverride: ""
 fullnameOverride: ""
 pluginServer:
   image:
-    repository: nwmac/ui-extension-homepage
+    repository: nwmac/ui-extension-clock
     pullPolicy: Always
     tag: 0.1.0
   service:

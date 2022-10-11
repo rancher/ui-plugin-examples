@@ -1,5 +1,25 @@
 apiVersion: v1
 entries:
+  clock:
+  - annotations:
+      catalog.cattle.io/certified: rancher
+      catalog.cattle.io/kube-version: '>= 1.16.0-0 < 1.25.0-0'
+      catalog.cattle.io/namespace: cattle-ui-plugin-system
+      catalog.cattle.io/os: linux
+      catalog.cattle.io/permits-os: linux, windows
+      catalog.cattle.io/rancher-version: '>= 2.7.0-0 < 2.8.0-0'
+      catalog.cattle.io/scope: management
+      catalog.cattle.io/ui-component: plugins
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-10-11T11:27:05.612535+01:00"
+    description: Adds a new feature to the top-level menu that shows a full-page clokc
+    digest: 4e6a4afa51630149e5692eb0b9b955f00859b6f682dc03912d688b1428369972
+    name: clock
+    type: application
+    urls:
+    - assets/clock/clock-0.1.0.tgz
+    version: 0.1.0
   homepage:
   - annotations:
       catalog.cattle.io/certified: rancher
@@ -12,13 +32,13 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-10T16:20:39.296801272+01:00"
+    created: "2022-10-11T11:26:32.154011+01:00"
     description: Example plugin that changes the landingh home page
-    digest: 5da3924bfb568f48e4e82a46905b2d336f4e9a70a668c63bbe89249c7c10d47b
+    digest: 6f06dae4fb1d18c047a321ea8003728de4c5bcbdc594b3c85a27b903a327e008
     icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/homepage/homepage.svg
     name: homepage
     type: application
     urls:
     - assets/homepage/homepage-0.1.0.tgz
     version: 0.1.0
-generated: "2022-10-10T16:20:39.296165528+01:00"
+generated: "2022-10-11T11:27:05.61192+01:00"

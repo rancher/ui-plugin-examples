@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'new-home-page',
+  name:   'new-home-page',
   layout: 'plain'
 };
 </script>
@@ -16,4 +16,3 @@ export default {
     text-align: center;
   }
 </style>
-

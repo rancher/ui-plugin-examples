@@ -14,8 +14,8 @@ export default function(plugin: IPlugin) {
   plugin.addProduct(require('./product'));
 
   plugin.addRoute({
-    name:      'new-feature',
-    path:      '/new-feature',
+    name:      'clock',
+    path:      '/clock',
     component: NewFeature
   });   
 }

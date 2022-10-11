@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "plugin-server.fullname" . }}
+  labels: {{ include "plugin-server.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.pluginServer.service.type }}
+  ports:
+    - port: {{ .Values.pluginServer.service.port }}
+      targetPort: {{ .Values.pluginServer.service.targetPort }}
+      protocol: TCP
+      name: http
+  selector: {{ include "plugin-server.selectorLabels" . | nindent 4 }}

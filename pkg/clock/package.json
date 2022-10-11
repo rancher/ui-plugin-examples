@@ -1,6 +1,6 @@
 {
-  "name": "new-feature",
-  "description": "new-feature plugin",
+  "name": "clock",
+  "description": "Adds a new feature to the top-level menu that shows a full-page clokc",
   "version": "0.1.0",
   "private": false,
   "rancher": true,
