@@ -3,7 +3,7 @@
   "description": "Adds support for the Rancher Extensions CRD to Rancher Manager",
   "version": "0.1.0",
   "private": false,
-  "icon": "https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/extenstion-crd/icon.svg",
+  "icon": "https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/extension-crd/icon.svg",
   "rancher": true,
   "scripts": {
     "dev": "./node_modules/.bin/nuxt dev",

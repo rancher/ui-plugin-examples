@@ -33,10 +33,10 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-11T18:08:21.393722+01:00"
+    created: "2022-10-11T18:40:35.847271+01:00"
     description: Adds support for the Rancher Extensions CRD to Rancher Manager
-    digest: 24c20604410444d2d77910fc047b6af040b5c8ed680ba00237d931e7799b99ce
-    icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/extenstion-crd/icon.svg
+    digest: 8969b906bd6d17ecf9ebba21d55d60dbdcadac40d12008583550ddcc71c84d52
+    icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/extension-crd/icon.svg
     name: extension-crd
     type: application
     urls:
@@ -104,4 +104,4 @@ entries:
     urls:
     - assets/uk-locale/uk-locale-0.1.0.tgz
     version: 0.1.0
-generated: "2022-10-11T18:08:21.392293+01:00"
+generated: "2022-10-11T18:40:35.84679+01:00"
