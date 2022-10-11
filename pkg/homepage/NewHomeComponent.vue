@@ -1,6 +1,6 @@
 <script>
 export default {
-  name:   'new-home-page',
+  name:   'NweHomePage',
   layout: 'plain'
 };
 </script>
