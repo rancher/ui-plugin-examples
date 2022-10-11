@@ -21,6 +21,27 @@ entries:
     urls:
     - assets/clock/clock-0.1.0.tgz
     version: 0.1.0
+  extension-crd:
+  - annotations:
+      catalog.cattle.io/certified: rancher
+      catalog.cattle.io/kube-version: '>= 1.16.0-0 < 1.25.0-0'
+      catalog.cattle.io/namespace: cattle-ui-plugin-system
+      catalog.cattle.io/os: linux
+      catalog.cattle.io/permits-os: linux, windows
+      catalog.cattle.io/rancher-version: '>= 2.7.0-0 < 2.8.0-0'
+      catalog.cattle.io/scope: management
+      catalog.cattle.io/ui-component: plugins
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-10-11T18:08:21.393722+01:00"
+    description: Adds support for the Rancher Extensions CRD to Rancher Manager
+    digest: 24c20604410444d2d77910fc047b6af040b5c8ed680ba00237d931e7799b99ce
+    icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/extenstion-crd/icon.svg
+    name: extension-crd
+    type: application
+    urls:
+    - assets/extension-crd/extension-crd-0.1.0.tgz
+    version: 0.1.0
   homepage:
   - annotations:
       catalog.cattle.io/certified: rancher
@@ -83,4 +104,4 @@ entries:
     urls:
     - assets/uk-locale/uk-locale-0.1.0.tgz
     version: 0.1.0
-generated: "2022-10-11T14:47:55.830272+01:00"
+generated: "2022-10-11T18:08:21.392293+01:00"

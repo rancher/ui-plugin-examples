@@ -111,10 +111,12 @@ if [[ -z ${REGISTRY_ORG} ]]; then
   exit 1
 fi
 
-docker images > /dev/null
-if [ $? -ne 0 ]; then
-  echo "docker is not running - this is required to build container images for the UI Plugins"
-  exit 1
+if [ "${GITHUB_BUILD}" == "false" ]; then
+  docker images > /dev/null
+  if [ $? -ne 0 ]; then
+    echo "docker is not running - this is required to build container images for the UI Plugins"
+    exit 1
+  fi
 fi
 
 ASSETS=${BASE_DIR}/assets
