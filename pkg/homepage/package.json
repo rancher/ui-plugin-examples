@@ -1,6 +1,6 @@
 {
   "name": "homepage",
-  "description": "Example plugin that changes the landing home page",
+  "description": "Example extension that changes the landing home page",
   "version": "0.2.0",
   "private": false,
   "rancher": true,
