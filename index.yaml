@@ -54,9 +54,9 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-10-11T20:22:24.225511+01:00"
-    description: Example plugin that changes the landing home page
-    digest: 8721d0b1ab9152dbb08895e78d56f6313ec1bee8ad840b0b60578f060ba3e502
+    created: "2022-10-12T13:15:02.183843+01:00"
+    description: Example extension that changes the landing home page
+    digest: da45c11730f6c0392fc05dfcc5cc07c8414904a5efd9b4c38864605414a849ee
     icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/homepage/homepage.svg
     name: homepage
     type: application
@@ -74,7 +74,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-11T20:22:24.225194+01:00"
+    created: "2022-10-12T13:15:02.183326+01:00"
     description: Example plugin that changes the landingh home page
     digest: 833afd193ad655cb9a98c6a6e8ee7e0e492874336c6dacc4eb31074f08146b57
     icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/homepage/homepage.svg
@@ -104,4 +104,4 @@ entries:
     urls:
     - assets/uk-locale/uk-locale-0.1.0.tgz
     version: 0.1.0
-generated: "2022-10-11T20:22:28.955257+01:00"
+generated: "2022-10-12T13:15:02.182332+01:00"

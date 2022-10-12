@@ -9,7 +9,7 @@ annotations:
   catalog.cattle.io/ui-component: plugins
 apiVersion: v2
 appVersion: "0.2.0"
-description: Example plugin that changes the landing home page
+description: Example extension that changes the landing home page
 name: homepage
 type: application
 version: 0.2.0
