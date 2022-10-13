@@ -10,7 +10,7 @@ nameOverride: ""
 fullnameOverride: ""
 pluginServer:
   image:
-    repository: nwmac/ui-extension-homepage
+    repository: rancher/ui-extension-homepage
     pullPolicy: Always
     tag: 0.2.0
   service:

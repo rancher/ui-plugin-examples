@@ -1,38 +1,36 @@
 # ui-plugin-examples
-Example plugins for the Rancher Dashboard UI.
+Example Extensions for the Rancher Dashboard UI.
 
-This repository contains 2 example plugins in the `pkg` folder.
+This repository contains the following example extensions in the `pkg` folder.
 
 |Name|Description|
 |----|-----------|
-|homepage|Plugin that changes the landing home page|
-|new-feature|Plugin that adds a new feature to the top-level slide-in menu|
+|clock|Adds a new feature to the top-level menu that shows a full-page clock|
+|extension-crd|Adds support for the Rancher Extensions CRD to Rancher Manager|
+|homepage|Example extension that changes the landing home page|
+|uk-locale|Adds a new UK localisation|
 
-> Note: Currently, only the 'homepage' plugin is published to the Helm Chart repository.
-
-You can find the built packages for these plugins in the [releases](https://github.com/rancher/ui-plugin-examples/releases) section of this GitHub repository. These are assets named in the form `[plugin-name]-[version].tgz`.
-
-Additionally, fake Helm charts for the plugins are published to the releases as well - these currently only contain enough metadata to test the UI Plugin catalog. These are assets named in the form `[plugin-name]-chart-[version].tgz`.
-
-You can also add this repository as a Helm Repository in Rancher - to do this:
+To use these example in Rancher Manager, add this repository as a Helm Repository - to do this:
 
 - Go to the local cluster, to 'Apps' and 'Repositories'
-- Click 'Create' and enter a name, e.g. 'ui-plugin-examples'
+- Click 'Create' and enter a name, e.g. 'example-extensions'
 - Choose Target 'Git repository containing Helm chart or cluster template definitions'
 - Enter `https://github.com/rancher/ui-plugin-examples.git` for the 'Git Repo URL'
 - Enter `main` for the Git Branch
 - Click `Create`
 
+The extensions should then appear on the 'Extenssions' page in Rancher Manager.
+
 ## Building and running locally
 
-You can build and run the plugins locally, to do so:
+You can build and run the extensions locally, to do so:
 
 - Run `yarn install`
 - Set the API environment variable to point to a Rancher backend
 - Run Rancher in development mode with `yarn dev`
 - Open a web browser to `https://127.0.0.1:8005`
 
-Once you login, you should see Rancher load with the two plugins automatically loaded. You can edit the code for the plugins
+Once you login, you should see Rancher load with the extensions automatically loaded. You can edit the code for the extensions
 and then should hot-reload within the browser.
 
 ### Bugs & Issues
