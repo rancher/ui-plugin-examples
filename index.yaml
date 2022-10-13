@@ -12,10 +12,10 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-11T20:22:12.247099+01:00"
+    created: "2022-10-13T14:59:36.586514+01:00"
     description: Adds a new feature to the top-level menu that shows a full-page clock
-    digest: 15d074a4fa3fb4423ffa0d699665ebffe34d754a00e1736d6dd74fc0ee3c6240
-    icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/clock/clock.svg
+    digest: 4e3ebcbe0b7fe293d433d31d19c0cea97377dec3a9994a3cb3d4803decc9da65
+    icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/clock/clock.svg
     name: clock
     type: application
     urls:
@@ -33,10 +33,10 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-11T20:22:19.356862+01:00"
+    created: "2022-10-13T14:59:45.468468+01:00"
     description: Adds support for the Rancher Extensions CRD to Rancher Manager
-    digest: 9ef13b77f227b57a927c29e0d06243345cdbb34d3bf534929ed3f5e59b18f5aa
-    icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/extension-crd/icon.svg
+    digest: 81ee9fb72eeacaa5c02d3da9a741abbe13f305cc7f55782fc2b9af0abe00413b
+    icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/extension-crd/icon.svg
     name: extension-crd
     type: application
     urls:
@@ -54,10 +54,10 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-10-12T13:15:02.183843+01:00"
+    created: "2022-10-13T14:59:51.833532+01:00"
     description: Example extension that changes the landing home page
-    digest: da45c11730f6c0392fc05dfcc5cc07c8414904a5efd9b4c38864605414a849ee
-    icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/homepage/homepage.svg
+    digest: b8c5f00b365b85f3260b388d17152585adb194490bf4362446e8c73fb27b6b2e
+    icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
     name: homepage
     type: application
     urls:
@@ -74,7 +74,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-12T13:15:02.183326+01:00"
+    created: "2022-10-13T14:59:51.833212+01:00"
     description: Example plugin that changes the landingh home page
     digest: 833afd193ad655cb9a98c6a6e8ee7e0e492874336c6dacc4eb31074f08146b57
     icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/homepage/homepage.svg
@@ -95,13 +95,13 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-11T20:22:28.95583+01:00"
+    created: "2022-10-13T14:59:57.33852+01:00"
     description: Adds a new UK localisation
-    digest: 19027de980820c3d9e4f8c6729f3f51c72b3eef1cea02bf37bf11c7363794d28
-    icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg
+    digest: ab533b6f874192aa3a26ab1a144da1d8d56f981f89e2303509f552136ab1e38b
+    icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg
     name: uk-locale
     type: application
     urls:
     - assets/uk-locale/uk-locale-0.1.0.tgz
     version: 0.1.0
-generated: "2022-10-12T13:15:02.182332+01:00"
+generated: "2022-10-13T14:59:57.338044+01:00"

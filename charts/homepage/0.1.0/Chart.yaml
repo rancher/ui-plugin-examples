@@ -13,4 +13,4 @@ description: Example plugin that changes the landingh home page
 name: homepage
 type: application
 version: 0.1.0
-icon: https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/homepage/homepage.svg
+icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
