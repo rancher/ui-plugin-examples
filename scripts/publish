@@ -13,17 +13,22 @@ SINGLE_VERSION="false" # Should we publish all plugins using the version from-th
 PUSH=""
 REGISTRY=""
 REGISTRY_ORG=""
+IMAGE_PREFIX="ui-extension-"
+FORCE="false"
+GITHUB_BUILD="false"
 
 usage() {
   echo "Usage: $0 [-v] [plugins]"
   #echo "  -v        Publish plugins using the version from-the top-level package file"
-  echo "  -p        Push container images on build"
-  echo "  -r <name> Specify destination container registry for built images"
-  echo "  -o <name> Specify destination container registry organization for built images"
+  echo "  -p          Push container images on build"
+  echo "  -f          Force building the chart even if it already exists"
+  echo "  -r <name>   Specify destination container registry for built images"
+  echo "  -o <name>   Specify destination container registry organization for built images"
+  echo "  -i <prefix> Specify prefix for the built container image (default: 'ui-extension-')"
   exit 1
 }
 
-while getopts "hvr:o:p" opt; do
+while getopts "hvr:o:pi:fg" opt; do
   case $opt in
     h)
       usage
@@ -40,8 +45,16 @@ while getopts "hvr:o:p" opt; do
     o)
       REGISTRY_ORG="${OPTARG}"
       ;;
-    *)
-      usage
+    i)
+      IMAGE_PREFIX="${OPTARG}"
+      ;;
+    f)
+      FORCE="true"
+      ;;      
+    g)
+      GITHUB_BUILD="true"
+    ;;      *)
+    usage
       ;;
   esac
 done
@@ -57,6 +70,8 @@ pushd ${BASE_DIR} > /dev/null
 
 # VERSION=$(jq -r .version package.json)
 # echo "Version: $VERSION"
+
+echo "Image prefix: ${IMAGE_PREFIX}"
 
 # --------------------------------------------------------------------------------
 # Check that we have the required commands avaialble for this script
@@ -96,10 +111,12 @@ if [[ -z ${REGISTRY_ORG} ]]; then
   exit 1
 fi
 
-docker images > /dev/null
-if [ $? -ne 0 ]; then
-  echo "docker is not running - this is required to build container images for the UI Plugins"
-  exit 1
+if [ "${GITHUB_BUILD}" == "false" ]; then
+  docker images > /dev/null
+  if [ $? -ne 0 ]; then
+    echo "docker is not running - this is required to build container images for the UI Plugins"
+    exit 1
+  fi
 fi
 
 ASSETS=${BASE_DIR}/assets
@@ -110,13 +127,16 @@ mkdir -p ${CHARTS}
 TMP=${BASE_DIR}/tmp
 CHART_TMP=${BASE_DIR}/tmp/_charts
 rm -rf ${TMP}
+mkdir -p ${TMP}
 
 CHART_TEMPLATE=${BASE_DIR}/tmp/ui-plugin-server
 
 # --------------------------------------------------------------------------------
 # Clone the plugin server template into the temporary folder
 # --------------------------------------------------------------------------------
-git clone -q https://github.com/rancher/ui-plugin-server.git ${CHART_TEMPLATE}
+pushd ${TMP} > /dev/null
+git clone -q https://github.com/nwmac/ui-plugin-server.git
+popd > /dev/null
 
 # --------------------------------------------------------------------------------
 # Iterate through all packages - built them all or build only those specified on the command line
@@ -145,36 +165,56 @@ for d in pkg/*/ ; do
     # Create the container image
     # --------------------------------------------------------------------------------
     mkdir -p ${TMP}/container
-    cp -R ${CHART_TEMPLATE}/ ${TMP}/container
+    cp -R ${CHART_TEMPLATE}/* ${TMP}/container/    
 
     # Copy the plugin assets
     rm -rf ${TMP}/container/plugin
     mkdir ${TMP}/container/plugin
 
-    cp -R ${BASE_DIR}/dist-pkg/${PKG_NAME}/ ${TMP}/container/plugin
+    cp -R ${BASE_DIR}/dist-pkg/${PKG_NAME}/* ${TMP}/container/plugin
     rm -f ${TMP}/container/plugin/report.html
 
-    # Build the docker image
-    pushd ${TMP}/container > /dev/null
-    echo -e "${CYAN}Building container image ...${RESET}"
-    REGISTRY=${REGISTRY} ORG=${REGISTRY_ORG} REPO=${pkg} TAG=${PKG_VERSION} ./scripts/package
+    if [ "${GITHUB_BUILD}" == "false" ]; then
+      # Build the docker image
+      pushd ${TMP}/container > /dev/null
+      echo -e "${CYAN}Building container image ...${RESET}"
 
-    if [ "${PUSH}" == "--push" ]; then
-      echo -e "${CYAN}Pushing container image ...${RESET}"
+      REGISTRY=${REGISTRY} ORG=${REGISTRY_ORG} REPO=${IMAGE_PREFIX}${pkg} TAG=${PKG_VERSION} ./scripts/package
 
-      # Ensure that you do not overwrite production images
-      if [[ "${REGISTRY_ORG}" == "rancher" ]]; then
-        IMAGE=${REGISTRY}${REGISTRY_ORG}/${pkg}:${PKG_VERSION}
-        if docker manifest inspect 2>&1 1>/dev/null; then
-          echo -e "${RED}Cannot overwrite production image ${IMAGE} since it already exists${RESET}"
-          exit 1
+      if [ "${PUSH}" == "--push" ]; then
+        echo -e "${CYAN}Pushing container image ...${RESET}"
+
+        # Ensure that you do not overwrite production images
+        if [[ "${REGISTRY_ORG}" == "rancher" ]]; then
+          IMAGE=${REGISTRY}${REGISTRY_ORG}/${IMAGE_PREFIX}${pkg}:${PKG_VERSION}
+          if docker manifest inspect 2>&1 1>/dev/null; then
+            echo -e "${RED}Cannot overwrite production image ${IMAGE} since it already exists${RESET}"
+            exit 1
+          fi
         fi
+
+        docker push ${REGISTRY}${REGISTRY_ORG}/${IMAGE_PREFIX}${pkg}:${PKG_VERSION}
       fi
 
-      docker push ${REGISTRY}${REGISTRY_ORG}/${pkg}:${PKG_VERSION}
-    fi
+      popd > /dev/null
+    else
+      echo -e "${CYAN}Adding plugin code ...${RESET}"
 
-    popd > /dev/null
+      EXT_FOLDER=${BASE_DIR}/extensions/${pkg}/${PKG_VERSION}
+      PKG_DIST="${BASE_DIR}/dist-pkg/${PKG_NAME}"
+
+      rm -rf ${EXT_FOLDER}
+
+      mkdir -p ${EXT_FOLDER}/plugin
+
+      # Copy the code into the folder
+      cp -R ${PKG_DIST}/* ${EXT_FOLDER}/plugin
+
+      pushd ${BASE_DIR}/extensions/${pkg}/${PKG_VERSION} > /dev/null
+      rm -f plugin/report.html
+      find plugin -type f | sort > files.txt
+      popd > /dev/null
+    fi
 
     rm -rf ${TMP}/container
 
@@ -182,7 +222,7 @@ for d in pkg/*/ ; do
     # Create the Helm chart
     # --------------------------------------------------------------------------------
 
-    if [ -f ${PKG_ASSET} ]; then
+    if [ -f ${PKG_ASSET} ] && [ "${FORCE}" == "false" ]; then
       echo -e "${YELLOW}Helm chart has already been created - skipping${RESET}"
       continue;
     fi
@@ -197,13 +237,31 @@ for d in pkg/*/ ; do
 
     # Update Chart.yaml and values.yaml from the package file metadata
     # Use the script from the template repository
-    echo "Patching Helm chart template"
-    CHART=${CHART_FOLDER} REGISTRY="${REGISTRY}" ORG=rancher PACKAGE_JSON=${BASE_DIR}/pkg/${pkg}/package.json ${CHART_TEMPLATE}/scripts/patch
+    echo -e "${CYAN}Patching Helm chart template${RESET}"
+
+    CHART=${CHART_FOLDER} REGISTRY="${REGISTRY}" ORG="${REGISTRY_ORG}" PACKAGE_JSON=${BASE_DIR}/pkg/${pkg}/package.json ${CHART_TEMPLATE}/scripts/patch
 
     # Copy README file from the plugin to the Helm chart, if there is one
     if [ -f "./pkg/${pkg}/README.md" ]; then
       cp ./pkg/${pkg}/README.md ${CHART_FOLDER}/README.md
     fi
+
+    if [ "${GITHUB_BUILD}" == "true" ]; then
+      echo "Patching for GitHub build"
+      pushd ${CHART_FOLDER} > /dev/null
+      ls -al
+      cd templates
+      mv cr.yaml temp.cr
+      rm *.yaml
+      mv temp.cr cr.yaml
+      ENDPOINT=https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/extensions/${pkg}/${PKG_VERSION}
+      sed -i.bak -e 's@endpoint: .*@endpoint: '"${ENDPOINT}"'@g' cr.yaml       
+      rm *.bak
+      popd > /dev/null
+    fi
+
+    # Additional patches
+    ${SCRIPT_DIR}/helmpatch ${CHART_FOLDER} "${BASE_DIR}/pkg/${pkg}/package.json" "${REGISTRY}${REGISTRY_ORG}/${IMAGE_PREFIX}${pkg}"
 
     # Package into a .tgz helm chart
     helm package ${CHART_FOLDER} -d ${ASSETS}/${pkg}

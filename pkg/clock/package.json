@@ -1,0 +1,25 @@
+{
+  "name": "clock",
+  "description": "Adds a new feature to the top-level menu that shows a full-page clock",
+  "version": "0.1.0",
+  "private": false,
+  "icon": "https://raw.githubusercontent.com/nwmac/ui-plugin-examples/main/pkg/clock/clock.svg",
+  "rancher": true,
+  "scripts": {
+    "dev": "./node_modules/.bin/nuxt dev",
+    "nuxt": "./node_modules/.bin/nuxt"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/cli-plugin-typescript": "^4.5.15"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

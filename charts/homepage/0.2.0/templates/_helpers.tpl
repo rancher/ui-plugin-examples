@@ -50,17 +50,6 @@ app.kubernetes.io/name: {{ include "plugin-server.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "plugin-server.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "plugin-server.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
-{{- end }}
-
 {{- define "system_default_registry" -}}
 {{- if .Values.global.cattle.systemDefaultRegistry -}}
 {{- printf "%s/" .Values.global.cattle.systemDefaultRegistry -}}
