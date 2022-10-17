@@ -25,10 +25,16 @@
         "./node_modules/@rancher/shell/*"
       ]
     },
+    "typeRoots": [
+      "./node_modules",
+      "./node_modules/@rancher/shell/types"
+    ],    
     "types": [
       "@types/node",
       "@nuxt/types",
-      "cypress"
+      "cypress",
+      "rancher",
+      "shell"
     ]
   },
   "exclude": [

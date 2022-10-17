@@ -61,7 +61,8 @@ export default {
     });
   },
 
-  loadCluster: ( ctx: any, { id }: any ) => {
+  loadCluster: async( ctx: any, { id }: any ) => {
+    await ctx.dispatch('loadSchemas');
     // If there are any resources to fetch or actions to do when a cluster for this type is visited... this is the place
   },
 
