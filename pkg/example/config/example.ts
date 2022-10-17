@@ -1,9 +1,9 @@
 import {
   AGE, DESCRIPTION, NAME, SIMPLE_NAME, STATE
 } from '@shell/config/table-headers';
+import { MULTI_CLUSTER } from '@shell/store/features';
 import { createExampleRoute, rootExampleRoute } from '../utils/custom-routing';
 import { EXAMPLE_PRODUCT_NAME, EXAMPLE_STORE, EXAMPLE_TYPES } from '../types';
-import { MULTI_CLUSTER } from '@shell/store/features';
 
 export function init($plugin: any, store: any) {
   const {

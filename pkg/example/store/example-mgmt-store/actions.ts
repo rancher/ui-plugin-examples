@@ -1,6 +1,6 @@
-import { exampleMgmtStoreMockRequest } from '../mock-data';
 import { SCHEMA } from '@shell/config/types';
 import { normalizeType } from '@shell/plugins/dashboard-store/normalize';
+import { exampleMgmtStoreMockRequest } from '../mock-data';
 import { EXAMPLE_PRODUCT_NAME, EXAMPLE_TYPES } from '../../types';
 
 export default {

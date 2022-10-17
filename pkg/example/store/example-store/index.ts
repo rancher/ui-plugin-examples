@@ -1,10 +1,9 @@
 import { CoreStoreSpecifics, CoreStoreConfig } from '@shell/core/types';
 
+import { EXAMPLE_STORE } from '../../types';
 import getters from './getters';
 import mutations from './mutations';
 import actions from './actions';
-
-import { EXAMPLE_STORE } from '../../types';
 
 const exampleStoreFactory = (): CoreStoreSpecifics => {
   return {

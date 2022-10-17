@@ -1,7 +1,7 @@
+import { STATES_ENUM } from '@shell/plugins/dashboard-store/resource-class';
 import {
   ExampleCluster, ExampleResource, ExampleResource2, EXAMPLE_PRODUCT_NAME, EXAMPLE_TYPES
 } from '../types';
-import { STATES_ENUM } from '@shell/plugins/dashboard-store/resource-class';
 
 const createMockRandomAge = () => {
   const date = new Date().getTime() - (Math.floor(Math.random() * 10) * 1000 * 60 * 60 * 60);

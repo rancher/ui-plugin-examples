@@ -1,5 +1,5 @@
-import { createExampleRoute } from '../utils/custom-routing';
 import Resource from '@shell/plugins/dashboard-store/resource-class';
+import { createExampleRoute } from '../utils/custom-routing';
 
 export default class BaseExampleResource extends Resource {
   get listLocation() {

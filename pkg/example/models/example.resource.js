@@ -1,5 +1,5 @@
-import BaseExampleResource from './base-example.resource';
 import { STATES_ENUM } from '@shell/plugins/dashboard-store/resource-class';
+import BaseExampleResource from './base-example.resource';
 
 export default class ExampleResource extends BaseExampleResource {
   get links() {
