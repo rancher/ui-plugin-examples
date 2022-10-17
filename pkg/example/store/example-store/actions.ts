@@ -69,4 +69,12 @@ export default {
   watch() {
   },
 
+  unsubscribe() {
+
+  },
+
+  reset() {
+
+  }
+
 };

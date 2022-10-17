@@ -52,7 +52,7 @@ export default Vue.extend<Data, any, any, any>({
         :row-actions="false"
       >
         <template #cell:name="{row}">
-          <n-link v-if="row.metadata.state.name === 'active'" :to="{name: 'example-c-cluster-resource', params: {cluster: row.id, resource: exampleResource}}">
+          <n-link v-if="row.metadata.state.name === 'active'" :to="{name: 'example-c-cluster-resource', params: {product: 'example', cluster: row.id, resource: exampleResource}}">
             {{ row.name }}
           </n-link>
           <template v-else>
