@@ -17,6 +17,9 @@ IMAGE_PREFIX="ui-extension-"
 FORCE="false"
 GITHUB_BUILD="false"
 
+GITHUB_SOURCE=$(git config --get remote.origin.url | sed -e 's/^git@.*:\([[:graph:]]*\).git/\1/')
+GITHUB_BRANCH=$(git branch --show-current)
+
 usage() {
   echo "Usage: $0 [-v] [plugins]"
   #echo "  -v        Publish plugins using the version from-the top-level package file"
@@ -72,6 +75,13 @@ pushd ${BASE_DIR} > /dev/null
 # echo "Version: $VERSION"
 
 echo "Image prefix: ${IMAGE_PREFIX}"
+
+if [ "${GITHUB_BUILD}" == "true" ]; then
+  echo -e "${CYAN}GitHub Repository: ${GITHUB_SOURCE}${RESET}"
+  echo -e "${CYAN}GitHub Branch    : ${GITHUB_BRANCH}${RESET}"
+fi
+
+exit 1
 
 # --------------------------------------------------------------------------------
 # Check that we have the required commands avaialble for this script
@@ -254,7 +264,7 @@ for d in pkg/*/ ; do
       mv cr.yaml temp.cr
       rm *.yaml
       mv temp.cr cr.yaml
-      ENDPOINT=https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/extensions/${pkg}/${PKG_VERSION}
+      ENDPOINT=https://raw.githubusercontent.com/${GITHUB_SOURCE}/${GITHUB_BRANCH}/extensions/${pkg}/${PKG_VERSION}
       sed -i.bak -e 's@endpoint: .*@endpoint: '"${ENDPOINT}"'@g' cr.yaml       
       rm *.bak
       popd > /dev/null
