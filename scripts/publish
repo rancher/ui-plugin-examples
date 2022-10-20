@@ -8,6 +8,7 @@ YELLOW="\033[93m"
 RESET="\033[0m"
 BOLD="\033[1m"
 NORMAL="\033[22m"
+CHECK="\xE2\x9C\x94"
 
 SINGLE_VERSION="false" # Should we publish all plugins using the version from-the top-level package file?
 PUSH=""
@@ -23,11 +24,14 @@ GITHUB_BRANCH=$(git branch --show-current)
 usage() {
   echo "Usage: $0 [-v] [plugins]"
   #echo "  -v        Publish plugins using the version from-the top-level package file"
-  echo "  -p          Push container images on build"
-  echo "  -f          Force building the chart even if it already exists"
-  echo "  -r <name>   Specify destination container registry for built images"
-  echo "  -o <name>   Specify destination container registry organization for built images"
-  echo "  -i <prefix> Specify prefix for the built container image (default: 'ui-extension-')"
+  echo "  -p           Push container images on build"
+  echo "  -f           Force building the chart even if it already exists"
+  echo "  -r <name>    Specify destination container registry for built images"
+  echo "  -o <name>    Specify destination container registry organization for built images"
+  echo "  -i <prefix>  Specify prefix for the built container image (default: 'ui-extension-')"
+  echo "  -g           Publish to the GitHub repository rather than using container image"
+  echo "  -s <repo>    Specify destination GitHub repository (org/name) - defaults to the git origin (implies -g)"
+  echo "  -b <branch>  Specify destination GitHub branch (implies -g)"
   exit 1
 }
 
@@ -56,8 +60,17 @@ while getopts "hvr:o:pi:fg" opt; do
       ;;      
     g)
       GITHUB_BUILD="true"
-    ;;      *)
-    usage
+      ;;
+    s)
+      GITHUB_BUILD="true"
+      GITHUB_SOURCE="${OPTARG}"
+      ;;
+    b)
+      GITHUB_BUILD="true"
+      GITHUB_BRANCH="${OPTARG}"
+      ;;
+    *)
+      usage
       ;;
   esac
 done
@@ -74,14 +87,12 @@ pushd ${BASE_DIR} > /dev/null
 # VERSION=$(jq -r .version package.json)
 # echo "Version: $VERSION"
 
-echo "Image prefix: ${IMAGE_PREFIX}"
-
 if [ "${GITHUB_BUILD}" == "true" ]; then
   echo -e "${CYAN}GitHub Repository: ${GITHUB_SOURCE}${RESET}"
   echo -e "${CYAN}GitHub Branch    : ${GITHUB_BRANCH}${RESET}"
+else
+  echo -e ${CYAN}"Image prefix: ${IMAGE_PREFIX}${RESET}"
 fi
-
-exit 1
 
 # --------------------------------------------------------------------------------
 # Check that we have the required commands avaialble for this script
@@ -107,21 +118,21 @@ if [ "${HAVE_COMMANDS}" == "false" ]; then
 fi
 
 # --------------------------------------------------------------------------------
-
-
-if [[ -z ${REGISTRY_ORG} ]]; then
-  # Infer that the user has the same Docker registry org as their GitHub org
-  GITHUB_REPO=$(git config --get remote.origin.url | sed -e 's/^git@.*:\([[:graph:]]*\).git/\1/')
-  REGISTRY_ORG=$(dirname ${GITHUB_REPO})
-  echo -e "Inferring built images will reside in registry organization ${CYAN}${BOLD}${REGISTRY}${REGISTRY_ORG}${RESET} based on configured origin remote pointing to ${CYAN}${BOLD}${GITHUB_REPO}${RESET}"
-fi
-if [[ -z ${REGISTRY_ORG} ]]; then
-  # Inferring from the git config still failed
-  echo "Cannot build images without valid organization for Docker images. Unable to infer REGISTRY_ORG="
-  exit 1
-fi
-
+# Only do conatiner args checks if not GitHub publish
 if [ "${GITHUB_BUILD}" == "false" ]; then
+  if [[ -z ${REGISTRY_ORG} ]]; then
+    # Infer that the user has the same Docker registry org as their GitHub org
+    GITHUB_REPO=$(git config --get remote.origin.url | sed -e 's/^git@.*:\([[:graph:]]*\).git/\1/')
+    REGISTRY_ORG=$(dirname ${GITHUB_REPO})
+    echo -e "Inferring built images will reside in registry organization ${CYAN}${BOLD}${REGISTRY}${REGISTRY_ORG}${RESET} based on configured origin remote pointing to ${CYAN}${BOLD}${GITHUB_REPO}${RESET}"
+  fi
+
+  if [[ -z ${REGISTRY_ORG} ]]; then
+    # Inferring from the git config still failed
+    echo "Cannot build images without valid organization for Docker images. Unable to infer REGISTRY_ORG="
+    exit 1
+  fi
+
   docker images > /dev/null
   if [ $? -ne 0 ]; then
     echo "docker is not running - this is required to build container images for the UI Plugins"
@@ -233,7 +244,7 @@ for d in pkg/*/ ; do
     # --------------------------------------------------------------------------------
 
     if [ -f ${PKG_ASSET} ] && [ "${FORCE}" == "false" ]; then
-      echo -e "${YELLOW}Helm chart has already been created - skipping${RESET}"
+      echo -e "${YELLOW}Helm chart has already been created - skipping (run with -f to force build)${RESET}"
       continue;
     fi
 
@@ -259,7 +270,6 @@ for d in pkg/*/ ; do
     if [ "${GITHUB_BUILD}" == "true" ]; then
       echo "Patching for GitHub build"
       pushd ${CHART_FOLDER} > /dev/null
-      ls -al
       cd templates
       mv cr.yaml temp.cr
       rm *.yaml
@@ -301,7 +311,7 @@ for d in pkg/*/ ; do
 done
 
 if [ "${BUILT}" == "true" ]; then
-  echo "One or more packages built"
+  echo -e "${CYAN}${BOLD}${CHECK} One or more packages built${RESET}"
 fi
 
 popd > /dev/null
