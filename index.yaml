@@ -12,9 +12,9 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-10-20T08:36:37.199265+01:00"
+    created: "2022-10-20T11:29:50.007053+01:00"
     description: Adds a new feature to the top-level menu that shows a full-page clock
-    digest: 65e95bc06f8150247fa5d3a05eb5bdbd77d1c47987040d0d3b27cf36bc97ae52
+    digest: 3d92120b4351a85c79acd00d063c785ae61e49c1abef749ca1facd21ef7be514
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/clock/clock.svg
     name: clock
     type: application
@@ -32,7 +32,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-20T08:36:37.198962+01:00"
+    created: "2022-10-20T11:29:50.006701+01:00"
     description: Adds a new feature to the top-level menu that shows a full-page clock
     digest: 4e3ebcbe0b7fe293d433d31d19c0cea97377dec3a9994a3cb3d4803decc9da65
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/clock/clock.svg
@@ -74,9 +74,9 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.3.0
-    created: "2022-10-20T08:38:06.902926+01:00"
+    created: "2022-10-20T11:29:54.546212+01:00"
     description: Example extension that changes the landing home page
-    digest: 2d288fe31f3ff121602c4b3839b43cd7212760cc38d11481f4df2a1246e489f5
+    digest: adecfae0d42b8f897d374d94dec4a1e92284ed306f7ff822cb80e9df3aaed3c6
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
     name: homepage
     type: application
@@ -94,7 +94,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-10-20T08:38:06.902474+01:00"
+    created: "2022-10-20T11:29:54.545912+01:00"
     description: Example extension that changes the landing home page
     digest: b8c5f00b365b85f3260b388d17152585adb194490bf4362446e8c73fb27b6b2e
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
@@ -114,7 +114,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-10-20T08:38:06.901983+01:00"
+    created: "2022-10-20T11:29:54.545561+01:00"
     description: Example plugin that changes the landingh home page
     digest: e2831abfc18f76d91d5444e0d53c52d7c62f06b81737cfd62b1cc2337d9790cb
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
@@ -144,4 +144,4 @@ entries:
     urls:
     - assets/uk-locale/uk-locale-0.1.0.tgz
     version: 0.1.0
-generated: "2022-10-20T08:38:06.901353+01:00"
+generated: "2022-10-20T11:29:54.545013+01:00"

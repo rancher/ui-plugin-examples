@@ -19,7 +19,7 @@ FORCE="false"
 GITHUB_BUILD="false"
 
 GITHUB_SOURCE=$(git config --get remote.origin.url | sed -e 's/^git@.*:\([[:graph:]]*\).git/\1/')
-GITHUB_BRANCH=$(git branch --show-current)
+GITHUB_BRANCH="main"
 
 usage() {
   echo "Usage: $0 [-v] [plugins]"
@@ -35,7 +35,7 @@ usage() {
   exit 1
 }
 
-while getopts "hvr:o:pi:fg" opt; do
+while getopts "hvr:o:pi:fgb:s:" opt; do
   case $opt in
     h)
       usage
