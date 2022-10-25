@@ -1,6 +1,4 @@
-import {
-  STATE, NAME as NAME_COL, AGE
-} from '@shell/config/table-headers';
+import { STATE, NAME as NAME_COL, AGE } from '@shell/config/table-headers';
 
 export const EXPLORER = 'explorer';
 
@@ -33,7 +31,7 @@ export function init(plugin, store) {
       label:    'Cache State',
       value:    'status.cacheState',
       getValue: row => row.status?.cacheState
-    },    
+    },
     AGE,
   ]);
 }
