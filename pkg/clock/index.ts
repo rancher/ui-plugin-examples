@@ -17,5 +17,5 @@ export default function(plugin: IPlugin) {
     name:      'clock',
     path:      '/clock',
     component: NewFeature
-  });   
+  });
 }

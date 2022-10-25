@@ -2,8 +2,8 @@
 import ClockComponent from './ClockComponent.vue';
 
 export default {
-  name: 'Clock',
-  layout: 'plain',
+  name:       'Clock',
+  layout:     'plain',
   components: { ClockComponent }
 };
 </script>
