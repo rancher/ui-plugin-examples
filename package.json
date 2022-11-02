@@ -12,9 +12,8 @@
     "js-yaml": "4.1.0"
   },
   "scripts": {
-    "dev": "./node_modules/.bin/nuxt dev",
-    "nuxt": "./node_modules/.bin/nuxt",
-    "build": "./node_modules/.bin/nuxt build",
+    "dev": "NODE_ENV=dev ./node_modules/.bin/vue-cli-service serve", 
+    "build": "./node_modules/.bin/vue-cli-service build",
     "build-pkg": "./node_modules/@rancher/shell/scripts/build-pkg.sh",
     "serve-pkgs": "./node_modules/@rancher/shell/scripts/serve-pkgs"
   }
