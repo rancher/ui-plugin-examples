@@ -10,7 +10,7 @@ nameOverride: ""
 fullnameOverride: ""
 pluginServer:
   image:
-    repository: /ui-extension-extension-crd
+    repository: /ui-extension-extensions-api-demo
     pullPolicy: Always
     tag: 0.1.0
   service:
