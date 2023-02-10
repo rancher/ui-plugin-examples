@@ -12,9 +12,9 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2023-02-10T11:36:21.668528Z"
+    created: "2023-02-10T14:57:30.392619Z"
     description: Adds a new feature to the top-level menu that shows a full-page clock
-    digest: 9391c124a1e74c4a423f3d5f29a34b19cd71fdfce50bacb9a3aa92c3b6673301
+    digest: 3bb32c049fc3fabecee0f11f6e6f02f106897321c3685e946e0d3ae74ce8af7b
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/clock/clock.svg
     name: clock
     type: application
@@ -32,7 +32,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-02-10T11:36:21.668334Z"
+    created: "2023-02-10T14:57:30.392421Z"
     description: Adds a new feature to the top-level menu that shows a full-page clock
     digest: 4e3ebcbe0b7fe293d433d31d19c0cea97377dec3a9994a3cb3d4803decc9da65
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/clock/clock.svg
@@ -53,9 +53,9 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-02-10T11:36:26.206995Z"
+    created: "2023-02-10T14:57:33.712659Z"
     description: Adds support for the Rancher Extensions CRD to Rancher Manager
-    digest: 8cefcb234bf096561cabc30a74e1113f2e37a168c7d702f711097eb3e8a5d006
+    digest: f7870ca47c100dacd9347cac16effb6b8c084063ae36cf9398ef966bb4aee444
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/extension-crd/icon.svg
     name: extension-crd
     type: application
@@ -74,9 +74,9 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-02-10T11:36:29.034169Z"
+    created: "2023-02-10T14:57:36.481811Z"
     description: extensions-api-demo plugin
-    digest: e2e3c78245ac6c9969032aa2559f4b19306bcfa3779af1a25dc6ac81d0c80d3f
+    digest: 4a189c6dc4c8e0da8d666d4d0625f7af4045dce5fed3792dd497a4f83cb992a9
     name: extensions-api-demo
     type: application
     urls:
@@ -94,9 +94,9 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.3.0
-    created: "2023-02-10T11:36:31.639325Z"
+    created: "2023-02-10T14:57:39.13418Z"
     description: Example extension that changes the landing home page
-    digest: e802b5777d1e42740ecd39b491262e44c7172497164fe82f43d0b8a8880bdcf2
+    digest: 972f1219e6d6f4a499bd75f671bc8ab881fdd9a2dbbeeb87e44b7780cf8fe48e
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
     name: homepage
     type: application
@@ -114,7 +114,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2023-02-10T11:36:31.639147Z"
+    created: "2023-02-10T14:57:39.133963Z"
     description: Example extension that changes the landing home page
     digest: b8c5f00b365b85f3260b388d17152585adb194490bf4362446e8c73fb27b6b2e
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
@@ -134,7 +134,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-02-10T11:36:31.638955Z"
+    created: "2023-02-10T14:57:39.133741Z"
     description: Example plugin that changes the landingh home page
     digest: e2831abfc18f76d91d5444e0d53c52d7c62f06b81737cfd62b1cc2337d9790cb
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
@@ -155,13 +155,13 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-02-10T11:36:34.323525Z"
+    created: "2023-02-10T14:57:41.786874Z"
     description: Adds a new UK localisation
-    digest: ab9392d39fc9b368ab9ca1673fbe1064b484150ea44165c1231ae1e0a586e33f
+    digest: 635ba530a6d5cd892bb1939dca480d88df0535366b38fd2fac519c57c03f23db
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg
     name: uk-locale
     type: application
     urls:
     - assets/uk-locale/uk-locale-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-10T11:36:34.323166Z"
+generated: "2023-02-10T14:57:41.786526Z"
