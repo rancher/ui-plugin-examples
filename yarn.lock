@@ -2885,10 +2885,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.4.tgz#11d5db19bd178936ec89cd84519c4de439574398"
   integrity sha512-1oO6+dN5kdIA3sKPZhRGJTfGVP4SWV6KqlMOwry4J3HfyD68sl/3KmG7DeYUzvN+RbhXDnv/D8vNNB8168tAMg==
 
-"@rancher/shell@^0.3.3":
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/@rancher/shell/-/shell-0.3.3.tgz#980274b52cb8832ba83e2308dc6afc9b50a7a10f"
-  integrity sha512-2PRS2tTQgBvrs3md4m9Hzpq2+aK9BmOy/Dacq/xaRHQm9R2uCVCnS8h1/laVWdWlA9EgHEKFkvE1dosvIPifCg==
+"@rancher/shell@^0.3.4":
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/@rancher/shell/-/shell-0.3.4.tgz#ba8c371ed892e7ffc82034baf516957713090789"
+  integrity sha512-CKMbF9zLlkSmmqR6wcBXJqEGuymY0iVO6NVOT+BmSCq15AYNHU/URWO2yG9cP0MyUKkO5C5nyod0BR+MTaEtZA==
   dependencies:
     "@aws-sdk/client-ec2" "3.1.0"
     "@aws-sdk/client-eks" "3.1.0"
