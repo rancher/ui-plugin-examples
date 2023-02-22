@@ -10,7 +10,7 @@ nameOverride: ""
 fullnameOverride: ""
 pluginServer:
   image:
-    repository: rancher/ui-extension-uk-locale
+    repository: /ui-extension-uk-locale
     pullPolicy: Always
     tag: 0.1.0
   service:

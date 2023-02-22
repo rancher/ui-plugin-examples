@@ -10,7 +10,7 @@ nameOverride: ""
 fullnameOverride: ""
 pluginServer:
   image:
-    repository: rancher/ui-extension-extension-crd
+    repository: /ui-extension-extension-crd
     pullPolicy: Always
     tag: 0.1.0
   service:
