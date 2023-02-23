@@ -3,12 +3,13 @@ Example Extensions for the Rancher Dashboard UI.
 
 This repository contains the following example extensions in the `pkg` folder.
 
-|Name|Description|
-|----|-----------|
-|clock|Adds a new feature to the top-level menu that shows a full-page clock|
-|extension-crd|Adds support for the Rancher Extensions CRD to Rancher Manager|
-|homepage|Example extension that changes the landing home page|
-|uk-locale|Adds a new UK localisation|
+|Name|Description|Rancher Version|
+|----|-----------|---------------|
+|clock|Adds a new feature to the top-level menu that shows a full-page clock|v2.7.0|
+|extension-crd|Adds support for the Rancher Extensions CRD to Rancher Manager|v2.7.0|
+|homepage|Example extension that changes the landing home page|v2.7.0|
+|uk-locale|Adds a new UK localisation|v2.7.0|
+|extensions-api-demo|Adds some examples of implementation of the new Extensions API|v2.7.2|
 
 To use these example in Rancher Manager, add this repository as a Helm Repository - to do this:
 
