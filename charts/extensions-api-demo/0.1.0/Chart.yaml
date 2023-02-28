@@ -9,7 +9,7 @@ annotations:
   catalog.cattle.io/ui-component: plugins
 apiVersion: v2
 appVersion: "0.1.0"
-description: extensions-api-demo plugin
+description: Extensions Api demo extension
 name: extensions-api-demo
 type: application
 version: 0.1.0

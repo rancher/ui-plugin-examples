@@ -74,9 +74,9 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-02-21T10:25:21.619503Z"
-    description: extensions-api-demo plugin
-    digest: 210eabb3c385b20bc545c72d43477368653ac95e9858e88a5b864345dd2fb0cb
+    created: "2023-02-28T19:09:16.752757Z"
+    description: Extensions Api demo extension
+    digest: 2f2cff19650cf9e3b3fd84cb6986f6339b12973848d9d2f679d79d141243bfef
     name: extensions-api-demo
     type: application
     urls:
@@ -164,4 +164,4 @@ entries:
     urls:
     - assets/uk-locale/uk-locale-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-21T10:25:27.020391Z"
+generated: "2023-02-28T19:09:16.752425Z"

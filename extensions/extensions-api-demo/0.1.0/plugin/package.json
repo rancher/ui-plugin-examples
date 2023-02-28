@@ -1,6 +1,6 @@
 {
   "name": "extensions-api-demo",
-  "description": "extensions-api-demo plugin",
+  "description": "Extensions Api demo extension",
   "version": "0.1.0",
   "private": false,
   "rancher": true,
