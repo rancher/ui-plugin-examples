@@ -143,6 +143,26 @@ entries:
     urls:
     - assets/homepage/homepage-0.1.0.tgz
     version: 0.1.0
+  top-level-product:
+  - annotations:
+      catalog.cattle.io/certified: rancher
+      catalog.cattle.io/kube-version: '>= 1.16.0-0 < 1.26.0-0'
+      catalog.cattle.io/namespace: cattle-ui-plugin-system
+      catalog.cattle.io/os: linux
+      catalog.cattle.io/permits-os: linux, windows
+      catalog.cattle.io/rancher-version: '>= 2.7.0-0 < 2.8.0-0'
+      catalog.cattle.io/scope: management
+      catalog.cattle.io/ui-component: plugins
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-04-18T16:08:54.515433+01:00"
+    description: top-level-product plugin
+    digest: 09c034d09decbc3dce1b08c53b8a16c250272ea2cacebacb7a752b9912e0a418
+    name: top-level-product
+    type: application
+    urls:
+    - assets/top-level-product/top-level-product-0.1.0.tgz
+    version: 0.1.0
   uk-locale:
   - annotations:
       catalog.cattle.io/certified: rancher
@@ -164,4 +184,4 @@ entries:
     urls:
     - assets/uk-locale/uk-locale-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-28T19:09:16.752425Z"
+generated: "2023-04-18T16:08:54.515104+01:00"
