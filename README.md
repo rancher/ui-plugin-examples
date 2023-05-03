@@ -10,6 +10,7 @@ This repository contains the following example extensions in the `pkg` folder.
 |homepage|Example extension that changes the landing home page|v2.7.0|
 |uk-locale|Adds a new UK localisation|v2.7.0|
 |extensions-api-demo|Adds some examples of implementation of the new Extensions API|v2.7.2|
+|top-level-product|Adds an example of a Top Level Product as an Extension|v2.7.2|
 
 To use these example in Rancher Manager, add this repository as a Helm Repository - to do this:
 
