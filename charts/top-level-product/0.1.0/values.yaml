@@ -1,13 +1,13 @@
 global:
   cattle:
-    systemDefaultRegistry: ''
+    systemDefaultRegistry: ""
   kubectl:
     repository: rancher/kubectl
     tag: v1.20.2
     pullPolicy: IfNotPresent
   imagePullSecrets: []
-nameOverride: ''
-fullnameOverride: ''
+nameOverride: ""
+fullnameOverride: ""
 pluginServer:
   image:
     repository: /ui-extension-top-level-product
@@ -26,5 +26,5 @@ pluginServer:
   affinity: {}
 plugin:
   enabled: true
-  versionOverride: ''
+  versionOverride: ""
   noCache: false
