@@ -1,6 +1,6 @@
 {
   "name": "top-level-product",
-  "description": "top-level-product plugin",
+  "description": "Example extension for a top-level product on Rancher Dashboard",
   "version": "0.1.0",
   "private": false,
   "rancher": true,
