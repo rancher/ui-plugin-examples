@@ -155,9 +155,9 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-05-03T12:39:00.317095+01:00"
+    created: "2023-05-03T11:58:24.241378238-04:00"
     description: Example extension for a top-level product on Rancher Dashboard
-    digest: bd204112a00c24b3d345e2968902805cd49b225909032403330120ccf1fd3153
+    digest: 3be92edf39c779a0a378d2897a8f11ce12fc49a7ea2a77b10b4b507f09eb148e
     name: top-level-product
     type: application
     urls:
@@ -184,4 +184,4 @@ entries:
     urls:
     - assets/uk-locale/uk-locale-0.1.0.tgz
     version: 0.1.0
-generated: "2023-05-03T12:39:00.316793+01:00"
+generated: "2023-05-03T11:58:24.240281711-04:00"
