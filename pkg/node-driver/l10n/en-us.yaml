@@ -1,0 +1,17 @@
+driver:
+  openstack:
+    auth:
+      actions:
+        edit: Edit Auth Config
+        authenticate: Authenticate
+      fields:
+        password: Password
+        username: Username
+        domainName: Domain Name
+        endpoint: Openstack Authentication URL
+        project: Project
+      placeholders:
+        password: ($OS_PASSWORD)
+        username: ($OS_USERNAME)
+        domainName: ($OS_USER_DOMAIN_NAME)
+        endpoint: e.g. https://server:5000/v3 ($OS_AUTH_URL)
