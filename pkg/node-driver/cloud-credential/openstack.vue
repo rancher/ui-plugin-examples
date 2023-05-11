@@ -41,6 +41,13 @@ export default {
           value: p.id
         };
       });
+    },
+
+    canAuthenticate() {
+      return !!this.value?.decodedData?.endpoint && 
+        !!this.value?.decodedData?.domainName &&
+        !!this.value?.decodedData?.username &&
+        !!this.value?.decodedData?.password;
     }
   },
 
@@ -199,17 +206,18 @@ export default {
 
     <BusyButton
       label-key="driver.openstack.auth.actions.authenticate"
-      :disabled="step !== 1"
+      :disabled="step !== 1 || !canAuthenticate"
       class="mt-20"
       @click="connect"
     />
 
     <button
-      label-key="driver.openstack.auth.actions.edit"
       class="btn role-primary mt-20 ml-20"
       :disabled="busy || step === 1"
       @click="clear"
-    />
+    >
+      {{ t('driver.openstack.auth.actions.edit') }}
+    </button>
 
     <div
       v-if="projects"
