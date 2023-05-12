@@ -4,6 +4,7 @@ driver:
       actions:
         edit: Edit Auth Config
         authenticate: Authenticate
+        addToAllowList: Add host to allow list and retry
       fields:
         password: Password
         username: Username
@@ -15,3 +16,7 @@ driver:
         username: ($OS_USERNAME)
         domainName: ($OS_USER_DOMAIN_NAME)
         endpoint: e.g. https://server:5000/v3 ($OS_AUTH_URL)
+      errors:
+        notAllowed: "Rancher could not communicate with the Openstack server - this may be because the server `{ hostname }` is not configured in the node driver allow list"
+
+
