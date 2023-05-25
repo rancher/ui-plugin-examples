@@ -12,6 +12,8 @@ export class Openstack {
   public token: string = '';
   private catalog: any;
   private endpoints: any;
+  private userId: string = '';
+
   // private region: string = '';
 
   private $dispatch: any;
@@ -26,6 +28,11 @@ export class Openstack {
 
           (this as any)[field] = obj.annotations[key];
         }
+      });
+    } else {
+      // Copy from options to this
+      Object.keys(obj).forEach((key) => {
+        (this as any)[key] = obj[key];
       });
     }
 
@@ -48,15 +55,18 @@ export class Openstack {
               password: this.password
             }
           }
-        },
-        scope: {
-          project: {
-            name:   this.projectName,
-            domain: { name: this.projectDomainName }
-          }
         }
       }
     };
+
+    if (this.projectName) {
+      (data as any).auth.scope = {
+        project: {
+          name:   this.projectName,
+          domain: { name: this.projectDomainName }
+        }
+      }
+    }
 
     const headers = { Accept: 'application/json' };
 
@@ -73,7 +83,9 @@ export class Openstack {
 
       this.token = token;
 
-      if (res?.token) {
+      this.userId = res?.token?.user?.id;
+
+      if ((data as any).auth.scope && res?.token) {
         this.catalog = res.token.catalog;
         this.endpoints = {};
         this.catalog.forEach((service: any) => {
@@ -88,8 +100,11 @@ export class Openstack {
           }
         });
       }
+      return res;
     } catch (e) {
       console.error(e); // eslint-disable-line no-console
+
+      return { error: e };
     }
   }
 
@@ -191,6 +206,31 @@ export class Openstack {
       console.error(e); // eslint-disable-line no-console
     }
   }
+
+  public async getProjects() {
+    const endpoint = this.endpoint.replace(/^https?:\/\//, '');
+    const baseUrl = `/meta/proxy/${ endpoint }`;
+
+    const headers = {
+      Accept:         'application/json',
+      'X-Auth-Token': this.token
+    };
+
+    try {
+      const res = await this.$dispatch('management/request', {
+        url:                  `${ baseUrl }/users/${ this.userId }/projects`,
+        headers,
+        method:               'GET',
+        redirectUnauthorized: false,
+      }, { root: true });
+
+      return res?.projects;
+    } catch (e) {
+      console.error(e); // eslint-disable-line no-console
+
+      return { error: e };
+    }
+  }  
 
   private convertToOptions(list: any) {
     const sorted = (list || []).sort((a: any, b: any) => a.name.localeCompare(b.name));

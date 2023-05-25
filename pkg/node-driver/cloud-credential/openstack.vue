@@ -4,6 +4,7 @@ import { LabeledInput } from '@components/Form/LabeledInput';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
 import { parse as parseUrl } from '@shell/utils/url';
 import BusyButton from '../components/BusyButton.vue';
+import { Openstack } from '../openstack.ts';
 
 export default {
   components: {
@@ -148,71 +149,43 @@ export default {
         return cb(okay);
       }
 
-      const endpoint = this.value.decodedData.endpoint.replace(/^https?:\/\//, '');
+      const os = new Openstack(this.$store, {
+        endpoint: this.value.decodedData.endpoint,
+        domainName: this.value.decodedData.domainName,
+        username: this.value.decodedData.username,
+        password: this.value.decodedData.password,
+      });
 
       this.$set(this, 'allowBusy', false);
       this.$set(this, 'step', 2);
       this.$set(this, 'busy', true);
 
-      const baseUrl = `/meta/proxy/${ endpoint }`;
-      const url = `${ baseUrl }/auth/tokens`;
-      const data = {
-        auth: {
-          identity: {
-            methods:  ['password'],
-            password: {
-              user: {
-                name:     this.value.decodedData.username,
-                domain:   { name: this.value.decodedData.domainName },
-                password: this.value.decodedData.password
-              }
-            }
-          }
-        }
-      };
+      const res = await os.getToken();
 
-      const headers = { Accept: 'application/json' };
-
-      try {
-        const res = await this.$store.dispatch('management/request', {
-          url,
-          headers,
-          method:               'POST',
-          redirectUnauthorized: false,
-          data
-        }, { root: true });
-
-        const token = res._headers['x-subject-token'];
-        const userId = res?.token?.user?.id;
-        const authHeaders = { 'X-Auth-Token': token };
-
-        // Fetch the list of projects for the user
-        const res2 = await this.$store.dispatch('management/request', {
-          url:                  `${ baseUrl }/users/${ userId }/projects`,
-          headers:              authHeaders,
-          method:               'GET',
-          redirectUnauthorized: false,
-        }, { root: true });
-
-        if (res2?.projects) {
-          this.$set(this, 'projects', res2.projects);
-
-          okay = true;
-        }
-      } catch (e) {
-        console.error(e); // eslint-disable-line no-console
+      if (res.error) {
+        console.error(res.error); // eslint-disable-line no-console
         okay = false;
 
         this.$set(this, 'step', 1);
         this.$set(this, 'projects', null);
 
-        if (e?._status === 502 && !this.hostInAllowList()) {
+        if (res.error._status === 502 && !this.hostInAllowList()) {
           this.$set(this, 'errorAllowHost', true);
         } else {
-          this.$set(this, 'error', e.message);
+          this.$set(this, 'error', res.error.message);
+        }
+      } else {
+        const projects = await os.getProjects();
+
+        console.log(projects);
+
+        if (!projects.error) {
+          this.$set(this, 'projects', projects);
+          okay = true;
+        } else {
+          this.$set(this, 'error', res.error.message);
         }
       }
-
       this.$set(this, 'busy', false);
       this.$set(this, 'project', this.projectOptions[0]?.value);
       this.$emit('validationChanged', okay);
