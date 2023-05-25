@@ -65,7 +65,7 @@ export class Openstack {
           name:   this.projectName,
           domain: { name: this.projectDomainName }
         }
-      }
+      };
     }
 
     const headers = { Accept: 'application/json' };
@@ -78,6 +78,10 @@ export class Openstack {
         redirectUnauthorized: false,
         data
       }, { root: true });
+
+      if (res._status === 502) {
+        return { error: 'Could not proxy request - URL may not be in Rancher\'s allow list' };
+      }
 
       const token = res._headers['x-subject-token'];
 
@@ -100,6 +104,7 @@ export class Openstack {
           }
         });
       }
+
       return res;
     } catch (e) {
       console.error(e); // eslint-disable-line no-console
@@ -230,7 +235,7 @@ export class Openstack {
 
       return { error: e };
     }
-  }  
+  }
 
   private convertToOptions(list: any) {
     const sorted = (list || []).sort((a: any, b: any) => a.name.localeCompare(b.name));

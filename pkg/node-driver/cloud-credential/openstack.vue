@@ -3,6 +3,7 @@ import Banner from '@components/Banner/Banner.vue';
 import { LabeledInput } from '@components/Form/LabeledInput';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
 import { parse as parseUrl } from '@shell/utils/url';
+import { _CREATE } from '@shell/config/query-params';
 import BusyButton from '../components/BusyButton.vue';
 import { Openstack } from '../openstack.ts';
 
@@ -34,6 +35,12 @@ export default {
   },
 
   data() {
+    if (this.mode !== _CREATE) {
+      this.value.decodedData.username = this.value.annotations['openstack.cattle.io/username'];
+      this.value.decodedData.domainName = this.value.annotations['openstack.cattle.io/domainName'];
+      this.value.decodedData.endpoint = this.value.annotations['openstack.cattle.io/endpoint'];
+    }
+
     return {
       projects:       null,
       step:           1,
@@ -125,7 +132,7 @@ export default {
 
       this.driver.whitelistDomains = this.driver.whitelistDomains || [];
 
-      if (!this.hostInAllowList) {
+      if (!this.hostInAllowList()) {
         this.driver.whitelistDomains.push(u.host);
       }
 
@@ -150,10 +157,10 @@ export default {
       }
 
       const os = new Openstack(this.$store, {
-        endpoint: this.value.decodedData.endpoint,
+        endpoint:   this.value.decodedData.endpoint,
         domainName: this.value.decodedData.domainName,
-        username: this.value.decodedData.username,
-        password: this.value.decodedData.password,
+        username:   this.value.decodedData.username,
+        password:   this.value.decodedData.password,
       });
 
       this.$set(this, 'allowBusy', false);
@@ -176,8 +183,6 @@ export default {
         }
       } else {
         const projects = await os.getProjects();
-
-        console.log(projects);
 
         if (!projects.error) {
           this.$set(this, 'projects', projects);

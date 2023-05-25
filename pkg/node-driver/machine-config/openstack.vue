@@ -102,7 +102,16 @@ export default {
     this.os = os;
 
     // Fetch a token - if this succeeds, kick off async fetching the lists we need
-    this.os.getToken().then(() => {
+    this.os.getToken().then((res) => {
+      if (res.error) {
+        this.$set(this, 'authenticating', false);
+        this.$emit('validationChanged', false);
+
+        this.errors.push('Unable to authenticate with the OpenStack server');
+
+        return;
+      }
+
       this.$set(this, 'authenticating', false);
 
       os.getFlavors(this.flavors, this.value?.flavorName);
@@ -226,7 +235,7 @@ export default {
       v-if="$fetchState.pending"
       :delayed="true"
     />
-    <div v-else-if="errors.length">
+    <div v-if="errors.length">
       <div
         v-for="(err, idx) in errors"
         :key="idx"
@@ -237,7 +246,7 @@ export default {
         />
       </div>
     </div>
-    <div v-else>
+    <div>
       <div class="openstack-config">
         <div class="title">
           Openstack Configuration
