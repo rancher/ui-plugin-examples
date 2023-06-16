@@ -11,6 +11,7 @@ This repository contains the following example extensions in the `pkg` folder.
 |uk-locale|Adds a new UK localisation|v2.7.0|
 |extensions-api-demo|Adds some examples of implementation of the new Extensions API|v2.7.2|
 |top-level-product|Adds an example of a Top Level Product as an Extension|v2.7.2|
+|node-driver|Example that allows for custom node drivers to support additional node provisioners in Rancher|v2.7.5|
 
 To use these example in Rancher Manager, add this repository as a Helm Repository - to do this:
 
