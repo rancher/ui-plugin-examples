@@ -45,7 +45,7 @@ export default function(plugin: IPlugin) {
       tooltipKey: 'plugin-examples.header-action-two',
       tooltip:    'Test Action2',
       shortcut:   'b',
-      svg:        require('@pkg/extensions-api-demo/icons/rancher-desktop.svg'),
+      icon:       'icon-rancher-desktop',
       enabled(ctx: any) {
         return true;
       },
@@ -93,7 +93,7 @@ export default function(plugin: IPlugin) {
     {
       label:    'some-bulkable-action',
       labelKey: 'plugin-examples.table-action-two',
-      svg:      require('@pkg/extensions-api-demo/icons/rancher-desktop.svg'),
+      icon:     'icon-rancher-desktop',
       multiple: true,
       invoke(opts: ActionOpts, values: any[]) {
         console.log('table action executed 2', this); // eslint-disable-line no-console
