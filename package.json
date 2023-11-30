@@ -6,22 +6,23 @@
     "node": ">=12"
   },
   "dependencies": {
-    "@rancher/shell": "0.3.26",
-    "core-js": "3.21.1",
-    "css-loader": "4.3.0",
+    "@rancher/components": "0.1.0-alpha.9",
+    "@rancher/shell": "0.3.29",
     "@types/lodash": "4.14.184",
-    "@rancher/components": "0.1.0"
-  },
-  "resolutions": {
-    "**/webpack": "4",
-    "@types/node": "^16"
+    "core-js": "3.21.1",
+    "css-loader": "4.3.0"
   },
   "scripts": {
     "dev": "NODE_ENV=dev ./node_modules/.bin/vue-cli-service serve",
+    "parse-tag-name": "./node_modules/@rancher/shell/scripts/extension/parse-tag-name",
     "build": "./node_modules/.bin/vue-cli-service build",
     "clean": "./node_modules/@rancher/shell/scripts/clean",
     "build-pkg": "./node_modules/@rancher/shell/scripts/build-pkg.sh",
     "serve-pkgs": "./node_modules/@rancher/shell/scripts/serve-pkgs",
     "publish-pkgs": "./node_modules/@rancher/shell/scripts/extension/publish"
+  },
+  "resolutions": {
+    "**/webpack": "4",
+    "@types/node": "16"
   }
 }
