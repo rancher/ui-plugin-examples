@@ -3,7 +3,11 @@ import Vue from 'vue';
 
 export type AsyncButtonCallback = (success: boolean) => void;
 
-export default Vue.extend({
+interface Data {
+  busy: boolean
+}
+
+export default Vue.extend<Data, any, any, any>({
   props: {
     /**
      * Mode maps to keys in asyncButton.* translations
