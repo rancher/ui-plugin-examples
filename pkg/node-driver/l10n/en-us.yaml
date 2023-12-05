@@ -18,5 +18,8 @@ driver:
         endpoint: e.g. https://server:5000/v3 ($OS_AUTH_URL)
       errors:
         notAllowed: "Rancher could not communicate with the Openstack server - this may be because the server `{ hostname }` is not configured in the node driver allow list"
+        badGateway: "Rancher could not communicate with the Openstack server - the server must use the https protocol and must have a valid SSL certificate signed by a known CA"
+        unauthorized: "Unauthorized - please check the username/password are correct"
+        other: "Rancher could not communicate with the Openstack server"
 
 
