@@ -86,6 +86,9 @@ export default {
   methods: {
     // TODO: Validate that we can get a token for the project that the user has selected
     test() {
+      // In the cluster creation flow, annotations is not set, so ensure it is set first
+      this.value.annotations = this.value.annotations || {};
+
       this.value.annotations['openstack.cattle.io/username'] = this.value.decodedData.username;
       this.value.annotations['openstack.cattle.io/domainName'] = this.value.decodedData.domainName;
       this.value.annotations['openstack.cattle.io/endpoint'] = this.value.decodedData.endpoint;
@@ -179,7 +182,15 @@ export default {
         if (res.error._status === 502 && !this.hostInAllowList()) {
           this.$set(this, 'errorAllowHost', true);
         } else {
-          this.$set(this, 'error', res.error.message);
+          if (res.error._status === 502) {
+            // Still got 502, even with URL in the allow list
+            this.$set(this, 'error', this.t('driver.openstack.auth.errors.badGateway'));
+          } else if (res.error._status === 401) {
+            this.$set(this, 'error', this.t('driver.openstack.auth.errors.unauthorized'));
+          } else {
+            // Generic error
+            this.$set(this, 'error', res.error.message || this.t('driver.openstack.auth.errors.other'));
+          }
         }
       } else {
         const projects = await os.getProjects();
