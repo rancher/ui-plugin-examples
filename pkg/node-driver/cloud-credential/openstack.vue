@@ -216,7 +216,7 @@ export default {
           this.$set(this, 'projects', projects);
           okay = true;
         } else {
-          this.$set(this, 'error', res.error.message);
+          this.$set(this, 'error', projects.error.message);
         }
 
         const regions = await os.getRegions();
@@ -225,7 +225,25 @@ export default {
           this.$set(this, 'regions', regions);
           okay = true;
         } else {
-          this.$set(this, 'error', res.error.message);
+          // Could not list regions, so infer them from the project
+          const prj = this.projectOptions[0].value;
+          const project = this.projects.find(p => p.id === prj);
+
+          if (project) {
+            const osRegions = new Openstack(this.$store, {
+              ...os,
+              projectName: project.name,
+              projectId: project.id,
+              projectDomainName: project.domain_id
+            });
+
+            // Fetch a token with the project, so we get the endpoint catalog
+            await osRegions.getToken().then(() => {
+              this.$set(this, 'regions', osRegions.regionsFromCatalog);
+            });
+          }
+
+          // this.$set(this, 'error', regions.error.message || this.t('driver.openstack.auth.errors.regions'));
         }
       }
       this.$set(this, 'busy', false);
