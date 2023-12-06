@@ -22,6 +22,8 @@ export class Openstack {
 
   private $dispatch: any;
 
+  public regionsFromCatalog: any[] = [];
+
   constructor($store: any, obj: any) {
     if (obj.annotations) {
       Object.keys(obj.annotations).forEach((key) => {
@@ -93,6 +95,8 @@ export class Openstack {
 
       this.userId = res?.token?.user?.id;
 
+      this.regionsFromCatalog = [];
+
       if ((data as any).auth.scope && res?.token) {
         this.catalog = res.token.catalog;
         this.endpoints = {};
@@ -103,8 +107,18 @@ export class Openstack {
           if (iface && iface.region_id === this.region) {
             this.endpoints[service.type] = iface.url;
           }
+
+          if (iface && service.type === 'compute') {
+            if (!this.regionsFromCatalog.includes(iface.region_id)) {
+              this.regionsFromCatalog.push(iface.region_id);
+            }
+          }
         });
       }
+
+      this.regionsFromCatalog = this.regionsFromCatalog.map((id) => {
+        return { id }
+      });
 
       return res;
     } catch (e) {
