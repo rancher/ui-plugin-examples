@@ -43,9 +43,11 @@ export default {
 
     return {
       projects:       null,
+      regions:        null,
       step:           1,
       busy:           false,
       project:        '',
+      region:         '',
       errorAllowHost: false,
       driver:         {},
       allowBusy:      false,
@@ -60,6 +62,17 @@ export default {
       return sorted.map((p) => {
         return {
           label: p.name,
+          value: p.id
+        };
+      });
+    },
+
+    regionOptions() {
+      const sorted = (this.regions || []).sort((a, b) => a.name.localeCompare(b.name));
+
+      return sorted.map((p) => {
+        return {
+          label: p.id,
           value: p.id
         };
       });
@@ -99,6 +112,10 @@ export default {
         this.value.annotations['openstack.cattle.io/projectName'] = project.name;
         this.value.annotations['openstack.cattle.io/projectId'] = project.id;
         this.value.annotations['openstack.cattle.io/projectDomainName'] = project.domain_id;
+      }
+
+      if (this.region) {
+        this.value.annotations['openstack.cattle.io/region'] = this.region;
       }
 
       return true;
@@ -201,9 +218,19 @@ export default {
         } else {
           this.$set(this, 'error', res.error.message);
         }
+
+        const regions = await os.getRegions();
+
+        if (!regions.error) {
+          this.$set(this, 'regions', regions);
+          okay = true;
+        } else {
+          this.$set(this, 'error', res.error.message);
+        }
       }
       this.$set(this, 'busy', false);
       this.$set(this, 'project', this.projectOptions[0]?.value);
+      this.$set(this, 'region', this.regionOptions[0]?.value);
       this.$emit('validationChanged', okay);
 
       cb(okay);
@@ -314,6 +341,17 @@ export default {
           v-model="project"
           label-key="driver.openstack.auth.fields.project"
           :options="projectOptions"
+          :searchable="false"
+        />
+      </div>
+      <div
+        v-if="regions"
+        class="col span-6"
+      >
+        <LabeledSelect
+          v-model="region"
+          label-key="driver.openstack.auth.fields.region"
+          :options="regionOptions"
           :searchable="false"
         />
       </div>
