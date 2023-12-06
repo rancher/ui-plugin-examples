@@ -1,5 +1,10 @@
 /**
  * Helper class for dealing with the Openstack API
+ *
+ * Openstack API Docs:
+ *
+ *  https://docs.openstack.org/api-ref/compute/index.html
+ *
  */
 export class Openstack {
   public domainName: string = '';
@@ -10,11 +15,10 @@ export class Openstack {
   public username: string = '';
   public password: string = '';
   public token: string = '';
+  public region: string = '';
   private catalog: any;
   private endpoints: any;
   private userId: string = '';
-
-  // private region: string = '';
 
   private $dispatch: any;
 
@@ -95,12 +99,9 @@ export class Openstack {
         this.catalog.forEach((service: any) => {
           const iface = service.endpoints.find((svc: any) => svc.interface === 'public');
 
-          if (iface) {
+          // Only use the interfaces for the region
+          if (iface && iface.region_id === this.region) {
             this.endpoints[service.type] = iface.url;
-
-            // if (service.importTypes === 'compute') {
-            //   this.region = iface.region;
-            // }
           }
         });
       }
@@ -191,7 +192,13 @@ export class Openstack {
   public async makeComputeRequest(api: string) {
     const endpoint = this.endpoints['compute'].replace(/^https?:\/\//, '');
     const baseUrl = `/meta/proxy/${ endpoint }`;
-    const url = `${ baseUrl }${ api }`;
+    let url;
+
+    if (api.startsWith('http')) {
+      url = api;
+    } else {
+      url = `${ baseUrl }${ api }`;
+    }
 
     const headers = {
       Accept:         'application/json',
@@ -236,6 +243,31 @@ export class Openstack {
       return { error: e };
     }
   }
+
+  public async getRegions() {
+    const endpoint = this.endpoint.replace(/^https?:\/\//, '');
+    const baseUrl = `/meta/proxy/${ endpoint }`;
+
+    const headers = {
+      Accept:         'application/json',
+      'X-Auth-Token': this.token
+    };
+
+    try {
+      const res = await this.$dispatch('management/request', {
+        url:                  `${ baseUrl }/regions`,
+        headers,
+        method:               'GET',
+        redirectUnauthorized: false,
+      }, { root: true });
+
+      return res?.regions;
+    } catch (e) {
+      console.error(e); // eslint-disable-line no-console
+
+      return { error: e };
+    }
+  }  
 
   private convertToOptions(list: any) {
     const sorted = (list || []).sort((a: any, b: any) => a.name.localeCompare(b.name));

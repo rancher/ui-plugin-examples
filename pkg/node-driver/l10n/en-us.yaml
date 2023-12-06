@@ -11,6 +11,7 @@ driver:
         domainName: Domain Name
         endpoint: Openstack Authentication URL
         project: Project
+        region: Region
       placeholders:
         password: ($OS_PASSWORD)
         username: ($OS_USERNAME)
