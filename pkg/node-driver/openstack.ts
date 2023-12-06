@@ -192,13 +192,7 @@ export class Openstack {
   public async makeComputeRequest(api: string) {
     const endpoint = this.endpoints['compute'].replace(/^https?:\/\//, '');
     const baseUrl = `/meta/proxy/${ endpoint }`;
-    let url;
-
-    if (api.startsWith('http')) {
-      url = api;
-    } else {
-      url = `${ baseUrl }${ api }`;
-    }
+    const url = `${ baseUrl }${ api }`;
 
     const headers = {
       Accept:         'application/json',
