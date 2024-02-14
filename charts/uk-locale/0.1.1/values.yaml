@@ -28,3 +28,4 @@ plugin:
   enabled: true
   versionOverride: ""
   noCache: false
+  noAuth: true

@@ -175,6 +175,26 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-02-14T15:37:07.335825-03:00"
+    description: Adds a new UK localisation
+    digest: a0410a57fac36653ddaa23f3df86a52a6d7eea15e4fd5d1359772fcb0b05616f
+    icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg
+    name: uk-locale
+    type: application
+    urls:
+      - assets/uk-locale/uk-locale-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      catalog.cattle.io/certified: rancher
+      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/namespace: cattle-ui-plugin-system
+      catalog.cattle.io/os: linux
+      catalog.cattle.io/permits-os: linux, windows
+      catalog.cattle.io/rancher-version: '>= 2.7.0-0'
+      catalog.cattle.io/scope: management
+      catalog.cattle.io/ui-component: plugins
+    apiVersion: v2
+    appVersion: 0.1.0
     created: "2023-02-21T10:25:27.02074Z"
     description: Adds a new UK localisation
     digest: 78db04367525273dd141a7a818edabb030e2b6230f0dfbdefc60c602e1e05f04

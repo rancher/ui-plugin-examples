@@ -5,4 +5,5 @@ tmp
 .gitignore
 .nuxt
 .nuxt-prod
+.idea
 
