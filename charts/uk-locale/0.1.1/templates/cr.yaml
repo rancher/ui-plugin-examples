@@ -11,4 +11,5 @@ spec:
     version: {{ (semver (default .Chart.AppVersion .Values.plugin.versionOverride)).Original }}
     endpoint: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/extensions/uk-locale/0.1.0
     noCache: {{ .Values.plugin.noCache }}
+    noAuth: {{ .Values.plugin.noAuth }}
 {{- end }}

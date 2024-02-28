@@ -12,5 +12,5 @@ appVersion: "0.1.0"
 description: Adds a new UK localisation
 name: uk-locale
 type: application
-version: 0.1.0
+version: 0.1.1
 icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg
