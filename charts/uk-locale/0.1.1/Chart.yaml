@@ -8,7 +8,7 @@ annotations:
   catalog.cattle.io/scope: management
   catalog.cattle.io/ui-component: plugins
 apiVersion: v2
-appVersion: "0.1.0"
+appVersion: "0.1.1"
 description: Adds a new UK localisation
 name: uk-locale
 type: application

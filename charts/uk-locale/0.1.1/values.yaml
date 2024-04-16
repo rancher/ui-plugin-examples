@@ -12,7 +12,7 @@ pluginServer:
   image:
     repository: /ui-extension-uk-locale
     pullPolicy: Always
-    tag: 0.1.0
+    tag: 0.1.1
   service:
     type: ClusterIP
     port: 80
