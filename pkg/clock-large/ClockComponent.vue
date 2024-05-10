@@ -1,15 +1,43 @@
 <template>
   <!-- <div class="clock" :class="{'is-small':size==='small'}" :style="clockStyle"> -->
-  <div class="clock" :style="clockStyle">
-    <div class="clock-circle"></div>
-    <div class="clock-hour" :style="{transform:hourRotate}"></div>
-    <div class="clock-minute" :style="{transform:minuteRotate}"></div>
-    <div class="clock-second" :style="{transform:secondRotate}"></div>
-    <b v-for="h in timeList" :key="h" class="hour">
-      <span>
-        <i :style="{transform:transform}">{{ h }}</i>
-      </span>
-    </b>
+  <div>
+    <div class="clock" :style="clockStyle">
+      <div class="clock-circle"></div>
+      <div class="clock-hour" :style="{transform:hourRotate}"></div>
+      <div class="clock-minute" :style="{transform:minuteRotate}"></div>
+      <div class="clock-second" :style="{transform:secondRotate}"></div>
+      <b v-for="h in timeList" :key="h" class="hour">
+        <span>
+          <i :style="{transform:transform}">{{ h }}</i>
+        </span>
+      </b>
+    </div>
+    <img src="../clock-large/assets/img/SUSECON2024_1.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_2.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_3.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_4.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_5.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_6.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_7.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_8.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_9.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_10.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_11.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_12.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_13.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_14.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_15.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_16.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_17.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_18.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_19.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_20.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_21.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_22.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_23.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_24.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_25.png" />
+    <img src="../clock-large/assets/img/SUSECON2024_26.png" />
   </div>
 </template>
 
