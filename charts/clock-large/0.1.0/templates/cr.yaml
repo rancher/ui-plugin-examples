@@ -8,5 +8,5 @@ spec:
   plugin:
     name: {{ include "extension-server.fullname" . }}
     version: {{ (semver (default .Chart.AppVersion .Values.plugin.versionOverride)).Original }}
-    endpoint: https://raw.githubusercontent.com/aalves08/ui-plugin-examples/main/extensions/clock-large/0.1.0
+    endpoint: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/extensions/clock-large/0.1.0
     noCache: {{ .Values.plugin.noCache }}
