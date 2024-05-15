@@ -165,26 +165,6 @@ entries:
     urls:
     - assets/large-extension/large-extension-0.1.0.tgz
     version: 0.1.0
-  openstack:
-  - annotations:
-      catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0'
-      catalog.cattle.io/namespace: cattle-ui-plugin-system
-      catalog.cattle.io/os: linux
-      catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.7.0-0'
-      catalog.cattle.io/scope: management
-      catalog.cattle.io/ui-component: plugins
-    apiVersion: v2
-    appVersion: 1.0.0
-    created: "2024-05-15T11:56:07.667006+01:00"
-    description: Example node driver UI for Openstack
-    digest: c2c7ceecf695975ee0c86f6c787c598e4d205716790ef0cdeed731590ddf17f3
-    name: openstack
-    type: application
-    urls:
-    - assets/node-driver/openstack-1.0.0.tgz
-    version: 1.0.0
   top-level-product:
   - annotations:
       catalog.cattle.io/certified: rancher
