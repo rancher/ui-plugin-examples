@@ -1,13 +1,13 @@
 {
   "name": "uk-locale",
   "description": "Adds a new UK localisation",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "private": false,
   "icon": "https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg",
   "rancher": {
     "annotations": {
       "catalog.cattle.io/kube-version": ">= 1.16.0-0",
-      "catalog.cattle.io/rancher-version": ">= 2.7.0-0"
+      "catalog.cattle.io/rancher-version": ">= 2.8.0-0"
     }
   },
   "scripts": {
@@ -18,9 +18,9 @@
     "node": ">=12"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/cli-plugin-typescript": "^4.5.15"
+    "@vue/cli-plugin-babel": "5.0.8",
+    "@vue/cli-service": "5.0.8",
+    "@vue/cli-plugin-typescript": "5.0.8"
   },
   "browserslist": [
     "> 1%",

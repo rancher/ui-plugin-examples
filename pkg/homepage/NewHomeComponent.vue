@@ -8,7 +8,7 @@ export default {
   <div>
     <h1>Welcome to Rancher</h1>
     <img src="./assets/rancher-logo.svg" height="64" />
-    <h3>Home Page Extension 0.3.0</h3>
+    <h3>Home Page Extension 0.4.0</h3>
     <img src="./assets/rancher-home-animated.svg" />
   </div>
 </template>
