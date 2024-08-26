@@ -3,14 +3,21 @@
   "version": "0.1.0",
   "private": false,
   "engines": {
-    "node": ">=12"
+    "node": ">=20.0.0"
   },
   "dependencies": {
-    "@rancher/components": "0.1.0-alpha.9",
-    "@rancher/shell": "0.3.29",
+    "@rancher/components": "0.2.1-alpha.0",
+    "@rancher/shell": "2.0.1",
     "@types/lodash": "4.14.184",
     "core-js": "3.21.1",
-    "css-loader": "4.3.0"
+    "css-loader": "4.3.0",
+    "@vue/cli-plugin-babel": "5.0.8",
+    "@vue/cli-service": "5.0.8",
+    "@vue/cli-plugin-typescript": "5.0.8",
+    "cache-loader": "^4.1.0",
+    "color": "4.2.3",
+    "ip": "2.0.1",
+    "node-polyfill-webpack-plugin": "^3.0.0"
   },
   "scripts": {
     "dev": "NODE_ENV=dev ./node_modules/.bin/vue-cli-service serve",
@@ -19,10 +26,26 @@
     "clean": "./node_modules/@rancher/shell/scripts/clean",
     "build-pkg": "./node_modules/@rancher/shell/scripts/build-pkg.sh",
     "serve-pkgs": "./node_modules/@rancher/shell/scripts/serve-pkgs",
-    "publish-pkgs": "./node_modules/@rancher/shell/scripts/extension/publish"
+    "publish-pkgs": "./node_modules/@rancher/shell/scripts/extension/publish",
+    "migrate": "yarn ./node_modules/@rancher/shell migrate"
   },
   "resolutions": {
-    "**/webpack": "4",
-    "@types/node": "16"
+    "@vue/cli-plugin-babel": "5.0.8",
+    "@vue/cli-service": "5.0.8",
+    "@vue/cli-plugin-typescript": "5.0.8",
+    "d3-color": "3.1.0",
+    "ejs": "3.1.9",
+    "follow-redirects": "1.15.2",
+    "glob": "7.2.3",
+    "glob-parent": "6.0.2",
+    "json5": "2.2.3",
+    "@types/lodash": "4.17.5",
+    "merge": "2.1.1",
+    "node-forge": "1.3.1",
+    "nth-check": "2.1.1",
+    "qs": "6.11.1",
+    "roarr": "7.0.4",
+    "semver": "7.5.4",
+    "@vue/cli-service/html-webpack-plugin": "^5.0.0"
   }
 }
