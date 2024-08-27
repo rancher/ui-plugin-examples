@@ -1,5 +1,5 @@
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 export type AsyncButtonCallback = (success: boolean) => void;
 
@@ -7,7 +7,7 @@ interface Data {
   busy: boolean
 }
 
-export default Vue.extend<Data, any, any, any>({
+export default defineComponent({
   props: {
     /**
      * Mode maps to keys in asyncButton.* translations
@@ -75,7 +75,7 @@ export default Vue.extend<Data, any, any, any>({
         this.busy = false;
       };
 
-      this.$set(this, 'busy', true);
+      this['busy'] = true;
 
       this.$emit('click', cb);
     },

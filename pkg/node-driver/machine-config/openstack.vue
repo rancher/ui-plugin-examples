@@ -93,7 +93,7 @@ export default {
       console.error(e); // eslint-disable-line no-console
     }
 
-    this.$set(this, 'authenticating', true);
+    this['authenticating'] = true;
 
     const os = new Openstack(this.$store, this.credential);
 
@@ -104,7 +104,7 @@ export default {
     // Fetch a token - if this succeeds, kick off async fetching the lists we need
     this.os.getToken().then((res) => {
       if (res.error) {
-        this.$set(this, 'authenticating', false);
+        this['authenticating'] = false;
         this.$emit('validationChanged', false);
 
         this.errors.push('Unable to authenticate with the OpenStack server');
@@ -112,7 +112,7 @@ export default {
         return;
       }
 
-      this.$set(this, 'authenticating', false);
+      this['authenticating'] = false;
 
       os.getFlavors(this.flavors, this.value?.flavorName);
       os.getImages(this.images, this.value?.imageName);
@@ -237,9 +237,7 @@ export default {
     />
     <div v-if="errors.length">
       <div
-        v-for="(err, idx) in errors"
-        :key="idx"
-      >
+        v-for="(err, idx) in errors" :key="idx">
         <Banner
           color="error"
           :label="stringify(err)"

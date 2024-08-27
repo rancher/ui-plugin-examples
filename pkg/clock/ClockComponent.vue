@@ -5,7 +5,7 @@
     <div class="clock-hour" :style="{transform:hourRotate}"></div>
     <div class="clock-minute" :style="{transform:minuteRotate}"></div>
     <div class="clock-second" :style="{transform:secondRotate}"></div>
-    <b v-for="h in timeList" :key="h" class="hour">
+    <b  v-for="(h, i) in timeList" :key="i" >
       <span>
         <i :style="{transform:transform}">{{ h }}</i>
       </span>

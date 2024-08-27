@@ -124,9 +124,9 @@ export default {
     // When the user clicked 'Edit Auth Config', clear the projects and set the step back to 1
     // so the user can modify the credentials needed to fetch the projects
     clear() {
-      this.$set(this, 'step', 1);
-      this.$set(this, 'projects', null);
-      this.$set(this, 'errorAllowHost', false);
+      this['step'] = 1;
+      this['projects'] = null;
+      this['errorAllowHost'] = false;
 
       // Tell parent that the form is not invalid
       this.$emit('validationChanged', false);
@@ -147,7 +147,7 @@ export default {
     },
 
     async addHostToAllowList() {
-      this.$set(this, 'allowBusy', true);
+      this['allowBusy'] = true;
       const u = parseUrl(this.value.decodedData.endpoint);
 
       this.driver.whitelistDomains = this.driver.whitelistDomains || [];
@@ -162,13 +162,13 @@ export default {
         this.$refs.connect.$el.click();
       } catch (e) {
         console.error('Could not update driver', e); // eslint-disable-line no-console
-        this.$set(this, 'allowBusy', false);
+        this['allowBusy'] = false;
       }
     },
 
     async connect(cb) {
-      this.$set(this, 'error', '');
-      this.$set(this, 'errorAllowHost', false);
+      this['error'] = '';
+      this['errorAllowHost'] = false;
 
       let okay = false;
 
@@ -183,9 +183,9 @@ export default {
         password:   this.value.decodedData.password,
       });
 
-      this.$set(this, 'allowBusy', false);
-      this.$set(this, 'step', 2);
-      this.$set(this, 'busy', true);
+      this['allowBusy'] = false;
+      this['step'] = 2;
+      this['busy'] = true;
 
       const res = await os.getToken();
 
@@ -193,36 +193,36 @@ export default {
         console.error(res.error); // eslint-disable-line no-console
         okay = false;
 
-        this.$set(this, 'step', 1);
-        this.$set(this, 'projects', null);
+        this['step'] = 1;
+        this['projects'] = null;
 
         if (res.error._status === 502 && !this.hostInAllowList()) {
-          this.$set(this, 'errorAllowHost', true);
+          this['errorAllowHost'] = true;
         } else {
           if (res.error._status === 502) {
             // Still got 502, even with URL in the allow list
-            this.$set(this, 'error', this.t('driver.openstack.auth.errors.badGateway'));
+            this['error'] = this.t('driver.openstack.auth.errors.badGateway');
           } else if (res.error._status === 401) {
-            this.$set(this, 'error', this.t('driver.openstack.auth.errors.unauthorized'));
+            this['error'] = this.t('driver.openstack.auth.errors.unauthorized');
           } else {
             // Generic error
-            this.$set(this, 'error', res.error.message || this.t('driver.openstack.auth.errors.other'));
+            this['error'] = res.error.message || this.t('driver.openstack.auth.errors.other');
           }
         }
       } else {
         const projects = await os.getProjects();
 
         if (!projects.error) {
-          this.$set(this, 'projects', projects);
+          this['projects'] = projects;
           okay = true;
         } else {
-          this.$set(this, 'error', projects.error.message);
+          this['error'] = projects.error.message;
         }
 
         const regions = await os.getRegions();
 
         if (!regions.error) {
-          this.$set(this, 'regions', regions);
+          this['regions'] = regions;
           okay = true;
         } else {
           // Could not list regions, so infer them from the project
@@ -239,16 +239,16 @@ export default {
 
             // Fetch a token with the project, so we get the endpoint catalog
             await osRegions.getToken().then(() => {
-              this.$set(this, 'regions', osRegions.regionsFromCatalog);
+              this['regions'] = osRegions.regionsFromCatalog;
             });
           }
 
-          // this.$set(this, 'error', regions.error.message || this.t('driver.openstack.auth.errors.regions'));
+          // this['error'] = regions.error.message || this.t('driver.openstack.auth.errors.regions');
         }
       }
-      this.$set(this, 'busy', false);
-      this.$set(this, 'project', this.projectOptions[0]?.value);
-      this.$set(this, 'region', this.regionOptions[0]?.value);
+      this['busy'] = false;
+      this['project'] = this.projectOptions[0]?.value;
+      this['region'] = this.regionOptions[0]?.value;
       this.$emit('validationChanged', okay);
 
       cb(okay);
@@ -262,50 +262,50 @@ export default {
     <div class="row">
       <div class="col span-6">
         <LabeledInput
-          :value="value.decodedData.endpoint"
+          :modelValue="value.decodedData.endpoint"
           :disabled="step !== 1"
           label-key="driver.openstack.auth.fields.endpoint"
           placeholder-key="driver.openstack.auth.placeholders.endpoint"
           type="text"
           :mode="mode"
-          @input="value.setData('endpoint', $event);"
+          @update:modelValue="value.setData('endpoint', $event);"
         />
       </div>
       <div class="col span-6">
         <LabeledInput
-          :value="value.decodedData.domainName"
+          :modelValue="value.decodedData.domainName"
           :disabled="step !== 1"
           label-key="driver.openstack.auth.fields.domainName"
           placeholder-key="driver.openstack.auth.placeholders.domainName"
           type="text"
           :mode="mode"
-          @input="value.setData('domainName', $event);"
+          @update:modelValue="value.setData('domainName', $event);"
         />
       </div>
     </div>
     <div class="row">
       <div class="col span-6">
         <LabeledInput
-          :value="value.decodedData.username"
+          :modelValue="value.decodedData.username"
           :disabled="step !== 1"
           class="mt-20"
           label-key="driver.openstack.auth.fields.username"
           placeholder-key="driver.openstack.auth.placeholders.username"
           type="text"
           :mode="mode"
-          @input="value.setData('username', $event);"
+          @update:modelValue="value.setData('username', $event);"
         />
       </div>
       <div class="col span-6">
         <LabeledInput
-          :value="value.decodedData.password"
+          :modelValue="value.decodedData.password"
           :disabled="step !== 1"
           class="mt-20"
           label-key="driver.openstack.auth.fields.password"
           placeholder-key="driver.openstack.auth.placeholders.password"
           type="password"
           :mode="mode"
-          @input="value.setData('password', $event);"
+          @update:modelValue="value.setData('password', $event);"
         />
       </div>
     </div>
