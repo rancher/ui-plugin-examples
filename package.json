@@ -27,7 +27,7 @@
     "build-pkg": "./node_modules/@rancher/shell/scripts/build-pkg.sh",
     "serve-pkgs": "./node_modules/@rancher/shell/scripts/serve-pkgs",
     "publish-pkgs": "./node_modules/@rancher/shell/scripts/extension/publish",
-    "migrate": "yarn ./node_modules/@rancher/shell migrate"
+    "migrate": "node ./node_modules/@rancher/shell/scripts/vue-migrate.js"
   },
   "resolutions": {
     "@vue/cli-plugin-babel": "5.0.8",
