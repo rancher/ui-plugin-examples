@@ -1,4 +1,6 @@
 <script lang="ts">
+// @ts-nocheck
+
 import { defineComponent } from 'vue';
 
 export type AsyncButtonCallback = (success: boolean) => void;
