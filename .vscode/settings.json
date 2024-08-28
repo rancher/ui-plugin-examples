@@ -5,7 +5,6 @@
     ".eslintcache": true,
     ".nuxt*": true,
     "LICENSE": true,
-    "node_modules": true,
     "pkg/**/.shell": true,
     "pkg/**/node_modules": true
   },
