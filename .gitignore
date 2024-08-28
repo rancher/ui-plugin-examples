@@ -6,4 +6,4 @@ tmp
 .nuxt
 .nuxt-prod
 .idea
-
+.env
