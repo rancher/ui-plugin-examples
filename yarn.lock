@@ -3689,10 +3689,10 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.4.4.tgz#11d5db19bd178936ec89cd84519c4de439574398"
   integrity sha512-1oO6+dN5kdIA3sKPZhRGJTfGVP4SWV6KqlMOwry4J3HfyD68sl/3KmG7DeYUzvN+RbhXDnv/D8vNNB8168tAMg==
 
-"@rancher/components@0.2.1-alpha.0":
-  version "0.2.1-alpha.0"
-  resolved "https://registry.npmjs.org/@rancher/components/-/components-0.2.1-alpha.0.tgz#fdd65f1dc12715c95be810e19208642e7b394a7b"
-  integrity sha512-ArhrSuTFE9iJ7W2UHD2joy6RrXBoMYzKJuIf3Os/PlChc2qFnLsSxu15W1cmWiHgH7CD7o5bp/U3n+2vEc4Zpw==
+"@rancher/components@0.3.0-alpha.1":
+  version "0.3.0-alpha.1"
+  resolved "https://registry.npmjs.org/@rancher/components/-/components-0.3.0-alpha.1.tgz#86f570be89f84ab271bd3ca392b7bc57827e33c1"
+  integrity sha512-wqplnnHD4RUY1KO1zl9IZ8pZvVfY2MhgRWHsNaqAd17Y0Chylk9egsFveRJb0VBPOCwa3iu0ttFvl9mLIjvpHw==
   dependencies:
     lodash.debounce "4.0.8"
 
@@ -6967,6 +6967,11 @@ core-js@3.21.1:
   version "3.21.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.21.1.tgz#f2e0ddc1fc43da6f904706e8e955bc19d06a0d94"
   integrity sha512-FRq5b/VMrWlrmCzwRrpDYNxyHP9BcAZC+xHJaqTgIE5091ZV1NTmyh0sGOg5XqpnHvR0svdy0sv1gWA1zmhxig==
+
+core-js@3.25.3:
+  version "3.25.3"
+  resolved "https://registry.npmjs.org/core-js/-/core-js-3.25.3.tgz#cbc2be50b5ddfa7981837bd8c41639f27b166593"
+  integrity sha512-y1hvKXmPHvm5B7w4ln1S4uc9eV/O5+iFExSRUimnvIph11uaizFR8LFMdONN8hG3P2pipUfX4Y/fR8rAEtcHcQ==
 
 core-js@^2.6.5:
   version "2.6.12"
