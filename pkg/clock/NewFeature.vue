@@ -10,6 +10,7 @@ export default {
 };
 
 </script>
+
 <template>
   <div class="clock">
     <ClockComponent size="400px" border="5px solid #2553FF" color="#777" />
