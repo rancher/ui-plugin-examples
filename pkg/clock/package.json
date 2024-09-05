@@ -3,24 +3,20 @@
   "description": "Adds a new feature to the top-level menu that shows a full-page clock",
   "version": "0.2.0",
   "private": false,
-  "icon": "https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/clock/clock.svg",
   "rancher": {
     "annotations": {
-      "catalog.cattle.io/kube-version": ">= 1.16.0-0",
-      "catalog.cattle.io/rancher-version": ">= v2.9.1"
+      "catalog.cattle.io/rancher-version": ">= v2.9.1",
+      "catalog.cattle.io/ui-extensions-version": ">= 99.99.0"
     }
   },
-  "scripts": {
-    "dev": "./node_modules/.bin/nuxt dev",
-    "nuxt": "./node_modules/.bin/nuxt"
-  },
+  "scripts": {},
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=20"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "5.0.8",
-    "@vue/cli-service": "5.0.8",
-    "@vue/cli-plugin-typescript": "5.0.8",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "@vue/cli-plugin-typescript": "~5.0.0",
     "cache-loader": "^4.1.0",
     "color": "4.2.3",
     "ip": "2.0.1",
