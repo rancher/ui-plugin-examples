@@ -1,4 +1,4 @@
-import { IPlugin, LocationConfig } from '@shell/core/types';
+import { IPlugin } from '@shell/core/types';
 
 import { Product } from './types/product';
 
@@ -11,12 +11,12 @@ export function init($plugin: IPlugin, store: any) {
 
   // registering a cluster-level product
   product({
-    inStore:             'management',
-    icon:                'globe',
-    label:               'Clock',
-    removable:           false,
+    inStore: 'management',
+    icon: 'globe',
+    label: 'Clock',
+    removable: false,
     showClusterSwitcher: false,
-    category:            'global',
-    to:                  { name: 'clock', params: { cluster: 'local' } }
-  });
+    category: 'global',
+    to: { name: 'clock', params: { cluster: 'local' } }
+  } as any);
 }
