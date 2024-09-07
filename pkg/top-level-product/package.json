@@ -1,0 +1,29 @@
+{
+  "name": "top-level-product",
+  "description": "Example extension for a top-level product on Rancher Dashboard",
+  "version": "0.1.0",
+  "private": false,
+  "rancher": {
+    "annotations": {
+      "catalog.cattle.io/kube-version": ">= 1.16.0-0",
+      "catalog.cattle.io/rancher-version": ">= 2.7.0-0"
+    }
+  },
+  "scripts": {
+    "dev": "./node_modules/.bin/nuxt dev",
+    "nuxt": "./node_modules/.bin/nuxt"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/cli-plugin-typescript": "^4.5.15"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
