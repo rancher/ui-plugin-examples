@@ -4,7 +4,8 @@ export default { name: 'MyCustomPage' };
 
 <template>
   <div>
-    <h1>This is a custom VueJS page. You can render anything you want</h1>
+    <h1>Top Level Product</h1>
+    <p>This is a custom VueJS page. You can render anything you want</p>
   </div>
 </template>
 
