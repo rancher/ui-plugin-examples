@@ -10,7 +10,7 @@ import {
 } from '@shell/core/types';
 
 // Init the package
-export default function(plugin: IPlugin) {
+export default function (plugin: IPlugin) {
   // Auto-import model, detail, edit from the folders
   importTypes(plugin);
 
@@ -26,9 +26,9 @@ export default function(plugin: IPlugin) {
     {},
     {
       tooltipKey: 'plugin-examples.header-action-one',
-      tooltip:    'Test Action1',
-      shortcut:   'm',
-      icon:       'icon-pipeline',
+      tooltip: 'Test Action1',
+      shortcut: 'm',
+      icon: 'icon-pipeline',
       invoke(opts: any, resources: any) {
         console.log('action executed 1', this); // eslint-disable-line no-console
         console.log(opts); // eslint-disable-line no-console
@@ -43,9 +43,9 @@ export default function(plugin: IPlugin) {
     { product: ['explorer'] },
     {
       tooltipKey: 'plugin-examples.header-action-two',
-      tooltip:    'Test Action2',
-      shortcut:   'b',
-      icon:       'icon-rancher-desktop',
+      tooltip: 'Test Action2',
+      shortcut: 'b',
+      icon: 'icon-rancher-desktop',
       enabled(ctx: any) {
         return true;
       },
@@ -62,13 +62,13 @@ export default function(plugin: IPlugin) {
     TabLocation.RESOURCE_DETAIL,
     { resource: ['pod'] },
     {
-      name:       'some-name',
-      labelKey:   'plugin-examples.tab-label',
-      label:      'some-label',
-      weight:     -5,
+      name: 'some-name',
+      labelKey: 'plugin-examples.tab-label',
+      label: 'some-label',
+      weight: -5,
       showHeader: true,
-      tooltip:    'this is a tooltip message',
-      component:  () => import('./components/MyTabComponent.vue')
+      tooltip: 'this is a tooltip message',
+      component: () => import('./components/MyTabComponent.vue')
     }
   );
 
@@ -77,9 +77,9 @@ export default function(plugin: IPlugin) {
     ActionLocation.TABLE,
     { resource: ['catalog.cattle.io.clusterrepo'] },
     {
-      label:    'some-extension-action',
+      label: 'some-extension-action',
       labelKey: 'plugin-examples.table-action-one',
-      icon:     'icon-pipeline',
+      icon: 'icon-pipeline',
       invoke(opts: ActionOpts, values: any[]) {
         console.log('table action executed 1', this, opts, values); // eslint-disable-line no-console
       }
@@ -91,9 +91,9 @@ export default function(plugin: IPlugin) {
     ActionLocation.TABLE,
     { resource: ['catalog.cattle.io.clusterrepo'] },
     {
-      label:    'some-bulkable-action',
+      label: 'some-bulkable-action',
       labelKey: 'plugin-examples.table-action-two',
-      icon:     'icon-rancher-desktop',
+      icon: 'icon-rancher-desktop',
       multiple: true,
       invoke(opts: ActionOpts, values: any[]) {
         console.log('table action executed 2', this); // eslint-disable-line no-console
@@ -138,8 +138,8 @@ export default function(plugin: IPlugin) {
     CardLocation.CLUSTER_DASHBOARD_CARD,
     { cluster: ['local'] },
     {
-      label:     'some-label',
-      labelKey:  'plugin-examples.card-title-one',
+      label: 'some-label',
+      labelKey: 'plugin-examples.card-title-one',
       component: () => import('./components/MastheadDetailsComponent.vue')
     }
   );
@@ -149,8 +149,8 @@ export default function(plugin: IPlugin) {
     CardLocation.CLUSTER_DASHBOARD_CARD,
     { cluster: ['local'] },
     {
-      label:     'some-label1',
-      labelKey:  'plugin-examples.card-title-two',
+      label: 'some-label1',
+      labelKey: 'plugin-examples.card-title-two',
       component: () => import('./components/ClusterDashboardCard.vue')
     }
   );
@@ -160,8 +160,8 @@ export default function(plugin: IPlugin) {
     CardLocation.CLUSTER_DASHBOARD_CARD,
     { cluster: ['local'] },
     {
-      label:     'some-label2',
-      labelKey:  'plugin-examples.card-title-three',
+      label: 'some-label2',
+      labelKey: 'plugin-examples.card-title-three',
       component: () => import('./components/MastheadDetailsComponent.vue')
     }
   );
@@ -171,10 +171,10 @@ export default function(plugin: IPlugin) {
     TableColumnLocation.RESOURCE,
     { resource: ['configmap', 'secret'] },
     {
-      name:     'some-prop-col',
+      name: 'some-prop-col',
       labelKey: 'plugin-examples.col-label',
       getValue: (row: any) => {
-        return `${ row.id }-DEMO-COL-STRING-ADDED!`;
+        return `${row.id}-DEMO-COL-STRING-ADDED!`;
       },
     }
   );

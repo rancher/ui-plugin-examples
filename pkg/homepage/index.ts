@@ -3,7 +3,7 @@ import { IPlugin } from '@shell/core/types';
 import NewHomeComponent from './NewHomeComponent.vue';
 
 // Init the package
-export default function(plugin: IPlugin) {
+export default function (plugin: IPlugin) {
   // Auto-import model, detail, edit from the folders
   importTypes(plugin);
 
@@ -11,8 +11,8 @@ export default function(plugin: IPlugin) {
   plugin.metadata = require('./package.json');
 
   plugin.addRoute({
-    name:      'homeRoute',
-    path:      '/home',
+    name: 'home',
+    path: '/home',
     component: NewHomeComponent
   });
 }
