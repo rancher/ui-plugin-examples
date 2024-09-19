@@ -12,7 +12,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2024-09-19T11:37:23.063618+01:00"
+    created: "2024-09-19T15:30:37.366322+01:00"
     description: Adds a new feature to the top-level menu that shows a full-page clock
     digest: ae02194a0ea61c7528d0407a1b1b1b6e061e41bec9b3edbe6b27af76a2e84d61
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/clock/clock.svg
@@ -32,7 +32,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2024-09-19T11:37:23.063236+01:00"
+    created: "2024-09-19T15:30:37.366027+01:00"
     description: Adds a new feature to the top-level menu that shows a full-page clock
     digest: 4e3ebcbe0b7fe293d433d31d19c0cea97377dec3a9994a3cb3d4803decc9da65
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/clock/clock.svg
@@ -53,7 +53,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2024-09-19T11:37:23.063936+01:00"
+    created: "2024-09-19T15:30:37.36661+01:00"
     description: Adds support for the Rancher Extensions CRD to Rancher Manager
     digest: 74134c72165f8a97c0e3c546331684f4b739a92fef11054a11831ddd839f331d
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/extension-crd/icon.svg
@@ -74,7 +74,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2024-09-19T11:37:23.064197+01:00"
+    created: "2024-09-19T15:30:37.366879+01:00"
     description: Extensions Api demo extension
     digest: 2f2cff19650cf9e3b3fd84cb6986f6339b12973848d9d2f679d79d141243bfef
     name: extensions-api-demo
@@ -94,7 +94,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.3.0
-    created: "2024-09-19T11:37:23.065025+01:00"
+    created: "2024-09-19T15:30:37.367659+01:00"
     description: Example extension that changes the landing home page
     digest: f44195759e46083bb1c54d7ca8b38bacb9aff2db8d859045279fff5133d9656d
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
@@ -114,7 +114,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2024-09-19T11:37:23.06478+01:00"
+    created: "2024-09-19T15:30:37.367406+01:00"
     description: Example extension that changes the landing home page
     digest: b8c5f00b365b85f3260b388d17152585adb194490bf4362446e8c73fb27b6b2e
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
@@ -134,7 +134,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2024-09-19T11:37:23.064499+01:00"
+    created: "2024-09-19T15:30:37.367146+01:00"
     description: Example plugin that changes the landingh home page
     digest: e2831abfc18f76d91d5444e0d53c52d7c62f06b81737cfd62b1cc2337d9790cb
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
@@ -155,7 +155,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2024-09-19T11:37:23.065368+01:00"
+    created: "2024-09-19T15:30:37.367968+01:00"
     description: Adds a new feature to the top-level menu that shows a large image
       (extension larger than 20mb - used for testing)
     digest: 777882df573de10c50b6deeb97b81333191af4736b602991d4aee49449a5d13d
@@ -175,12 +175,11 @@ entries:
       catalog.cattle.io/rancher-version: '>= 2.10.0-0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
-      catalog.cattle.io/ui-extensions-version: '>= 3.0.0'
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2024-09-19T11:37:23.066323+01:00"
+    created: "2024-09-19T15:30:37.368918+01:00"
     description: Example extension for a top-level product on Rancher Dashboard
-    digest: 8db258596e00c3ca81fcb6ed5203922d2aec60744308eb433062d716a39fb32d
+    digest: 89a35455423dcd0be858b2e7dc97b3a46f144af1a2f9560fb9b09b4037f629c8
     name: top-level-product
     type: application
     urls:
@@ -197,7 +196,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2024-09-19T11:37:23.066155+01:00"
+    created: "2024-09-19T15:30:37.368474+01:00"
     description: Example extension for a top-level product on Rancher Dashboard
     digest: 3be92edf39c779a0a378d2897a8f11ce12fc49a7ea2a77b10b4b507f09eb148e
     name: top-level-product
@@ -217,7 +216,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.1
-    created: "2024-09-19T11:37:23.066965+01:00"
+    created: "2024-09-19T15:30:37.369551+01:00"
     description: Adds a new UK localisation
     digest: 68a89973906b90578ce5fa0c218ca680fa14299d9d1dff4e314ad1edee943f20
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg
@@ -237,7 +236,7 @@ entries:
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2024-09-19T11:37:23.066609+01:00"
+    created: "2024-09-19T15:30:37.369206+01:00"
     description: Adds a new UK localisation
     digest: 78db04367525273dd141a7a818edabb030e2b6230f0dfbdefc60c602e1e05f04
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg
@@ -246,4 +245,4 @@ entries:
     urls:
     - assets/uk-locale/uk-locale-0.1.0.tgz
     version: 0.1.0
-generated: "2024-09-19T11:37:23.062213+01:00"
+generated: "2024-09-19T15:30:37.365315+01:00"
