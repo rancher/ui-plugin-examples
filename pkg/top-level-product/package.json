@@ -1,12 +1,13 @@
 {
   "name": "top-level-product",
   "description": "Example extension for a top-level product on Rancher Dashboard",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "rancher": {
     "annotations": {
       "catalog.cattle.io/kube-version": ">= 1.16.0-0",
-      "catalog.cattle.io/rancher-version": ">= 2.7.0-0"
+      "catalog.cattle.io/rancher-version": ">= 2.10.0-0",
+      "catalog.cattle.io/ui-extensions-version": ">= 3.0.0"
     }
   },
   "scripts": {
