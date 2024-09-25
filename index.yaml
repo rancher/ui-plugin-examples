@@ -3,385 +3,372 @@ entries:
   clock:
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.10.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
+      catalog.cattle.io/ui-extensions-version: '>= 3'
     apiVersion: v2
     appVersion: 0.3.0
-    created: "2024-09-19T15:51:13.781561+01:00"
+    created: "2024-09-25T16:58:48.495382+01:00"
     description: Adds a new feature to the top-level menu that shows a full-page clock
-    digest: 8e27a16bc701cf6ab85e86fafb8662f4a34f6a24afc15eee146a678ff43ff768
+    digest: f2d5ea9b4e55f7002f9ed5441bc7a33cbae52f999b98f92adae90337ca86239b
     name: clock
     type: application
     urls:
-    - assets/clock/clock-0.3.0.tgz
+    - assets/clock-0.3.0.tgz
     version: 0.3.0
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.7.0-0 < 2.10.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.7.0 < 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2024-09-19T15:51:13.781027+01:00"
+    created: "2024-09-25T16:58:48.233217+01:00"
     description: Adds a new feature to the top-level menu that shows a full-page clock
-    digest: ae02194a0ea61c7528d0407a1b1b1b6e061e41bec9b3edbe6b27af76a2e84d61
+    digest: 8749ead3336aa8ee9251744cc397ff07070a5df60430fef6feb0a65f6cef2882
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/clock/clock.svg
     name: clock
     type: application
     urls:
-    - assets/clock/clock-0.2.0.tgz
+    - assets/clock-0.2.0.tgz
     version: 0.2.0
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.7.0-0 < 2.10.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.7.0 < 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2024-09-19T15:51:13.780797+01:00"
+    created: "2024-09-25T16:58:47.96316+01:00"
     description: Adds a new feature to the top-level menu that shows a full-page clock
-    digest: 4e3ebcbe0b7fe293d433d31d19c0cea97377dec3a9994a3cb3d4803decc9da65
+    digest: 7465cb34c210fd2969f45969dd279ab0f52870953a905c8a3c96e3aa7dea0807
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/clock/clock.svg
     name: clock
     type: application
     urls:
-    - assets/clock/clock-0.1.0.tgz
+    - assets/clock-0.1.0.tgz
     version: 0.1.0
   extension-crd:
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.10.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
+      catalog.cattle.io/ui-extensions-version: '>= 3'
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2024-09-19T15:51:13.781977+01:00"
+    created: "2024-09-25T16:58:49.070099+01:00"
     description: Adds support for the Rancher Extensions CRD to Rancher Manager
-    digest: dc135d024ac89b8c1a7935448ca227e0f4fa4987e91c461b8bb9e5a12e9be666
+    digest: 3e99ad9daa5ed2357c05eb96d974af425fdf408f1c42222b1c22579bc4113435
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/extension-crd/icon.svg
     name: extension-crd
     type: application
     urls:
-    - assets/extension-crd/extension-crd-0.2.0.tgz
+    - assets/extension-crd-0.2.0.tgz
     version: 0.2.0
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0 < 1.25.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.7.0-0 < 2.8.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.7.0 < 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2024-09-19T15:51:13.781804+01:00"
+    created: "2024-09-25T16:58:48.82028+01:00"
     description: Adds support for the Rancher Extensions CRD to Rancher Manager
-    digest: 74134c72165f8a97c0e3c546331684f4b739a92fef11054a11831ddd839f331d
+    digest: de40a42f6c65302557600f579e6e5808bf6ab5ca662d1b51e96d3ea0572f1641
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/extension-crd/icon.svg
     name: extension-crd
     type: application
     urls:
-    - assets/extension-crd/extension-crd-0.1.0.tgz
+    - assets/extension-crd-0.1.0.tgz
     version: 0.1.0
   extensions-api-demo:
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.10.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
+      catalog.cattle.io/ui-extensions-version: '>= 3'
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2024-09-19T15:51:13.782336+01:00"
+    created: "2024-09-25T16:58:49.51614+01:00"
     description: Extensions Api demo extension
-    digest: 37ca94e70e2337406268a2e0cfdd88e85612ba54c422892f3346a05f96b22219
+    digest: 8b64a40dc8007dd1d4c45694182ff1ea5d6921db47949367f2654eea2e4e0555
     name: extensions-api-demo
     type: application
     urls:
-    - assets/extensions-api-demo/extensions-api-demo-0.2.0.tgz
+    - assets/extensions-api-demo-0.2.0.tgz
     version: 0.2.0
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0 < 1.25.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.7.0-0 < 2.8.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.7.0 < 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2024-09-19T15:51:13.782184+01:00"
+    created: "2024-09-25T16:58:49.293851+01:00"
     description: Extensions Api demo extension
-    digest: 2f2cff19650cf9e3b3fd84cb6986f6339b12973848d9d2f679d79d141243bfef
+    digest: a238e371ce010eed0a972c91154e2087ed913f339a530e5db7c4ab726403a21c
     name: extensions-api-demo
     type: application
     urls:
-    - assets/extensions-api-demo/extensions-api-demo-0.1.0.tgz
+    - assets/extensions-api-demo-0.1.0.tgz
     version: 0.1.0
   homepage:
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.10.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
+      catalog.cattle.io/ui-extensions-version: '>= 3'
     apiVersion: v2
     appVersion: 0.4.0
-    created: "2024-09-19T15:51:13.783037+01:00"
+    created: "2024-09-25T16:58:50.398412+01:00"
     description: Example extension that changes the landing home page
-    digest: 9ded1dfd14d3782258e3a4087be21888a9bd5e9b853140b9bc16839de0b9833e
+    digest: 3abbb582da6e3534a71979cf8aa0153edab17499b69c8898cdd7f087f119726a
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
     name: homepage
     type: application
     urls:
-    - assets/homepage/homepage-0.4.0.tgz
+    - assets/homepage-0.4.0.tgz
     version: 0.4.0
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0 < 1.25.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.7.0-0 < 2.8.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.7.0 < 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.3.0
-    created: "2024-09-19T15:51:13.782893+01:00"
+    created: "2024-09-25T16:58:50.173956+01:00"
     description: Example extension that changes the landing home page
-    digest: f44195759e46083bb1c54d7ca8b38bacb9aff2db8d859045279fff5133d9656d
+    digest: 511bc751fde73893aa153391b40e363f2e43393267608de8107889111ee51272
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
     name: homepage
     type: application
     urls:
-    - assets/homepage/homepage-0.3.0.tgz
+    - assets/homepage-0.3.0.tgz
     version: 0.3.0
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0 < 1.25.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.7.0-0 < 2.8.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.7.0 < 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2024-09-19T15:51:13.782702+01:00"
+    created: "2024-09-25T17:00:06.330601+01:00"
     description: Example extension that changes the landing home page
-    digest: b8c5f00b365b85f3260b388d17152585adb194490bf4362446e8c73fb27b6b2e
+    digest: 34bb40b7ad0b49dcaaa346bae028a6c55904773af703ade0958dc5c60524b318
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
     name: homepage
     type: application
     urls:
-    - assets/homepage/homepage-0.2.0.tgz
+    - assets/homepage-0.2.0.tgz
     version: 0.2.0
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0 < 1.25.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.7.0-0 < 2.8.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.7.0 < 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2024-09-19T15:51:13.782525+01:00"
-    description: Example plugin that changes the landingh home page
-    digest: e2831abfc18f76d91d5444e0d53c52d7c62f06b81737cfd62b1cc2337d9790cb
+    created: "2024-09-25T16:58:49.737426+01:00"
+    description: Example plugin that changes the landing home page
+    digest: 00eb548afe7ba57e6de22fb687d24ebd15fcc8bff55e314ff11406d394a70cec
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg
     name: homepage
     type: application
     urls:
-    - assets/homepage/homepage-0.1.0.tgz
+    - assets/homepage-0.1.0.tgz
     version: 0.1.0
   large-extension:
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.10.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
+      catalog.cattle.io/ui-extensions-version: '>= 3'
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2024-09-19T15:51:13.78333+01:00"
+    created: "2024-09-25T16:58:50.838679+01:00"
     description: Adds a new feature to the top-level menu that shows a large image
       (extension larger than 20mb - used for testing)
-    digest: 30ad64067021c9e8b0e387f57513b2aa5a6af07e2e40eb2d8af8b74b80599ef1
+    digest: e91c0ec9514f3d474d0761de68193dfc2f5da273dc146e277534733f9e93791e
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/large-extension/clock.svg
     name: large-extension
     type: application
     urls:
-    - assets/large-extension/large-extension-0.2.0.tgz
+    - assets/large-extension-0.2.0.tgz
     version: 0.2.0
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.7.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.7.0 < 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2024-09-19T15:51:13.783176+01:00"
+    created: "2024-09-25T16:58:50.617201+01:00"
     description: Adds a new feature to the top-level menu that shows a large image
       (extension larger than 20mb - used for testing)
-    digest: 777882df573de10c50b6deeb97b81333191af4736b602991d4aee49449a5d13d
+    digest: 958e03cf355bfa0db137735237391ca68cf3242f3223cfa0884dda1b98cd648e
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/large-extension/clock.svg
     name: large-extension
     type: application
     urls:
-    - assets/large-extension/large-extension-0.1.0.tgz
+    - assets/large-extension-0.1.0.tgz
     version: 0.1.0
   openstack:
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.7.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.7.0 < 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2024-09-19T15:51:13.783472+01:00"
+    created: "2024-09-25T16:58:51.05402+01:00"
     description: Example node driver UI for Openstack
-    digest: 49bbbbb80f973f0681c2c18f50a3d073f269e42c9d1c6fd70770d7a0b9ac8104
+    digest: c777ca4f5ceee24a5aec30d2a2700922fa58741a462fd891edd6cc4e3d88e406
     name: openstack
     type: application
     urls:
-    - assets/node-driver/openstack-1.0.0.tgz
+    - assets/openstack-1.0.0.tgz
     version: 1.0.0
   top-level-product:
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.10.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
+      catalog.cattle.io/ui-extensions-version: '>= 3'
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2024-09-19T15:51:13.783793+01:00"
+    created: "2024-09-25T16:58:51.500111+01:00"
     description: Example extension for a top-level product on Rancher Dashboard
-    digest: 89a35455423dcd0be858b2e7dc97b3a46f144af1a2f9560fb9b09b4037f629c8
+    digest: a68bc1956ea3dc0180ff2013ce6a8a988f33699abed56b03a75ffb7ae1ef7829
     name: top-level-product
     type: application
     urls:
-    - assets/top-level-product/top-level-product-0.2.0.tgz
+    - assets/top-level-product-0.2.0.tgz
     version: 0.2.0
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0 < 1.25.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.7.0-0 < 2.8.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.7.0 < 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2024-09-19T15:51:13.78365+01:00"
+    created: "2024-09-25T16:58:51.27016+01:00"
     description: Example extension for a top-level product on Rancher Dashboard
-    digest: 3be92edf39c779a0a378d2897a8f11ce12fc49a7ea2a77b10b4b507f09eb148e
+    digest: 3c09f5ffd5c3aa84fbf69b534902a189ef4f915d21e1702937095381d32fcb0b
     name: top-level-product
     type: application
     urls:
-    - assets/top-level-product/top-level-product-0.1.0.tgz
+    - assets/top-level-product-0.1.0.tgz
     version: 0.1.0
   uk-locale:
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.10.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
+      catalog.cattle.io/ui-extensions-version: '>= 3'
     apiVersion: v2
     appVersion: 0.2.0
-    created: "2024-09-19T15:51:13.784281+01:00"
+    created: "2024-09-25T16:58:51.936133+01:00"
     description: Adds a new UK localisation
-    digest: c3ef223a709aa27d0976b1604888557267a52fcad6d3219339938fe9a00c1850
+    digest: 9c7087b48093018c1c2456f0af1c8e7b29661e540bc5a2f9f6321dbf99560900
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg
     name: uk-locale
     type: application
     urls:
-    - assets/uk-locale/uk-locale-0.2.0.tgz
+    - assets/uk-locale-0.2.0.tgz
     version: 0.2.0
   - annotations:
       catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/kube-version: '>= 1.16.0'
       catalog.cattle.io/namespace: cattle-ui-plugin-system
       catalog.cattle.io/os: linux
       catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.7.0-0'
+      catalog.cattle.io/rancher-version: '>= 2.7.0 < 2.10.0'
       catalog.cattle.io/scope: management
       catalog.cattle.io/ui-component: plugins
     apiVersion: v2
     appVersion: 0.1.1
-    created: "2024-09-19T15:51:13.784143+01:00"
+    created: "2024-09-25T16:58:51.719451+01:00"
     description: Adds a new UK localisation
-    digest: 68a89973906b90578ce5fa0c218ca680fa14299d9d1dff4e314ad1edee943f20
+    digest: 5afb8e4c349ab4725920d3011f65b118fc3ea7cae1e6cb3d731699048610f4ce
     icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg
     name: uk-locale
     type: application
     urls:
-    - assets/uk-locale/uk-locale-0.1.1.tgz
+    - assets/uk-locale-0.1.1.tgz
     version: 0.1.1
-  - annotations:
-      catalog.cattle.io/certified: rancher
-      catalog.cattle.io/kube-version: '>= 1.16.0-0 < 1.25.0-0'
-      catalog.cattle.io/namespace: cattle-ui-plugin-system
-      catalog.cattle.io/os: linux
-      catalog.cattle.io/permits-os: linux, windows
-      catalog.cattle.io/rancher-version: '>= 2.7.0-0 < 2.8.0-0'
-      catalog.cattle.io/scope: management
-      catalog.cattle.io/ui-component: plugins
-    apiVersion: v2
-    appVersion: 0.1.0
-    created: "2024-09-19T15:51:13.783968+01:00"
-    description: Adds a new UK localisation
-    digest: 78db04367525273dd141a7a818edabb030e2b6230f0dfbdefc60c602e1e05f04
-    icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/uk-locale/uk-locale.svg
-    name: uk-locale
-    type: application
-    urls:
-    - assets/uk-locale/uk-locale-0.1.0.tgz
-    version: 0.1.0
-generated: "2024-09-19T15:51:13.780462+01:00"
+generated: "2024-09-25T17:00:06.329852+01:00"
