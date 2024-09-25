@@ -19,6 +19,7 @@ FORCE="false"
 GITHUB_BUILD="false"
 UPDATE_OLD_PACKAGES="true"
 UPDATE_LATEST_PACAKGES="true"
+FORCE_ALL_EXISTING="false"
 
 GITHUB_SOURCE=$(git config --get remote.origin.url | sed -e 's/^git@.*:\([[:graph:]]*\).git/\1/')
 GITHUB_BRANCH="main"
@@ -36,10 +37,11 @@ usage() {
   echo "  -b <branch>  Specify destination GitHub branch (implies -g)"
   echo "  -n           Do not check for updates to existing Charts (Chart.yaml)"
   echo "  -e           Only check for updates to existing Charts (Chart.yaml)"
+  echo "  -E           Re-generate charts for all existing extensions"
   exit 1
 }
 
-while getopts "hvr:o:pi:fgb:s:en" opt; do
+while getopts "hvr:o:pi:fgb:s:enE" opt; do
   case $opt in
     h)
       usage
@@ -79,6 +81,9 @@ while getopts "hvr:o:pi:fgb:s:en" opt; do
     e)
       UPDATE_OLD_PACKAGES="true"
       UPDATE_LATEST_PACAKGES="false"
+      ;;
+    E)
+      FORCE_ALL_EXISTING="true"
       ;;
     *)
       usage
@@ -212,7 +217,7 @@ if [ "${UPDATE_OLD_PACKAGES}" = "true" ]; then
 
         rm -f $TMP/tmp_chart/${FILENAME}
 
-        if [ "${EXISTING_MD5}" != "${LATEST_MD5}" ]; then
+        if [ "${EXISTING_MD5}" != "${LATEST_MD5}" ] || [ "${FORCE_ALL_EXISTING}" == "true" ]; then
           echo "  + Chart.yaml has changed for ${CHART_ARCHIVE}"
           # Chart was already re-generated - update ir
           rm ${CHART_ARCHIVE}
@@ -228,7 +233,7 @@ if [ "${UPDATE_OLD_PACKAGES}" = "true" ]; then
           fi
 
           # Base URL referencing assets directly from GitHub
-          BASE_URL="assets/${pkg}"
+          BASE_URL="assets/${EXT_NAME}"
 
           rm -rf ${CHART_TMP}
           mkdir -p ${CHART_TMP}
