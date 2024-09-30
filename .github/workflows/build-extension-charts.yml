@@ -1,0 +1,23 @@
+name: Build and Release Extension Charts
+
+on:
+  workflow_dispatch:
+  release:
+    types: [released]
+
+defaults:
+  run:
+    shell: bash
+    working-directory: ./
+
+jobs:
+  build-extension-charts:
+    uses: rancher/dashboard/.github/workflows/build-extension-charts.yml@release-2.9
+    permissions:
+      actions: write
+      contents: write
+      deployments: write
+      pages: write
+    with:
+      target_branch: main
+      tagged_release: ${{ github.ref_name }}"
