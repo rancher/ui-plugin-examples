@@ -20,3 +20,4 @@ jobs:
       pages: write
     with:
       target_branch: main
+      tagged_release: ${{ github.ref_name }}"
