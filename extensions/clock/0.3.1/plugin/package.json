@@ -3,14 +3,7 @@
   "description": "Adds a new feature to the top-level menu that shows a full-page clock",
   "version": "0.3.1",
   "private": false,
-  "rancher": {
-    "annotations": {
-      "catalog.cattle.io/kube-version": ">= 1.16.0-0",
-      "catalog.cattle.io/rancher-version": ">= 2.10.0-0",
-      "catalog.cattle.io/ui-extensions-version": ">= 3"
-    }
-  },
-  "scripts": {},
+  "rancher": true,
   "engines": {
     "node": ">=20"
   },
@@ -39,9 +32,8 @@
     "semver": "7.5.4",
     "@vue/cli-service/html-webpack-plugin": "^5.0.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  "files": [
+    "**/*"
+  ],
+  "main": "clock-0.3.1.umd.min.js"
 }
