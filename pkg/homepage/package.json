@@ -1,7 +1,7 @@
 {
   "name": "homepage",
   "description": "Example extension that changes the landing home page",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": false,
   "rancher": {
     "annotations": {

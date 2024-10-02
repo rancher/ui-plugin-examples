@@ -1,7 +1,7 @@
 {
   "name": "top-level-product",
   "description": "Example extension for a top-level product on Rancher Dashboard",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": false,
   "rancher": {
     "annotations": {
