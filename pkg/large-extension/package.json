@@ -1,7 +1,7 @@
 {
   "name": "large-extension",
   "description": "Adds a new feature to the top-level menu that shows a large image (extension larger than 20mb - used for testing)",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": false,
   "icon": "https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/large-extension/clock.svg",
   "rancher": {
