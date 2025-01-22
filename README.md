@@ -5,13 +5,13 @@ This repository contains the following example extensions in the `pkg` folder.
 
 |Name|Description|Rancher Version|
 |----|-----------|---------------|
-|clock|Adds a new feature to the top-level menu that shows a full-page clock|v2.7.0|
-|extension-crd|Adds support for the Rancher Extensions CRD to Rancher Manager|v2.7.0|
-|homepage|Example extension that changes the landing home page|v2.7.0|
-|uk-locale|Adds a new UK localisation|v2.7.0|
-|extensions-api-demo|Adds some examples of implementation of the new Extensions API|v2.7.2|
-|top-level-product|Adds an example of a Top Level Product as an Extension|v2.7.2|
-|node-driver|Example that allows for custom node drivers to support additional node provisioners in Rancher|v2.7.5|
+|clock|Adds a new feature to the top-level menu that shows a full-page clock|v2.10.0|
+|extension-crd|Adds support for the Rancher Extensions CRD to Rancher Manager|v2.10.0|
+|homepage|Example extension that changes the landing home page|v2.10.0|
+|uk-locale|Adds a new UK localisation|v2.10.0|
+|extensions-api-demo|Adds some examples of implementation of the new Extensions API|v2.10.0|
+|top-level-product|Adds an example of a Top Level Product as an Extension|v2.10.0|
+|node-driver|Example that allows for custom node drivers to support additional node provisioners in Rancher|v2.10.0|
 
 To use these example in Rancher Manager, add this repository as a Helm Repository - to do this:
 
