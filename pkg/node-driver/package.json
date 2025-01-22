@@ -1,13 +1,14 @@
 {
   "name": "openstack",
   "description": "Example node driver UI for Openstack",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "rancher": {
     "annotations": {
       "catalog.cattle.io/kube-version": ">= 1.16.0-0",
       "catalog.cattle.io/rancher-version": ">= 2.10.0-0",
-      "catalog.cattle.io/ui-extensions-version": ">= 3.0.0 < 4.0.0"    }
+      "catalog.cattle.io/ui-extensions-version": ">= 3.0.0 < 4.0.0"
+    }
   },
   "scripts": {
     "dev": "./node_modules/.bin/nuxt dev",
