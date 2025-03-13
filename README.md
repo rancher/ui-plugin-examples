@@ -3,6 +3,9 @@ Example Extensions for the Rancher Dashboard UI.
 
 This repository contains the following example extensions in the `pkg` folder.
 
+Developers should consider the extensions included in this repository primarily as code examples to follow. These extensions should be compliant with the latest version of Rancher.
+If you are interested in the publishing process, we recommend following our official documentation about [publishing an extension](https://extensions.rancher.io/extensions/next/publishing).
+
 |Name|Description|Rancher Version|
 |----|-----------|---------------|
 |clock|Adds a new feature to the top-level menu that shows a full-page clock|v2.10.0|
@@ -12,8 +15,10 @@ This repository contains the following example extensions in the `pkg` folder.
 |extensions-api-demo|Adds some examples of implementation of the new Extensions API|v2.10.0|
 |top-level-product|Adds an example of a Top Level Product as an Extension|v2.10.0|
 |node-driver|Example that allows for custom node drivers to support additional node provisioners in Rancher|v2.10.0|
+|large-extension|for internal testing purposes only (caching mechanism)|v2.10.0|
 
-To use these example in Rancher Manager, add this repository as a Helm Repository - to do this:
+
+To use these examples in Rancher Manager, add this repository as a Helm Repository - to do this:
 
 - Go to the local cluster, to 'Apps' and 'Repositories'
 - Click 'Create' and enter a name, e.g. 'example-extensions'
@@ -37,9 +42,9 @@ Once you login, you should see Rancher load with the extensions automatically lo
 and then should hot-reload within the browser.
 
 ### Bugs & Issues
-Please submit bugs and issues to [rancher/dashboard](//github.com/rancher/dashboard/issues).
+Please submit bugs and issues to [rancher/dashboard](//github.com/rancher/dashboard/issues). Assign the label `area/extensions`
 
-Or just [click here](//github.com/rancher/dashboard/issues/new) to create a new issue.
+Or just [click here](//github.com/rancher/dashboard/issues/new) to create a new issue. Assign the label `area/extensions`.
 
 License
 =======
