@@ -20,5 +20,5 @@ jobs:
       pages: write
     with:
       target_branch: main
-      tagged_release: ${{ github.ref_name }}"
+      tagged_release: ${{ github.ref_name }}
       create_pr: 'true'
