@@ -12,7 +12,7 @@ defaults:
 
 jobs:
   build-extension-charts:
-    uses: rancher/dashboard/.github/workflows/build-extension-charts.yml@release-2.9
+    uses: aalves08/dashboard/.github/workflows/build-extension-charts.yml@14761-ext-repo-publish-pr-based
     permissions:
       actions: write
       contents: write
@@ -21,3 +21,4 @@ jobs:
     with:
       target_branch: main
       tagged_release: ${{ github.ref_name }}"
+      create_pr: 'true'
