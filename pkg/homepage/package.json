@@ -1,9 +1,15 @@
 {
   "name": "homepage",
-  "description": "homepage plugin",
-  "version": "0.1.0",
+  "description": "Example extension that changes the landing home page",
+  "version": "0.4.1",
   "private": false,
-  "rancher": true,
+  "rancher": {
+    "annotations": {
+      "catalog.cattle.io/kube-version": ">= 1.16.0-0",
+      "catalog.cattle.io/rancher-version": ">= 2.10.0-0"
+    }
+  },
+  "icon": "https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage/homepage.svg",
   "scripts": {
     "dev": "./node_modules/.bin/nuxt dev",
     "nuxt": "./node_modules/.bin/nuxt"

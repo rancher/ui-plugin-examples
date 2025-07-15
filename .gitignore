@@ -3,3 +3,7 @@ dist-pkg
 tmp
 .DS_Store
 .gitignore
+.nuxt
+.nuxt-prod
+.idea
+.env
