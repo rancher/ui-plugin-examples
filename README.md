@@ -55,7 +55,7 @@ Example for publishing the `extensions-api-demo` extension version `0.2.3`:
 extensions-api-demo-0.2.3
 ```
 
-
+This will create a PR with all the assets needed for the publish. Check the contents of the PR and if all is looking good, approve and merge to officially publish it. 
 
 ### Bugs & Issues
 Please submit bugs and issues to [rancher/dashboard](//github.com/rancher/dashboard/issues). Assign the label `area/extensions`
