@@ -43,7 +43,7 @@ and then should hot-reload within the browser.
 
 ## Releasing an extension
 
-In order to publish an extension, just create a tagged release with the following format:
+In order to publish an extension, just create a [tagged release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) with the following format:
 
 ```
 "EXT-NAME-IN-PKG-PACKAGEJON"-"VERSION-NUMBER"
