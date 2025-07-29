@@ -27,7 +27,7 @@ To use these examples in Rancher Manager, add this repository as a Helm Reposito
 - Enter `main` for the Git Branch
 - Click `Create`
 
-The extensions should then appear on the 'Extenssions' page in Rancher Manager.
+The extensions should then appear on the 'Extensions' page in Rancher Manager.
 
 ## Building and running locally
 
@@ -40,6 +40,22 @@ You can build and run the extensions locally, to do so:
 
 Once you login, you should see Rancher load with the extensions automatically loaded. You can edit the code for the extensions
 and then should hot-reload within the browser.
+
+## Releasing an extension
+
+In order to publish an extension, just create a tagged release with the following format:
+
+```
+"EXT-NAME-IN-PKG-PACKAGEJON"-"VERSION-NUMBER"
+```
+
+Example for publishing the `extensions-api-demo` extension version `0.2.3`:
+
+```
+extensions-api-demo-0.2.3
+```
+
+This will create a PR with all the assets needed for the publish. Check the contents of the PR and if all is looking good, approve and merge to officially publish it. 
 
 ### Bugs & Issues
 Please submit bugs and issues to [rancher/dashboard](//github.com/rancher/dashboard/issues). Assign the label `area/extensions`
