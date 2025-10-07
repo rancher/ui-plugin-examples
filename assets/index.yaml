@@ -218,6 +218,27 @@ entries:
       catalog.cattle.io/ui-component: plugins
       catalog.cattle.io/ui-extensions-version: '>= 3.0.0 < 4.0.0'
     apiVersion: v2
+    appVersion: 0.2.4
+    created: "2025-10-07T16:23:28.280962919Z"
+    description: Extensions Api demo extension
+    digest: e5216b6559185f8eedf5ef395c1be9c0dc24b2170e568e981dd1f6929aa3463a
+    name: extensions-api-demo
+    type: application
+    urls:
+    - assets/extensions-api-demo/extensions-api-demo-0.2.4.tgz
+    version: 0.2.4
+  - annotations:
+      catalog.cattle.io/certified: rancher
+      catalog.cattle.io/experimental: "true"
+      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/namespace: cattle-ui-plugin-system
+      catalog.cattle.io/os: linux
+      catalog.cattle.io/permits-os: linux, windows
+      catalog.cattle.io/rancher-version: '>= 2.10.0-0'
+      catalog.cattle.io/scope: management
+      catalog.cattle.io/ui-component: plugins
+      catalog.cattle.io/ui-extensions-version: '>= 3.0.0 < 4.0.0'
+    apiVersion: v2
     appVersion: 0.2.3
     created: "2025-07-10T12:33:08.052514+01:00"
     description: Extensions Api demo extension
@@ -764,4 +785,4 @@ entries:
     urls:
     - assets/uk-locale/uk-locale-0.1.1.tgz
     version: 0.1.1
-generated: "2025-01-10T10:06:26.873424072-05:00"
+generated: "2025-10-07T16:23:28.280591612Z"
