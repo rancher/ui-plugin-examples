@@ -21,5 +21,3 @@ jobs:
     with:
       target_branch: main
       tagged_release: ${{ github.ref_name }}
-      create_pr: 'true'
-      GH_TOKEN: ${{ github.token }}
