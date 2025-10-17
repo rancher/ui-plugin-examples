@@ -18,6 +18,7 @@ jobs:
       contents: write
       deployments: write
       pages: write
+      pull-requests: write
     with:
       target_branch: main
       tagged_release: ${{ github.ref_name }}
