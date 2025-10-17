@@ -22,3 +22,5 @@ jobs:
       target_branch: main
       tagged_release: ${{ github.ref_name }}
       create_pr: 'true'
+    secrets:
+      github_token: ${{ secrets.GITHUB_TOKEN }}
