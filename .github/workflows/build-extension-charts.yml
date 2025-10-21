@@ -12,12 +12,14 @@ defaults:
 
 jobs:
   build-extension-charts:
-    uses: rancher/dashboard/.github/workflows/build-extension-charts.yml@master
+    uses: rancher/dashboard/.github/workflows/build-extension-charts.yml@test-workflow-fix-master
     permissions:
       actions: write
       contents: write
       deployments: write
       pages: write
+      pull-requests: write
     with:
       target_branch: main
       tagged_release: ${{ github.ref_name }}
+      create_pr: 'true'

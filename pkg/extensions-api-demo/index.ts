@@ -166,16 +166,40 @@ export default function (plugin: IPlugin) {
     }
   );
 
-  // ADD A COL TO A TABLE
+  // Create a column that shows in the configmap and secret tables. It will present a custom value which can be sorted/searched on when server-side pagination is disabled
   plugin.addTableColumn(
     TableColumnLocation.RESOURCE,
     { resource: ['configmap', 'secret'] },
-    {
-      name: 'some-prop-col',
-      labelKey: 'plugin-examples.col-label',
+    { // Column definition used when server-side pagination is DISABLED and ENABLED
+      name: 'column-example-1-basic',
+      labelKey: 'plugin-examples.table.col-example-1-basic',
       getValue: (row: any) => {
-        return `${row.id}-DEMO-COL-STRING-ADDED!`;
+        // Not that when server-side pagination is enabled searching for `custom cell` fails. getValue is not compatible with server-side pagination.
+        return `Custom Cell Value: ${row.id}`;
       },
+    }
+  );
+
+  // Create a column that shows in the pods table. It will present the value of a label ('extension-label) which can be sorted/searched on
+  // when server-side pagination is enabled or disabled
+  plugin.addTableColumn(
+    TableColumnLocation.RESOURCE,
+    { resource: ['pod'] },
+    { // Column definition used when server-side pagination is DISABLED
+      name: 'column-example-2-basic',
+      labelKey: 'plugin-examples.table.col-example-2-basic',
+      getValue: (row: any) => {
+        // This text can be constructed locally in the browser and usable by local sort + search
+        return row.metadata.labels["extension-label"] || 'empty';
+      },
+    },
+    { // Column definition used when server-side pagination is ENABLED
+      name: 'column-example-2-pagination',
+      labelKey: 'plugin-examples.table.col-example-2-pagination',
+      // value, sort and search all must be a path to a property in the resource, they cannot be computed locally.
+      value: 'metadata.labels.extension-label',
+      sort: 'metadata.labels.extension-label',
+      search: 'metadata.labels.extension-label',
     }
   );
 }

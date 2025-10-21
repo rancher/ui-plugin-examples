@@ -8,4 +8,7 @@ plugin-examples:
   card-title-two: Demo card title 2
   card-title-three: Demo card title 3
   card-title-four: Demo card title 4
-  col-label: Demo col label
+  table:
+    col-example-1-basic: Extension Col - Example 1
+    col-example-2-basic: Extension Col - Example 2 - local
+    col-example-2-pagination: Extension Col - Example 2 - server
