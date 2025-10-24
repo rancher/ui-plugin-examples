@@ -1,4 +1,4 @@
-name: Build and Release Extension Charts
+name: Build and Release Extension Charts via PR creation
 
 on:
   workflow_dispatch:
@@ -11,8 +11,8 @@ defaults:
     working-directory: ./
 
 jobs:
-  build-extension-charts:
-    uses: rancher/dashboard/.github/workflows/build-extension-charts.yml@master
+  create-pr-build-extension-charts:
+    uses: rancher/dashboard/.github/workflows/create-pr-build-extension-charts.yml@test-workflow-split
     permissions:
       actions: write
       contents: write
@@ -22,4 +22,3 @@ jobs:
     with:
       target_branch: main
       tagged_release: ${{ github.ref_name }}
-      create_pr: 'true'
