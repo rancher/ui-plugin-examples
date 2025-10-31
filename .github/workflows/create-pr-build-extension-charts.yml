@@ -12,7 +12,7 @@ defaults:
 
 jobs:
   create-pr-build-extension-charts:
-    uses: rancher/dashboard/.github/workflows/create-pr-build-extension-charts.yml@test-workflow-split
+    uses: rancher/dashboard/.github/workflows/create-pr-build-extension-charts.yml@master
     permissions:
       actions: write
       contents: write
