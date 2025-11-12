@@ -517,6 +517,30 @@ entries:
     urls:
     - assets/homepage/homepage-0.1.0.tgz
     version: 0.1.0
+  homepageprime:
+  - annotations:
+      catalog.cattle.io/certified: rancher
+      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/namespace: cattle-ui-plugin-system
+      catalog.cattle.io/os: linux
+      catalog.cattle.io/permits-os: linux, windows
+      catalog.cattle.io/prime-only: "true"
+      catalog.cattle.io/rancher-version: '>= 2.10.0-0'
+      catalog.cattle.io/scope: management
+      catalog.cattle.io/ui-component: plugins
+      catalog.cattle.io/ui-extensions-version: '>= 3.0.0 < 4.0.0'
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2025-11-12T15:48:23.461042723Z"
+    description: Example extension that changes the landing home page - Prime only
+      version
+    digest: c1857ab1320b61d2aabf03df6e6a7d8c52742cfc1fe914f1cefe4cece5d6ad64
+    icon: https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/pkg/homepage-prime-only/homepage.svg
+    name: homepageprime
+    type: application
+    urls:
+    - assets/homepageprime/homepageprime-0.1.0.tgz
+    version: 0.1.0
   large-extension:
   - annotations:
       catalog.cattle.io/certified: rancher
@@ -851,4 +875,4 @@ entries:
     urls:
     - assets/uk-locale/uk-locale-0.1.1.tgz
     version: 0.1.1
-generated: "2025-10-31T14:53:36.157585206Z"
+generated: "2025-11-12T15:48:23.460253637Z"
