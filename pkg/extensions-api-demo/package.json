@@ -1,7 +1,7 @@
 {
   "name": "extensions-api-demo",
   "description": "Extensions Api demo extension",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "private": false,
   "rancher": {
     "annotations": {
