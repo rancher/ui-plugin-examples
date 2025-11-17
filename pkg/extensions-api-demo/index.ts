@@ -166,15 +166,16 @@ export default function (plugin: IPlugin) {
     }
   );
 
-  // Create a column that shows in the configmap and secret tables. It will present a custom value which can be sorted/searched on when server-side pagination is disabled
+  // Create a column that shows in the configmap and secret tables
   plugin.addTableColumn(
     TableColumnLocation.RESOURCE,
     { resource: ['configmap', 'secret'] },
     { // Column definition used when server-side pagination is DISABLED and ENABLED
       name: 'column-example-1-basic',
       labelKey: 'plugin-examples.table.col-example-1-basic',
+      sort: 'id', // Works for both server-side pagination disabled (path on the local instance of the resource) and disabled (path on the server-side instance of the resource)
+      search: 'id', // As per sort, this is a path on the local and server-side instance of the resource
       getValue: (row: any) => {
-        // Not that when server-side pagination is enabled searching for `custom cell` fails. getValue is not compatible with server-side pagination.
         return `Custom Cell Value: ${row.id}`;
       },
     }
