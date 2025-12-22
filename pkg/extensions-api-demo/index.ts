@@ -6,6 +6,7 @@ import {
   TabLocation,
   CardLocation,
   TableColumnLocation,
+  TableLocation,
   ActionOpts,
 } from '@shell/core/types';
 
@@ -58,6 +59,7 @@ export default function (plugin: IPlugin) {
   );
 
   // ADDS TAB TO "ResourceTabs" COMPONENT
+  // LEGACY TabLocation - to be deprecated in future versions of Rancher from 2.14+
   plugin.addTab(
     TabLocation.RESOURCE_DETAIL,
     { resource: ['pod'] },
@@ -69,6 +71,86 @@ export default function (plugin: IPlugin) {
       showHeader: true,
       tooltip: 'this is a tooltip message',
       component: () => import('./components/MyTabComponent.vue')
+    }
+  );
+
+  // ADDS TAB to Resource Detail Page
+  // NEW TabLocation - introduced in Rancher 2.14+ 
+  // https://extensions.rancher.io/extensions/next/api/tabs
+  plugin.addTab(
+    TabLocation.RESOURCE_DETAIL_PAGE,
+    { resource: ['service'] },
+    {
+      name:       'some-name',
+      label:      'detail-page-label',
+      weight:     -5,
+      showHeader: true,
+      tooltip:    'this is a tooltip message',
+      component:  () => import('./components/MyTabComponent.vue')
+    }
+  );
+
+  // ADDS TAB to Resource Create Page
+  // NEW TabLocation - introduced in Rancher 2.14+
+  // https://extensions.rancher.io/extensions/next/api/tabs
+  plugin.addTab(
+    TabLocation.RESOURCE_CREATE_PAGE,
+    { resource: ['service'] },
+    {
+      name:       'some-name',
+      label:      'create-page-label',
+      weight:     -5,
+      showHeader: true,
+      tooltip:    'this is a tooltip message',
+      component:  () => import('./components/MyTabComponent.vue')
+    }
+  );
+
+  // ADDS TAB to Resource Edit Page
+  // NEW TabLocation - introduced in Rancher 2.14+
+  // https://extensions.rancher.io/extensions/next/api/tabs
+  plugin.addTab(
+    TabLocation.RESOURCE_EDIT_PAGE,
+    { resource: ['service'] },
+    {
+      name:       'some-name',
+      label:      'edit-page-label',
+      weight:     -5,
+      showHeader: true,
+      tooltip:    'this is a tooltip message',
+      component:  () => import('./components/MyTabComponent.vue')
+    }
+  );
+
+  // ADDS TAB to Resource Show Configuration Slide-in panel
+  // NEW TabLocation - introduced in Rancher 2.14+
+  // https://extensions.rancher.io/extensions/next/api/tabs
+  plugin.addTab( 
+  TabLocation.RESOURCE_SHOW_CONFIGURATION,
+  { resource: ['pod'] }, 
+  {
+    name:       'some-name',
+    label:      'show-configuration-label',
+    weight:     -5,
+    showHeader: true,
+    tooltip:    'this is a tooltip message',
+    component:  () => import('./components/MyTabComponent.vue')
+  }
+);
+
+  // ADDS TAB to a generic location - appears on all pages matching the resource criteria
+  // NEW TabLocation - introduced in Rancher 2.14+
+  // https://extensions.rancher.io/extensions/next/api/tabs
+  plugin.addTab(
+    TabLocation.ALL,
+    { resource: ['pod', 'service'] },
+    {
+      name:       'some-name',
+      label:      'all-pages-label',
+      weight:     -5,
+      showHeader: true,
+      tooltip:    'this is a tooltip message',
+      component:  () => import('./components/MyTabComponent.vue')
     }
   );
 
@@ -172,6 +254,7 @@ export default function (plugin: IPlugin) {
     { resource: ['configmap', 'secret'] },
     { // Column definition used when server-side pagination is DISABLED and ENABLED
       name: 'column-example-1-basic',
+      weight: 2, // rancher 2.14 property to influence column ordering - https://extensions.rancher.io/extensions/next/api/tabs
       labelKey: 'plugin-examples.table.col-example-1-basic',
       sort: 'id', // Works for both server-side pagination disabled (path on the local instance of the resource) and disabled (path on the server-side instance of the resource)
       search: 'id', // As per sort, this is a path on the local and server-side instance of the resource
@@ -201,6 +284,18 @@ export default function (plugin: IPlugin) {
       value: 'metadata.labels.extension-label',
       sort: 'metadata.labels.extension-label',
       search: 'metadata.labels.extension-label',
+    }
+  );
+
+  // TABLE HOOK EXAMPLE -> compatible with rancher 2.14 and later
+  // https://extensions.rancher.io/extensions/next/api/table
+  plugin.addTableHook(
+    TableLocation.RESOURCE,
+    { resource: ['pod'] },
+    {
+      tableHook: (arg: any) => {
+        console.error('TABLE HOOK TRIGGERED', arg);
+      }
     }
   );
 }
