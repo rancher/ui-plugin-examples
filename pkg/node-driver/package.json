@@ -1,7 +1,7 @@
 {
   "name": "openstack",
   "description": "Example node driver UI for Openstack",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "rancher": {
     "annotations": {

@@ -67,9 +67,9 @@ export default {
         this.busy = false;
       };
 
-      this.$set(this, 'busy', true);
+      this.busy = true;
 
-      this.$emit('click', cb);
+      this.$emit('clicked', cb);
     },
 
     focus() {
