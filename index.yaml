@@ -726,6 +726,26 @@ entries:
       catalog.cattle.io/ui-component: plugins
       catalog.cattle.io/ui-extensions-version: '>= 3.0.0 < 4.0.0'
     apiVersion: v2
+    appVersion: 1.0.3
+    created: "2026-03-06T17:29:59.438636616Z"
+    description: Example node driver UI for Openstack
+    digest: 34f77bd31e6163f69e415d0f4b4b0bb50573fec9cab8f70917a9aa9483e0e4fa
+    name: openstack
+    type: application
+    urls:
+    - assets/node-driver/openstack-1.0.3.tgz
+    version: 1.0.3
+  - annotations:
+      catalog.cattle.io/certified: rancher
+      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/namespace: cattle-ui-plugin-system
+      catalog.cattle.io/os: linux
+      catalog.cattle.io/permits-os: linux, windows
+      catalog.cattle.io/rancher-version: '>= 2.10.0-0'
+      catalog.cattle.io/scope: management
+      catalog.cattle.io/ui-component: plugins
+      catalog.cattle.io/ui-extensions-version: '>= 3.0.0 < 4.0.0'
+    apiVersion: v2
     appVersion: 1.0.2
     created: "2025-01-22T11:05:23.853953263-05:00"
     description: Example node driver UI for Openstack
@@ -960,4 +980,4 @@ entries:
     urls:
     - assets/uk-locale/uk-locale-0.1.1.tgz
     version: 0.1.1
-generated: "2026-01-08T09:55:21.784699716Z"
+generated: "2026-03-06T17:29:59.438251167Z"
