@@ -93,7 +93,7 @@ export default {
       console.error(e); // eslint-disable-line no-console
     }
 
-    this.$set(this, 'authenticating', true);
+    this.authenticating = true;
 
     const os = new Openstack(this.$store, this.credential);
 
@@ -104,7 +104,7 @@ export default {
     // Fetch a token - if this succeeds, kick off async fetching the lists we need
     this.os.getToken().then((res) => {
       if (res.error) {
-        this.$set(this, 'authenticating', false);
+        this.authenticating = false;
         this.$emit('validationChanged', false);
 
         this.errors.push('Unable to authenticate with the OpenStack server');
@@ -112,7 +112,7 @@ export default {
         return;
       }
 
-      this.$set(this, 'authenticating', false);
+      this.authenticating = false;
 
       os.getFlavors(this.flavors, this.value?.flavorName);
       os.getImages(this.images, this.value?.imageName);
@@ -264,7 +264,7 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledSelect
-            v-model="flavors.selected"
+            v-model:value="flavors.selected"
             label="Flavor"
             :options="flavors.options"
             :disabled="!flavors.enabled || busy"
@@ -275,7 +275,7 @@ export default {
 
         <div class="col span-6">
           <LabeledSelect
-            v-model="images.selected"
+            v-model:value="images.selected"
             label="Image"
             :options="images.options"
             :disabled="!images.enabled || busy"
@@ -287,7 +287,7 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledSelect
-            v-model="keyPairs.selected"
+            v-model:value="keyPairs.selected"
             label="Key Pair"
             :options="keyPairs.options"
             :disabled="!keyPairs.enabled || busy"
@@ -297,7 +297,7 @@ export default {
         </div>
         <div class="col span-6">
           <LabeledInput
-            v-model="filename"
+            v-model:value="filename"
             label="Private Key"
             :mode="mode"
             :type="privateKeyFieldType"
@@ -322,7 +322,7 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledSelect
-            v-model="securityGroups.selected"
+            v-model:value="securityGroups.selected"
             label="Security Groups"
             :options="securityGroups.options"
             :disabled="!securityGroups.enabled || busy"
@@ -334,7 +334,7 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledSelect
-            v-model="availabilityZones.selected"
+            v-model:value="availabilityZones.selected"
             label="Availability Zone"
             :options="availabilityZones.options"
             :disabled="!availabilityZones.enabled || busy"
@@ -346,7 +346,7 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledSelect
-            v-model="floatingIpPools.selected"
+            v-model:value="floatingIpPools.selected"
             label="Floating IP Pools"
             :options="floatingIpPools.options"
             :disabled="!floatingIpPools.enabled || busy"
@@ -356,7 +356,7 @@ export default {
         </div>
         <div class="col span-6">
           <LabeledSelect
-            v-model="networks.selected"
+            v-model:value="networks.selected"
             label="Networks"
             :options="networks.options"
             :disabled="!networks.enabled || busy"
@@ -368,7 +368,7 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledInput
-            v-model="sshUser"
+            v-model:value="sshUser"
             :mode="mode"
             :disabled="busy"
             :required="true"
