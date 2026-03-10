@@ -1,22 +1,20 @@
-<template>
-  <div>
-    <h1 class="mb-20">{{ t('dashboard.welcome_message', null, true) }}</h1>
-    <h3 class="mb-40">{{ t('dashboard.description') }} {{ t('dashboard.rancherType') }}</h3>
-    <div class="mb-40">
-      <img class="logo" :src="logoPath" alt="Demo Logo" />
-    </div> 
-     <img class="mb-20 landscape" :src="landscapePath" alt="Demo Landscape" />
-    <h4>{{ t('dashboard.imageDescription', null, true) }}</h4>
-  </div>
-</template>
+
 
 <script>
 import { mapGetters } from 'vuex';
 import { isRancherPrime } from '@shell/config/version';
 import { IMAGES_ASSET_PATH } from '../config/constants';
+import Loading from '@shell/components/Loading';
+import versions from '@shell/utils/versions';
 
   export default {
     name: 'DashboardPage',
+    components: {
+      Loading,
+    },
+    async fetch(){
+      await versions.fetch({ store: this.$store })
+    },
     computed: {
       ...mapGetters({ theme: 'prefs/theme' }),
 
@@ -46,6 +44,19 @@ import { IMAGES_ASSET_PATH } from '../config/constants';
     },
   }
 </script>
+
+<template>
+  <Loading v-if="$fetchState.pending" />
+  <div v-else>
+    <h1 class="mb-20">{{ t('dashboard.welcome_message', null, true) }}</h1>
+    <h3 class="mb-40">{{ t('dashboard.description') }} {{ t('dashboard.rancherType') }}</h3>
+    <div class="mb-40">
+      <img class="logo" :src="logoPath" alt="Demo Logo" />
+    </div> 
+     <img class="mb-20 landscape" :src="landscapePath" alt="Demo Landscape" />
+    <h4>{{ t('dashboard.imageDescription', null, true) }}</h4>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .logo {
