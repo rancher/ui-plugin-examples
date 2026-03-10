@@ -1,0 +1,19 @@
+{
+  "name": "node-driver",
+  "description": "Example node driver UI for Openstack",
+  "version": "1.0.4",
+  "private": false,
+  "rancher": true,
+  "engines": {
+    "node": ">=12"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "@vue/cli-plugin-typescript": "~5.0.0"
+  },
+  "files": [
+    "**/*"
+  ],
+  "main": "node-driver-1.0.4.umd.min.js"
+}
