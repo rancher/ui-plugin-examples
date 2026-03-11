@@ -12,7 +12,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { isRancherPrime } from '@shell/config/version';
 import { IMAGES_ASSET_PATH } from '../config/constants';
 
   export default {
