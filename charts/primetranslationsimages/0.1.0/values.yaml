@@ -1,0 +1,14 @@
+nameOverride: ""
+fullnameOverride: ""
+plugin:
+  enabled: true
+  versionOverride: ""
+  endpoint: >-
+    https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/extensions/primetranslationsimages/0.1.0
+  compressedEndpoint: >-
+    https://raw.githubusercontent.com/rancher/ui-plugin-examples/main/extensions/primetranslationsimages/0.1.0.tgz
+  noCache: false
+  noAuth: false
+  metadata:
+    catalog.cattle.io/rancher-version: ">= 2.14.0"
+    catalog.cattle.io/ui-extensions-version: ">= 3.0.0 < 4.0.0"
