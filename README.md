@@ -16,6 +16,7 @@ If you are interested in the publishing process, we recommend following our offi
 |top-level-product|Adds an example of a Top Level Product as an Extension|v2.10.0|
 |node-driver|Example that allows for custom node drivers to support additional node provisioners in Rancher|v2.10.0|
 |large-extension|for internal testing purposes only (caching mechanism)|v2.10.0|
+|primetranslationsimages|how to handle different translations and images for Prime and non-Prime Rancher systems|v2.14.0|
 
 
 To use these examples in Rancher Manager, add this repository as a Helm Repository - to do this:
