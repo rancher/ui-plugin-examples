@@ -1,0 +1,8 @@
+product:
+  primetranslationsimages: Translations & Images Prime
+
+dashboard:
+  pageLabel: Dashboard for Rancher Prime
+  welcome_message: Welcome to the Translations & Images for Rancher Prime!
+  rancherType: We are now in browsing Rancher Prime edition.
+  imageDescription: Here is an example of images loaded from the plugin's assets. These images are only in the Rancher Prime edition.

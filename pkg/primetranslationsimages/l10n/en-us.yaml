@@ -1,0 +1,9 @@
+product:
+  primetranslationsimages: Translations & Images Community
+
+dashboard:
+  pageLabel: Dashboard for Community edition 
+  welcome_message: Welcome to the Translations & Images for Rancher Community!
+  description: This dashboard showcases localization and image handling features.
+  rancherType: We are now in browsing Rancher Community edition.
+  imageDescription: Here is an example of images loaded from the plugin's assets. These images are only in the Rancher Community edition.
