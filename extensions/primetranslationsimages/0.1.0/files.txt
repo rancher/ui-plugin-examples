@@ -1,0 +1,11 @@
+plugin/img/banner.00f803a6.svg
+plugin/img/banner.245c572a.svg
+plugin/img/banner.e66743c3.svg
+plugin/img/banner.ee2db63b.svg
+plugin/img/rancher-logo.8dca6972.svg
+plugin/img/rancher-logo.af9af640.svg
+plugin/img/rancher-logo.d26f6ac6.svg
+plugin/img/rancher-logo.db10c962.svg
+plugin/package.json
+plugin/primetranslationsimages-0.1.0.umd.min.js
+plugin/primetranslationsimages-0.1.0.umd.min.js.map
