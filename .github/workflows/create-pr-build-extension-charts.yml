@@ -12,7 +12,7 @@ defaults:
 
 jobs:
   create-pr-build-extension-charts:
-    uses: rancher/dashboard/.github/workflows/create-pr-build-extension-charts.yml@9eb70a732e9be146722e1dbab431338366c2afc6 # creators-pkg-v3.0.10
+    uses: rancher/dashboard/.github/workflows/create-pr-build-extension-charts.yml@7524601685a2e6526c546c5f02a951e1cc7476f8 # latest
     permissions:
       actions: write
       contents: write
