@@ -1,0 +1,11 @@
+plugin/new-prod-reg-api-0.1.1.umd.min.440.js
+plugin/new-prod-reg-api-0.1.1.umd.min.440.js.map
+plugin/new-prod-reg-api-0.1.1.umd.min.565.js
+plugin/new-prod-reg-api-0.1.1.umd.min.565.js.map
+plugin/new-prod-reg-api-0.1.1.umd.min.690.js
+plugin/new-prod-reg-api-0.1.1.umd.min.690.js.map
+plugin/new-prod-reg-api-0.1.1.umd.min.903.js
+plugin/new-prod-reg-api-0.1.1.umd.min.903.js.map
+plugin/new-prod-reg-api-0.1.1.umd.min.js
+plugin/new-prod-reg-api-0.1.1.umd.min.js.map
+plugin/package.json

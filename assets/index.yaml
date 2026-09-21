@@ -714,6 +714,26 @@ entries:
     urls:
     - assets/large-extension/large-extension-0.1.0.tgz
     version: 0.1.0
+  new-prod-reg-api:
+  - annotations:
+      catalog.cattle.io/certified: rancher
+      catalog.cattle.io/namespace: cattle-ui-plugin-system
+      catalog.cattle.io/os: linux
+      catalog.cattle.io/permits-os: linux, windows
+      catalog.cattle.io/rancher-version: '>= 2.15.0'
+      catalog.cattle.io/scope: management
+      catalog.cattle.io/ui-component: plugins
+      catalog.cattle.io/ui-extensions-version: '>= 3.0.0 < 4.0.0'
+    apiVersion: v2
+    appVersion: 0.1.1
+    created: "2026-09-21T13:04:32.299689236Z"
+    description: New product registration API demo
+    digest: 35d02ce4000843b3ef49832074106b0961de3199c9c6372e05742b83f5a4ce71
+    name: new-prod-reg-api
+    type: application
+    urls:
+    - assets/new-prod-reg-api/new-prod-reg-api-0.1.1.tgz
+    version: 0.1.1
   node-driver:
   - annotations:
       catalog.cattle.io/certified: rancher
@@ -1022,4 +1042,4 @@ entries:
     urls:
     - assets/uk-locale/uk-locale-0.1.1.tgz
     version: 0.1.1
-generated: "2026-03-12T15:32:04.498064624Z"
+generated: "2026-09-21T13:04:32.29930296Z"
