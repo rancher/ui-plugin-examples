@@ -1,0 +1,19 @@
+{
+  "name": "new-prod-reg-api",
+  "description": "New product registration API demo",
+  "version": "0.1.1",
+  "private": false,
+  "rancher": true,
+  "engines": {
+    "node": ">=16"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "@vue/cli-plugin-typescript": "~5.0.0"
+  },
+  "files": [
+    "**/*"
+  ],
+  "main": "new-prod-reg-api-0.1.1.umd.min.js"
+}
