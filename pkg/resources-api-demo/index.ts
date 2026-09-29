@@ -12,16 +12,16 @@ export default function (extension: IPlugin) {
   // Provide extension metadata from package.json
   extension.metadata = require('./package.json');
 
-  // const product: ProductMetadata = {
-  //   name:      'resources-api',
-  //   label:     'Resources API',
-  //   sideBar:   { icon: { name: 'globe' } }
-  // };
+  const product: ProductMetadata = {
+    name:      'resources-api',
+    label:     'Resources API',
+    sideBar:   { icon: { name: 'globe' } }
+  };
 
   const resourcesApiPage: ProductChildCustomPage = {
-    name:      'resources-api-demo',
-    label:     'Resources API Demo',
-    component: () => import('./pages/ResourcesApiDemoPage.vue')
+    name:      'mgmt-api-demo',
+    label:     'Management API Demo',
+    component: () => import('./pages/MgmtApiDemoPage.vue')
   };
 
   const clusterApiPage: ProductChildCustomPage = {
