@@ -102,38 +102,41 @@ export default {
     <p>This section will demonstrate how to interact with the Management API.</p>
     <h3 class="mt-40">create() example - creating a new cluster repo</h3>
     <!-- CREATE -->
-    <RcButton :disabled="singleItemData" primary class="mt-10" @click="createData">Create a cluster repo</RcButton>
+    <RcButton class="btn-size mt-10" :disabled="singleItemData" primary @click="createData">Create a cluster repo</RcButton>
     <h3 class="mt-40">find() example - finding a new cluster repo</h3>
     <!-- FIND -->
-    <RcButton :disabled="!singleItemData" primary @click="findData(true)">Find a cluster repo</RcButton>
+    <RcButton  class="btn-size" :disabled="!singleItemData" primary @click="findData(true)">Find a cluster repo</RcButton>
     <p v-if="!singleItemData">You'll need to create a cluster repo first. Perform the create() example</p>
     <p v-if="singleItemData" class="mt-10 mb-10">Result will appear below this:</p>
     <p v-if="findSingleItemData">{{ parseData(findSingleItemData) }}</p>
     <!-- FIND ALL -->
      <h3 class="mt-40">findAll() example - finding all cluster repos</h3>
-    <RcButton :disabled="!singleItemData" primary @click="findAllData">Find all cluster repos</RcButton>
+    <RcButton class="btn-size" :disabled="!singleItemData" primary @click="findAllData">Find all cluster repos</RcButton>
     <p v-if="!singleItemData">You'll need to create a cluster repo first. Perform the create() example</p>
     <p v-if="singleItemData" class="mt-10 mb-10">Result will appear below this:</p>
     <p v-if="allItemsData">{{ parseData(allItemsData) }}</p>
         <!-- UPDATE -->
     <h3 class="mt-40">update() example - updating a cluster repo  (HTTP PATCH OP)</h3>
-    <RcButton :disabled="!singleItemData" primary @click="updateData(true)">Update a cluster repo</RcButton>
+    <RcButton class="btn-size" :disabled="!singleItemData" primary @click="updateData(true)">Update a cluster repo</RcButton>
     <p v-if="!singleItemData">You'll need to create a cluster repo first. Perform the create() example</p>
     <p v-if="singleItemData" class="mt-10 mb-10">Result will appear below this:</p>
     <p v-if="updatedItemData">{{ parseData(updatedItemData) }}</p>
         <!-- REPLACE -->
     <h3 class="mt-40">replace() example - replacing a cluster repo  (HTTP PUT OP)</h3>
-    <RcButton :disabled="!singleItemData" primary @click="replaceData(true)">Replace a cluster repo</RcButton>
+    <RcButton class="btn-size" :disabled="!singleItemData" primary @click="replaceData(true)">Replace a cluster repo</RcButton>
     <p v-if="!singleItemData">You'll need to create a cluster repo first. Perform the create() example</p>
     <p v-if="singleItemData" class="mt-10 mb-10">Result will appear below this:</p>
     <p v-if="replacedItemData">{{ parseData(replacedItemData) }}</p>
     <!-- DELETE -->
     <h3 class="mt-40">delete() example - deleting a cluster repo</h3>
-    <RcButton :disabled="!singleItemData" primary @click="deleteData">Delete a cluster repo</RcButton>
+    <RcButton class="btn-size" :disabled="!singleItemData" primary @click="deleteData">Delete a cluster repo</RcButton>
     <p v-if="!singleItemData">You'll need to create a cluster repo first. Perform the create() example</p>
 
   </div>
 </template>
 
 <style lang="scss" scoped>
+.btn-size {
+  width: 160px;
+}
 </style>

@@ -102,38 +102,41 @@ export default {
     <p>This section will demonstrate how to interact with the Cluster API.</p>
     <h3 class="mt-40">create() example - creating a new configmap</h3>
     <!-- CREATE -->
-    <RcButton :disabled="singleItemData" primary class="mt-10" @click="createData">Create a configmap</RcButton>
+    <RcButton class="btn-size mt-10" :disabled="singleItemData" primary @click="createData">Create a configmap</RcButton>
     <h3 class="mt-40">find() example - finding a new configmap</h3>
     <!-- FIND -->
-    <RcButton :disabled="!singleItemData" primary @click="findData(true)">Find a configmap</RcButton>
+    <RcButton class="btn-size" :disabled="!singleItemData" primary @click="findData(true)">Find a configmap</RcButton>
     <p v-if="!singleItemData">You'll need to create a configmap first. Perform the create() example</p>
     <p v-if="singleItemData" class="mt-10 mb-10">Result will appear below this:</p>
     <p v-if="findSingleItemData">{{ parseData(findSingleItemData) }}</p>
     <!-- FIND ALL -->
      <h3 class="mt-40">findAll() example - finding all configmaps</h3>
-    <RcButton :disabled="!singleItemData" primary @click="findAllData">Find all configmaps</RcButton>
+    <RcButton class="btn-size" :disabled="!singleItemData" primary @click="findAllData">Find all configmaps</RcButton>
     <p v-if="!singleItemData">You'll need to create a configmap first. Perform the create() example</p>
     <p v-if="singleItemData" class="mt-10 mb-10">Result will appear below this:</p>
     <p v-if="allItemsData">{{ parseData(allItemsData) }}</p>
         <!-- UPDATE -->
     <h3 class="mt-40">update() example - updating a configmap  (HTTP PATCH OP)</h3>
-    <RcButton :disabled="!singleItemData" primary @click="updateData(true)">Update a configmap</RcButton>
+    <RcButton class="btn-size" :disabled="!singleItemData" primary @click="updateData(true)">Update a configmap</RcButton>
     <p v-if="!singleItemData">You'll need to create a configmap first. Perform the create() example</p>
     <p v-if="singleItemData" class="mt-10 mb-10">Result will appear below this:</p>
     <p v-if="updatedItemData">{{ parseData(updatedItemData) }}</p>
         <!-- REPLACE -->
     <h3 class="mt-40">replace() example - replacing a configmap  (HTTP PUT OP)</h3>
-    <RcButton :disabled="!singleItemData" primary @click="replaceData(true)">Replace a configmap</RcButton>
+    <RcButton class="btn-size" :disabled="!singleItemData" primary @click="replaceData(true)">Replace a configmap</RcButton>
     <p v-if="!singleItemData">You'll need to create a configmap first. Perform the create() example</p>
     <p v-if="singleItemData" class="mt-10 mb-10">Result will appear below this:</p>
     <p v-if="replacedItemData">{{ parseData(replacedItemData) }}</p>
     <!-- DELETE -->
     <h3 class="mt-40">delete() example - deleting a configmap</h3>
-    <RcButton :disabled="!singleItemData" primary @click="deleteData">Delete a configmap</RcButton>
+    <RcButton class="btn-size" :disabled="!singleItemData" primary @click="deleteData">Delete a configmap</RcButton>
     <p v-if="!singleItemData">You'll need to create a configmap first. Perform the create() example</p>
 
   </div>
 </template>
 
 <style lang="scss" scoped>
+.btn-size {
+  width: 160px;
+}
 </style>
