@@ -856,6 +856,28 @@ entries:
     urls:
     - assets/primetranslationsimages/primetranslationsimages-0.1.0.tgz
     version: 0.1.0
+  resources-api-demo:
+  - annotations:
+      catalog.cattle.io/certified: rancher
+      catalog.cattle.io/experimental: "true"
+      catalog.cattle.io/kube-version: '>= 1.16.0-0'
+      catalog.cattle.io/namespace: cattle-ui-plugin-system
+      catalog.cattle.io/os: linux
+      catalog.cattle.io/permits-os: linux, windows
+      catalog.cattle.io/rancher-version: '>= 2.15.0-0'
+      catalog.cattle.io/scope: management
+      catalog.cattle.io/ui-component: plugins
+      catalog.cattle.io/ui-extensions-version: '>= 3.0.0 < 4.0.0'
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2026-09-30T10:57:32.15343277Z"
+    description: Resources Api demo extension - Rancher >= 2.15.0
+    digest: 19868301c124baebaa8a4a2af5adacce9c40ec1f8ac68e7443d753b8ef1637f6
+    name: resources-api-demo
+    type: application
+    urls:
+    - assets/resources-api-demo/resources-api-demo-0.1.0.tgz
+    version: 0.1.0
   shell-api-demo:
   - annotations:
       catalog.cattle.io/certified: rancher
@@ -1042,4 +1064,4 @@ entries:
     urls:
     - assets/uk-locale/uk-locale-0.1.1.tgz
     version: 0.1.1
-generated: "2026-09-21T13:04:32.29930296Z"
+generated: "2026-09-30T10:57:32.15231628Z"
