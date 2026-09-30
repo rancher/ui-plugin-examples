@@ -1,0 +1,11 @@
+plugin/package.json
+plugin/resources-api-demo-0.1.0.umd.min.230.js
+plugin/resources-api-demo-0.1.0.umd.min.230.js.map
+plugin/resources-api-demo-0.1.0.umd.min.37.js
+plugin/resources-api-demo-0.1.0.umd.min.37.js.map
+plugin/resources-api-demo-0.1.0.umd.min.727.js
+plugin/resources-api-demo-0.1.0.umd.min.727.js.map
+plugin/resources-api-demo-0.1.0.umd.min.834.js
+plugin/resources-api-demo-0.1.0.umd.min.834.js.map
+plugin/resources-api-demo-0.1.0.umd.min.js
+plugin/resources-api-demo-0.1.0.umd.min.js.map
