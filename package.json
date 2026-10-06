@@ -9,7 +9,7 @@
     "cache-loader": "4.1.0",
     "color": "4.2.3",
     "ip": "2.0.1",
-    "node-polyfill-webpack-plugin": "3.0.0"
+    "node-polyfill-webpack-plugin": "4.1.0"
   },
   "devDependencies": {
     "@babel/core": "7.26.0",
