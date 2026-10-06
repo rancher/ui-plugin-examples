@@ -1,0 +1,61 @@
+version: 2
+
+updates:
+  # Root JS dependencies (a single yarn.lock covers the whole repo build).
+  # pkg/*/package.json are build scaffolding for build-pkg and are not covered.
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Lisbon
+    open-pull-requests-limit: 5
+    labels: ["area/dependencies"]
+    commit-message:
+      prefix: deps
+      prefix-development: deps-dev
+      include: scope
+    # Let the community find compromised/broken releases before they land here.
+    # Security advisories bypass this automatically.
+    cooldown:
+      default-days: 7
+      semver-major-days: 14
+      semver-minor-days: 7
+      semver-patch-days: 3
+    groups:
+      babel:
+        patterns:
+          - "@babel/*"
+          - "babel-*"
+      jest:
+        patterns:
+          - "jest"
+          - "jest-*"
+          - "ts-jest"
+          - "@types/jest"
+      vue-test-utils:
+        patterns:
+          - "@vue/test-utils"
+          - "@vue/vue3-jest"
+
+  # Keep the pinned third-party action SHAs current.
+  # The rancher/dashboard reusable workflow is pinned to a bare SHA, which Dependabot
+  # cannot version — it is left alone here and bumped manually.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Lisbon
+    open-pull-requests-limit: 5
+    labels: ["component/dependencies"]
+    commit-message:
+      prefix: ci
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions:
+        patterns:
+          - "*"
