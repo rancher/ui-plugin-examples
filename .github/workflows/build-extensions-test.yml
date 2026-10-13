@@ -1,0 +1,24 @@
+name: Test extensions build
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-extensions:
+    uses: rancher/dashboard/.github/workflows/build-extensions-test.yml@7524601685a2e6526c546c5f02a951e1cc7476f8 # latest
+    # To skip an extension in an exceptional case, pass its pkg/ subfolder name(s):
+    # with:
+    #   disable_exts_build: clock,homepage
+
+  # Single, stable check name to mark as required in branch protection.
+  # The matrix job names above change whenever a folder is added to/removed from pkg/.
+  extensions-build-result:
+    if: always()
+    needs: build-extensions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check extensions build result
+        run: '[[ "${{ needs.build-extensions.result }}" == "success" ]]'
