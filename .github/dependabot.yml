@@ -23,6 +23,15 @@ updates:
       semver-major-days: 14
       semver-minor-days: 7
       semver-patch-days: 3
+    ignore:
+      # Pinned via `resolutions` to match the Babel 7 toolchain @rancher/shell builds with
+      # (vue-cli + babel-loader). A major bump breaks every `yarn build-pkg`.
+      - dependency-name: "@babel/*"
+        update-types: ["version-update:semver-major"]
+      # Shell majors map to Rancher versions and the ui-extensions-version annotations in
+      # pkg/*/package.json — upgrade them via the extension migration tooling, not Dependabot.
+      - dependency-name: "@rancher/shell"
+        update-types: ["version-update:semver-major"]
     groups:
       babel:
         patterns:
