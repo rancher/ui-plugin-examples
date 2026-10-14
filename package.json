@@ -22,7 +22,7 @@
   },
   "resolutions": {
     "@types/node": "20.10.8",
-    "@types/lodash": "4.17.5",
+    "@types/lodash": "4.17.25",
     "@babel/core": "7.26.0",
     "@babel/preset-env": "7.26.0",
     "@achrinza/node-ipc": "9.2.10"
