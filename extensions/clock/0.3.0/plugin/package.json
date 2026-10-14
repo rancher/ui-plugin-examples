@@ -20,7 +20,7 @@
     "@types/node": "~20.10.0",
     "d3-color": "3.1.0",
     "ejs": "3.1.9",
-    "follow-redirects": "1.15.2",
+    "follow-redirects": "1.16.0",
     "glob": "7.2.3",
     "glob-parent": "6.0.2",
     "json5": "2.2.3",
