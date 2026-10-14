@@ -19,7 +19,7 @@
   "resolutions": {
     "@types/node": "~20.10.0",
     "d3-color": "3.1.0",
-    "ejs": "3.1.9",
+    "ejs": "3.1.10",
     "follow-redirects": "1.15.2",
     "glob": "7.2.3",
     "glob-parent": "6.0.2",
