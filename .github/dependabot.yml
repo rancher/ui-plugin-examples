@@ -6,11 +6,11 @@ updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: weekly
+      interval: daily
       day: monday
       time: "06:00"
       timezone: Europe/Lisbon
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 15
     labels: ["area/dependencies"]
     commit-message:
       prefix: deps
@@ -54,7 +54,7 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: weekly
+      interval: daily
       day: monday
       time: "06:00"
       timezone: Europe/Lisbon
