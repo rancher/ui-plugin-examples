@@ -5,7 +5,7 @@
     "node": ">=24.15.0"
   },
   "dependencies": {
-    "@rancher/shell": "3.0.13"
+    "@rancher/shell": "3.0.14"
   },
   "devDependencies": {
     "@babel/core": "7.26.0",
