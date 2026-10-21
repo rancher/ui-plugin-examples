@@ -5,11 +5,11 @@
     "node": ">=24.15.0"
   },
   "dependencies": {
-    "@rancher/shell": "3.0.13"
+    "@rancher/shell": "3.0.14"
   },
   "devDependencies": {
-    "@babel/core": "7.26.0",
-    "@babel/preset-env": "7.26.0",
+    "@babel/core": "7.29.7",
+    "@babel/preset-env": "7.29.7",
     "@types/jest": "^30",
     "@vue/test-utils": "^2",
     "@vue/vue3-jest": "^29",
@@ -23,9 +23,16 @@
   "resolutions": {
     "@types/node": "20.10.8",
     "@types/lodash": "4.17.5",
-    "@babel/core": "7.26.0",
-    "@babel/preset-env": "7.26.0",
-    "@achrinza/node-ipc": "9.2.10"
+    "@babel/core": "7.29.7",
+    "@babel/preset-env": "7.29.7",
+    "@achrinza/node-ipc": "9.2.10",
+    "uuid": "11.1.1",
+    "serialize-javascript": "7.0.5",
+    "markdown-it": "14.3.3",
+    "cookie": "0.7.2",
+    "**/diff2html/diff": "5.2.2",
+    "**/editorconfig/minimatch": "9.0.9",
+    "**/simple-update-notifier/semver": "7.8.5"
   },
   "scripts": {
     "dev": "NODE_ENV=dev ./node_modules/.bin/vue-cli-service serve",
